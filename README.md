@@ -1,2 +1,2 @@
 # Evaluación 1 Mauricio Gatica - Anna Heisig
-M2A dedicado a la venta de videojuegos digitales, anime y microtransacciones.
+M2A dedicado a la venta de videojuegos digitales y series.
