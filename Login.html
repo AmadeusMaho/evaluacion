@@ -9,74 +9,116 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">M2A</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Videojuegos
-                    </a>
-                    <ul class="dropdown-menu">
-                      <ul><a class="dropdown-menu" href="#">Generos</a></ul>
-                      <li><a class="dropdown-item" href="#">Tendencias</a></li>
-                      <li><a class="dropdown-item" href="#">DLC</a></li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">Ver todos</a></li>
-                    </ul>
-                  </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Anime</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Estrenos</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">DLC</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" aria-disabled="true">Deshabilitado</a>
-              </li>
-            </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </form>
-          </div>
+  <nav class="navbar fixed-top">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="me-auto mb-2 mb-lg-0">
+        <a class="navbar-brand" href="#">M2A</a>
+      </div>
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-      </nav>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
 
-    <div class="container mt-5">
+    <div class="container mt-5 pt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header" style="text-align: center; font-size: 20px; background-color: #7209b7; color: whitesmoke; font-weight: bold;">
                         Registro M2A
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" style="background-color: #2f3236;">
                         <form>
                             <div class="mb-3">
-                                <label for="rut" class="form-label">RUT</label>
-                                <input type="email" class="form-control" id="rut" aria-describedby="emailHelp">
+                                <label for="rut" class="form-label" style="color: whitesmoke;" >RUT</label>
+                                <input type="email" class="form-control" id="rut" aria-describedby="emailHelp" style="background-color: #5e646b;">
                             </div>
                             <div class="mb-3">
-                                <label for="nombre" class="form-label">Nombre</label>
-                                <input type="name" class="form-control" id="nombre">
+                                <label for="nombre" class="form-label" style="color: whitesmoke;">Nombre</label>
+                                <input type="name" class="form-control" id="nombre" style="background-color: #5e646b;">
                             </div>
                             <div class="mb-3">
-                                <label for="apellido" class="form-label">Apellido</label>
-                                <input type="lastname" class="form-control" id="apellido">
+                                <label for="apellido" class="form-label" style="color: whitesmoke;">Apellido</label>
+                                <input type="lastname" class="form-control" id="apellido" style="background-color: #5e646b;">
                             </div>
                             <div class="mb-3">
-                                <label for="correo" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="correo">
+                                <label for="correo" class="form-label" style="color: whitesmoke;">Email</label>
+                                <input type="email" class="form-control" id="correo" style="background-color: #5e646b;">
+                            </div>
+                            <div class="mb-3">
+                              <label for="telefono" class="form-label" style="color: whitesmoke;">Teléfono</label>
+                              <input type="tel" class="form-control" id="telefono" style="background-color: #5e646b;">
+                          </div>
+                          <div class="row">
+                            <div class="col-5 pt-2">
+                              <h6 style="color: whitesmoke;">Elige tu región:</h6>
+                              <select class="form-select form-select-sm" aria-label="Default select example">
+                                <option selected>Seleccionar Región</option>
+                                <option value="1">Región Metropolitana</option>
+                                <option value="2">Región de Arica y Parinacota</option>
+                                <option value="3">Región de Antofagasta</option>
+                                <option value="4">Región de Atacama</option>
+                                <option value="5">Región de Coquimbo</option>
+                                <option value="6">Región de Valparaíso</option>
+                                <option value="7">Región de O'Higgins</option>
+                                <option value="8">Región del Maule</option>
+                                <option value="9">Región del Ñuble</option>
+                                <option value="10">Región del Biobío</option>
+                                <option value="11">Región de la Araucanía</option>
+                                <option value="12">Región de los Ríos</option>
+                                <option value="13">Región de los Lagos</option>
+                                <option value="14">Región de Aysén</option>
+                                <option value="15">Región de Magallanes</option>
+                              </select>
+                            </div>
+                            <div class="col-5 offset-2 pt-2">
+                              <h6 style="color: whitesmoke;">Elige tu nivel educacional:</h6>
+                              <select class="form-select form-select-sm" aria-label="Default select example">
+                                <option selected>Seleccionar</option>
+                                <option value="1">Nivel básico inconcluso</option>
+                                <option value="2">Nivel básico</option>
+                                <option value="3">Nivel medio</option>
+                                <option value="4">Nivel medio inconcluso</option>
+                                <option value="5">Estudiante universitario</option>
+                                <option value="6">Título universitario</option>
+                                <option value="7">Magister</option>
+                                <option value="8">Doctorado</option>
+                              </select>
+                            </div>
+                            <div class="pt-4">
+                              <button type="submit" class="btn btn-success float-end me-auto">Registrarse</button>
                             </div>
                             
-                            <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                            <div>
                         </form>
                     </div>
                 </div>
