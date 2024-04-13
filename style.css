@@ -6,11 +6,12 @@ h1{
     color: white;
 }
 
-h5{
-    text-shadow: 2px 2px 4px #212428;
+.h5portada{
+    text-shadow: 2px 2px #212428;
 }
-p{
-    text-shadow: 2px 2px 4px #212428
+.descripcionportada{
+    text-shadow: 2px 2px #212428;
+    background-color: #212428
 }
 #tituloportada{
     padding-top: 20px;
