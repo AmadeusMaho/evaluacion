@@ -6,12 +6,14 @@ h1{
     color: white;
 }
 
+.navbar{
+    background-color: #3a0ca3;
+}
 .h5portada{
     text-shadow: 2px 2px #212428;
 }
 .descripcionportada{
     text-shadow: 2px 2px #212428;
-    background-color: #212428
 }
 #tituloportada{
     padding-top: 20px;
@@ -20,10 +22,9 @@ h1{
     padding-top:  100px;
 }
 
-.navbar{
-    background-color: #7209b7;
-}
-
 .navbar-brand{
     padding-left: 2rem;
+    color: #4cc9f0;
+    font-size: 30px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
