@@ -10,7 +10,7 @@ h1{
     text-align: center;
 }
 .navbar{
-    background-color: #7209b7;
+    background-color: #55078a;
 }
 .h5portada{
     text-shadow: 2px 2px #212428;
@@ -48,9 +48,14 @@ h1{
 }
 
 .offcanvas-header{
-    background-color: #7209b7;
+    background-color: #55078a;
 }
 
 #offcanvasNavbarLabel{
     color: #ffffff;
+}
+
+.card{
+    background-color: #55078a;
+    color: aliceblue;
 }
