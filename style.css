@@ -6,6 +6,9 @@ h1{
     color: white;
 }
 
+#tituloportada{
+    text-align: center;
+}
 .navbar{
     background-color: #3a0ca3;
 }
@@ -15,16 +18,17 @@ h1{
 .descripcionportada{
     text-shadow: 2px 2px #212428;
 }
-#tituloportada{
-    padding-top: 20px;
-}
+
 .carouselExampleCaptions{
     padding-top:  100px;
 }
 
 .navbar-brand{
     padding-left: 2rem;
-    color: #4cc9f0;
+    color: whitesmoke;
     font-size: 30px;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.navbar-toggler-icon{
+    color: #4cc9f0;
 }
