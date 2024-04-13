@@ -43,3 +43,14 @@ h1{
     width: 100%;
     height: 50%;
 }
+.offcanvas-body{
+    background-color: #212428;
+}
+
+.offcanvas-header{
+    background-color: #7209b7;
+}
+
+#offcanvasNavbarLabel{
+    color: #ffffff;
+}
