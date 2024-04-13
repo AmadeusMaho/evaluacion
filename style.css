@@ -6,6 +6,19 @@ h1{
     color: white;
 }
 
+h5{
+    text-shadow: 2px 2px 4px #212428;
+}
+p{
+    text-shadow: 2px 2px 4px #212428
+}
+#tituloportada{
+    padding-top: 20px;
+}
+.carouselExampleCaptions{
+    padding-top:  100px;
+}
+
 .navbar{
     background-color: #7209b7;
 }
