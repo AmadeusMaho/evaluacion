@@ -9,3 +9,7 @@ h1{
 .navbar{
     background-color: #7209b7;
 }
+
+.navbar-brand{
+    padding-left: 2rem;
+}
