@@ -55,6 +55,18 @@ h1{
     color: #ffffff;
 }
 
+#btn-busqueda{
+    background-color: #4CC9F0;
+    color: white;
+    border: none;
+}
+
+#btn-busqueda:hover{
+    background-color: #12B2E2;
+    color: white;
+    border: none;
+}
+
 .card{
     background-color: #55078a;
     color: aliceblue;
