@@ -32,11 +32,8 @@ h1{
 .navbar-toggler-icon{
     color: #4cc9f0;
 }
-<<<<<<< HEAD
-|
-=======
 
-.carousel-item:before {
+.carousel-item:before{
     content: "";
     background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 1));
     position: absolute;
@@ -46,4 +43,3 @@ h1{
     width: 100%;
     height: 50%;
 }
->>>>>>> 69775da185328bb2bfc4f45e4140a0359a56e853
