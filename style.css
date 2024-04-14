@@ -111,10 +111,6 @@ h1{
     color: white;
 }
 
-#logintext{
-position: relative; 
-right: 15px; 
-font-size: 19px;
-color: whitesmoke;
-margin-top: 15px;
+.search-bar{
+    margin-left: auto;
 }
