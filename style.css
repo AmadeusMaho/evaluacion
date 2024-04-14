@@ -71,3 +71,15 @@ h1{
     background-color: #55078a;
     color: aliceblue;
 }
+
+#btn-carro{
+    background-color: #4895EF;
+    color: white;
+    border: none;
+}
+
+#btn-carro:active{
+    background-color: #1474E1;
+    color: white;
+    border: none;
+}
