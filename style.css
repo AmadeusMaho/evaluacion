@@ -72,6 +72,22 @@ h1{
     color: aliceblue;
 }
 
-.dropend-item{
-    background-color: #212428;
+#btn-carro{
+    background-color: #4895EF;
+    color: white;
+    border: none;
+}
+
+#btn-carro:active{
+    background-color: #1474E1;
+    color: white;
+    border: none;
+}
+
+#logintext{
+position: relative; 
+right: 15px; 
+font-size: 19px;
+color: whitesmoke;
+margin-top: 15px;
 }
