@@ -84,6 +84,32 @@ h1{
     border: none;
 }
 
+.dropdown-item{
+    color: white;
+}
+
+.dropdown-menu:hover{
+    color: #C577F9;
+}
+
+.dropdown-item:hover{
+    background-color: #55078a;
+    color: white;
+}
+
+.dropdown-item{
+    color: white;
+}
+
+.dropdown-menu:hover{
+    color: #C577F9;
+}
+
+.dropdown-item:hover{
+    background-color: #55078a;
+    color: white;
+}
+
 #logintext{
 position: relative; 
 right: 15px; 
