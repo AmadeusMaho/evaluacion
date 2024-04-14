@@ -1,5 +1,5 @@
 body{
-    background-color: #212428;
+    background-color: #171717;
 }
 
 h1{
@@ -11,7 +11,7 @@ h1{
     font-size: 25px;
 }
 .navbar{
-    background-color: #55078a;
+    background-color: #DA0037;
 }
 .h5portada{
     text-shadow: 2px 2px #212428;
@@ -69,8 +69,8 @@ h1{
 }
 
 .card{
-    background-color: #55078a;
-    color: aliceblue;
+    background-color: #444444;
+    color: whitesmoke;
 }
 
 #btn-carro{
@@ -111,3 +111,6 @@ h1{
     color: white;
 }
 
+.edad{
+    font-weight: bold;
+}
