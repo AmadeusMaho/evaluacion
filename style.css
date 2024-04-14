@@ -1,9 +1,9 @@
 body{
-    background-color: #171717;
+    background-color: #0d0c19;
 }
 
 h1{
-    color: white;
+    color: whitesmoke;
 }
 
 #tituloportada{
@@ -11,7 +11,7 @@ h1{
     font-size: 25px;
 }
 .navbar{
-    background-color: #DA0037;
+    background-color: #04020e;
 }
 .h5portada{
     text-shadow: 2px 2px #212428;
@@ -69,9 +69,10 @@ h1{
 }
 
 .card{
-    background-color: #444444;
+    background-color:#202043;
     color: whitesmoke;
 }
+
 
 #btn-carro{
     background-color: #4895EF;
