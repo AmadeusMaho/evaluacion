@@ -83,3 +83,16 @@ h1{
     color: white;
     border: none;
 }
+
+.dropdown-item{
+    color: white;
+}
+
+.dropdown-menu:hover{
+    color: #C577F9;
+}
+
+.dropdown-item:hover{
+    background-color: #55078a;
+    color: white;
+}
