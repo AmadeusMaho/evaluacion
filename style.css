@@ -1,5 +1,5 @@
 body{
-    background-color: #171717;
+    background-color: #0C0C19;
 }
 
 h1{
@@ -11,7 +11,7 @@ h1{
     font-size: 25px;
 }
 .navbar{
-    background-color: #DA0037;
+    background-color: #05030d;
 }
 .h5portada{
     text-shadow: 2px 2px #212428;
@@ -31,7 +31,7 @@ h1{
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 .navbar-toggler-icon{
-    color: #4cc9f0;
+    color: #212144;
 }
 
 .carousel-item:before{
@@ -45,11 +45,11 @@ h1{
     height: 50%;
 }
 .offcanvas-body{
-    background-color: #212428;
+    background-color: #05030d;
 }
 
 .offcanvas-header{
-    background-color: #55078a;
+    background-color: #05030d;
 }
 
 #offcanvasNavbarLabel{
@@ -57,30 +57,43 @@ h1{
 }
 
 #btn-busqueda{
-    background-color: #4CC9F0;
+    background-color: #11ced0;
     color: white;
     border: none;
 }
 
 #btn-busqueda:hover{
-    background-color: #12B2E2;
+    background-color: #0c9b9d;
     color: white;
     border: none;
 }
 
 .card{
-    background-color: #444444;
+    background-color: #212144;
     color: whitesmoke;
 }
 
+#desarrollador{
+    color: #485aff;
+}
+#producto{
+    color: #6b7cc6;
+}
+#stock{
+    color: #6b7cc6;
+}
+#titulojuego{
+    font-weight: bold;
+}
+
 #btn-carro{
-    background-color: #4895EF;
+    background-color: #11ced0;
     color: white;
     border: none;
 }
 
 #btn-carro:active{
-    background-color: #1474E1;
+    background-color: #0c9b9d;
     color: white;
     border: none;
 }
@@ -88,29 +101,33 @@ h1{
 .dropdown-item{
     color: white;
 }
-
+.dropdown-menu{
+    background-color: #0c0c19;
+    color: white;
+}
 .dropdown-menu:hover{
-    color: #C577F9;
+    color: #212144;
 }
 
 .dropdown-item:hover{
-    background-color: #55078a;
+    background-color: #212144;
     color: white;
 }
 
 .dropdown-item{
     color: white;
 }
-
-.dropdown-menu:hover{
-    color: #C577F9;
-}
-
-.dropdown-item:hover{
-    background-color: #55078a;
-    color: white;
-}
-
 .edad{
     font-weight: bold;
+}
+
+#busqueda{
+    background-color: #212144;
+    border-color: #0c0c19;
+    color: #ffffff;
+}
+#busqueda::placeholder{
+    background-color: #212144;
+    border-color: #0c0c19;
+    color: #ffffff;
 }
