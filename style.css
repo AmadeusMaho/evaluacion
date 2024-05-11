@@ -148,3 +148,23 @@ h1{
     color: #b0bdf8;
 }
 
+.btnConversion{
+    background-color: #158a8b;
+}
+
+
+#rut::placeholder{
+    color: #b0bdf8
+}
+#nombre::placeholder{
+    color: #b0bdf8
+}
+#apellido::placeholder{
+    color: #b0bdf8
+}
+#correo::placeholder{
+    color: #b0bdf8
+}
+#telefono::placeholder{
+    color: #b0bdf8
+}
