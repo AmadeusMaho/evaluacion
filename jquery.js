@@ -11,12 +11,12 @@ $(function(){
         $.getJSON('https://mindicador.cl/api', function(data) {
             if ($('.btnConversion').text().trim() == "convertir a doláres."){
                 var dolar = data.dolar.valor;
-                var precio = $('.precioJuego').text();
+                var precio = $('.precioJuego').text().substring(1, $('.precioJuego').text().length).replaceAll('.', '');
                 var precioDolarizado = Math.round(precio / dolar);
                 $('.precioJuegoConvertido').text("$"+ precioDolarizado + " USD");
                 $('.precioJuego').hide();
                 $('.precioJuegoConvertido').show();
-                $('.btnConversion').text("convertir a pesos."); 
+                $('.btnConversion').text("convertir a pesos.");
             }
             else if ($('.btnConversion').text().trim() == "convertir a pesos."){
                 $('.precioJuego').show();
