@@ -98,6 +98,18 @@ h1{
     border: none;
 }
 
+#carro{
+    background-color: #4463f2;
+    color: white;
+    border: none;
+}
+
+#carro:active{
+    background-color: #263586;
+    color: white;
+    border: none;
+}
+
 .dropdown-item{
     color: white;
 }
