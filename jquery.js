@@ -1,4 +1,6 @@
+
 $(function(){
+
 
     $('#btn-carro.btn.btn-primary.btn-lg').click(function(){
         alert("Función en desarrollo.");
@@ -8,12 +10,9 @@ $(function(){
     $('.btnConversion').click(function(){
         $.getJSON('https://mindicador.cl/api', function(data) {
            var dolar = data.dolar.valor;
-           var precio = $('.precioJuego').val(); //No agarra el valor del texto, queda en blanco. Apenas lo reciba y le podamos asignar el valor de precioDolarizado 
-                                                // debería funcionar (en teoría)
-           alert(precio);
-           alert("dolar actual: " + dolar);
-           var precioDolarizado = dolar * precio;
-            $('.precioJuego').val(precioDolarizado); 
+           var precio = $('.precioJuego').html(); 
+           var precioDolarizado = Math.round(precio / dolar);
+            $('.precioJuego').text("$"+ precioDolarizado + " USD" ); 
         }).fail(function() {
     console.log('Error al consumir la API!');
         })
