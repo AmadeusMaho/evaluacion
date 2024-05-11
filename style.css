@@ -96,6 +96,10 @@ h1{
     background-color: #0c9b9d;
     color: white;
     border: none;
+    
+}
+#btn-carro:hover{
+    background-color: #158a8b ;
 }
 
 #carro{
