@@ -29,4 +29,27 @@ $(function(){
     })
 
 
+    //verificaciones
+    $('#enviarRegistro').click(function(){
+        var test = $.trim($('.txtRut').val());
+       if($.trim($('.txtRut').val())==""){
+        alert("Ingrese rut válido")
+        $('.txtRut').focus();
+       }
+       else if($.trim($('.txtNombre').val())==""){
+        alert("Ingrese nombre")
+        $('.txtNombre').focus();
+       }
+       else if($.trim($('.txtApellido').val())==""){
+        alert("Ingrese apellido")
+        $('.txtApellido').focus();
+       }
+       else if($.trim($('.txtEmail').val())==""){
+        alert("Ingrese email válido")
+        $('.txtEmail').focus();
+       }
+
+    })
+
+
 })
