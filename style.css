@@ -101,6 +101,22 @@ h1{
 #btn-carro:hover{
     background-color: #158a8b ;
 }
+<<<<<<< HEAD
+=======
+
+#carro{
+    background-color: #4463f2;
+    color: white;
+    border: none;
+}
+
+#carro:active{
+    background-color: #263586;
+    color: white;
+    border: none;
+}
+
+>>>>>>> df3065b6abd9c0766ac0ff9a93a21a6ed0313f4d
 .dropdown-item{
     color: white;
 }
