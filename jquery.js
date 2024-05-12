@@ -170,7 +170,7 @@ $(function(){
         $('.vista-previa').attr('src', 'img/placeholder.png');
     })
 
-    $('#enviarSerie').click(function(){
+    $('.enviarSerie').click(function(){
         $('.txtSTitulo')[0].setCustomValidity('');
         $('.txtSDesc')[0].setCustomValidity('');
         $('.txtSImg')[0].setCustomValidity('');
