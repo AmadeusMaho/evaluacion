@@ -6,7 +6,7 @@ $(function(){
             if ($('.btnConversion').text().trim() == "Convertir a dólares"){
                 var dolar = data.dolar.valor;
                 var precio = $('.precioJuego').text().substring(1, $('.precioJuego').text().length-4).replaceAll('.', '');
-                var precioDolarizado = Math.round(precio / dolar);
+                var precioDolarizado = Math.round((precio / dolar)*100) / 100; //dos decimales
                 $('.precioJuegoConvertido').text("$"+ precioDolarizado + " USD");
                 $('.precioJuego').hide();
                 $('.precioJuegoConvertido').show();
@@ -26,7 +26,6 @@ $(function(){
     function agregarElemento(imagen, nombre, precio, cantidad, total) {
         var nuevoItem = $('.carrito');
         var imagen = $('.data-precio').text();
-        alert(imagen);
         nuevoItem.append('<th scope="row" class="numero-tabla">' + imagen + '</th>');
         $('#tabla-productos tbody').append(nuevoItem);
       }
