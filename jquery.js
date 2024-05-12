@@ -40,7 +40,7 @@ $(function(){
     //    nuevoItem.append('<td class="imagen-tabla">' + producto + '</td>');
     //    nuevoItem.append('<td class="titulo-tabla">' + titulo + '</td>');
     //    nuevoItem.append('<td class="precio-tabla">' + precio + '</td>');
-    // postman PMAK-66404436467f5d0001000ebf-7a1755d6f4b3ff82ce8c18609e94024167
+
 
     $('#enviarRegistro').click(function(){
         $('.txtRut')[0].setCustomValidity('');
