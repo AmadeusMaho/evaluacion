@@ -51,11 +51,11 @@ $(function(){
     
     $('.btn-carro').click(function(){
     alert("¡Producto agregado con éxito!");
-    agregarElemento('.data-imagen',1,1,1,1)
+    //agregarElemento('.data-imagen',1,1,1,1)
     })
 
     // Vista previa
-    $('.enviarSerie').click(function(){
+    $('#enviarSerie').click(function(){
         if (!($('.txtSImg').val() == '')){
             var fileInput = $('.txtSImg')[0];
             var file = fileInput.files[0];
@@ -82,7 +82,7 @@ $(function(){
         }
     })
 
-    $('.enviarJuego').click(function(){
+    $('#enviarJuego').click(function(){
         if (!($('.txtJImg').val() == '')){
             var fileInput = $('.txtJImg')[0];
             var file = fileInput.files[0];
@@ -171,20 +171,17 @@ $(function(){
     })
 
     $('#enviarSerie').click(function(){
-        
         $('.txtSTitulo')[0].setCustomValidity('');
+        $('.txtSTitulo').focus();
         $('.txtSDesc')[0].setCustomValidity('');
         $('.txtSImg')[0].setCustomValidity('');
         $('.txtSKeys')[0].setCustomValidity('');
         $('.txtSCategoria')[0].setCustomValidity('');
         $('.txtSFecha')[0].setCustomValidity('');
-       
-        if($('.txtSTitulo').val()==""){
-            $('.txtSTitulo')[0].setCustomValidity('Ingrese el nombre de la serie');
+
+        if($.trim($('.txtSTitulo').val())==""){
+            $('.txtSTitulo')[0].setCustomValidity('Ingrese un titulo')
             $('.txtSTitulo').focus();
-        }
-        else{
-            alert("Serie agregada con éxito.")
-        }
+           }
     })
 })
