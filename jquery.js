@@ -123,8 +123,16 @@ $(function(){
         $('.txtNombre')[0].setCustomValidity('Ingrese un nombre.');
         $('.txtNombre').focus();
        }
+       else if($.trim($('.txtNombre').val()).length>=50){
+        $('.txtNombre')[0].setCustomValidity('El nombre excede el máximo de caracteres (50).')
+        $('.txtNombre').focus();
+       }
        else if($.trim($('.txtApellido').val())==""){
         $('.txtApellido')[0].setCustomValidity('Ingrese un apellido.');
+        $('.txtApellido').focus();
+       }
+       else if($.trim($('.txtApellido').val()).length>=50){
+        $('.txtApellido')[0].setCustomValidity('El apellido excede el máximo de caracteres (50).')
         $('.txtApellido').focus();
        }
        else if($.trim($('.txtEmail').val())==""){
@@ -133,6 +141,10 @@ $(function(){
        }
        else if(!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($.trim($('.txtEmail').val())))){
         $('.txtEmail')[0].setCustomValidity('Ingrese un email valido.');
+        $('.txtEmail').focus();
+       }
+       else if($.trim($('.txtEmail').val()).length>=50){
+        $('.txtEmail')[0].setCustomValidity('El email excede el máximo de caracteres (50).')
         $('.txtEmail').focus();
        }
        else if($.trim($('.txtTelefono').val())==""){
@@ -174,6 +186,18 @@ $(function(){
         $('.vista-previa').attr('src', 'img/placeholder.png');
     })
 
+    $('#limpiarJuego').click(function(){
+        $('.txtJNombre').val('');
+        $('.txtJDev').val('');
+        $('.txtJDesc').val('');
+        $('.txtJImg').val('');
+        $('.txtJPrecio').val('');
+        $('.txtJStock').val('');
+        $('.txtJKeys').val('');
+        $('.txtJCategoria').val('');
+        $('.vista-previa').attr('src', 'img/placeholder.png');
+    })
+
     $('#enviarSerie').click(function(){
         $('.txtSTitulo')[0].setCustomValidity('');
         $('.txtSDesc')[0].setCustomValidity('');
@@ -185,10 +209,18 @@ $(function(){
         if($.trim($('.txtSTitulo').val())==""){
             $('.txtSTitulo')[0].setCustomValidity('Ingrese un título.')
             $('.txtSTitulo').focus();
-           }
+        }
+        else if($.trim($('.txtSTitulo').val()).length>=75){
+            $('.txtSTitulo')[0].setCustomValidity('El título excede el máximo de caracteres (75).')
+            $('.txtSTitulo').focus();
+        }
         else if($.trim($('.txtSDesc').val())==""){
-        $('.txtSDesc')[0].setCustomValidity('Ingrese una descripción.')
-        $('.txtSDesc').focus();
+            $('.txtSDesc')[0].setCustomValidity('Ingrese una descripción.')
+            $('.txtSDesc').focus();
+        }
+        else if($.trim($('.txtSDesc').val()).length>=1000){
+            $('.txtSDesc')[0].setCustomValidity('La descripción excede el máximo de caracteres (1000).')
+            $('.txtSDesc').focus();
         }
         else if($.trim($('.txtSImg').val())==""){
             $('.txtSImg')[0].setCustomValidity('Seleccione una imagen.')
@@ -205,6 +237,74 @@ $(function(){
         else if($.trim($('.txtSFecha').val())==""){
             $('.txtSFecha')[0].setCustomValidity('Seleccione una fecha de lanzamiento.')
             $('.txtSFecha').focus();
+        }
+    })
+
+    $('#enviarJuego').click(function(){
+        $('.txtJNombre')[0].setCustomValidity('');
+        $('.txtJDev')[0].setCustomValidity('');
+        $('.txtJDesc')[0].setCustomValidity('');
+        $('.txtJImg')[0].setCustomValidity('');
+        $('.txtJPrecio')[0].setCustomValidity('');
+        $('.txtJStock')[0].setCustomValidity('');
+        $('.txtJKeys')[0].setCustomValidity('');
+        $('.txtJCategoria')[0].setCustomValidity('');
+
+        if($.trim($('.txtJNombre').val())==""){
+            $('.txtJNombre')[0].setCustomValidity('Ingrese el nombre del juego.')
+            $('.txtJNombre').focus();
+        }
+        else if($.trim($('.txtJNombre').val()).length>=75){
+            $('.txtJNombre')[0].setCustomValidity('El nombre excede el máximo de caracteres (75).')
+            $('.txtJNombre').focus();
+        }
+        else if($.trim($('.txtJDev').val())==""){
+            $('.txtJDev')[0].setCustomValidity('Ingrese el nombre del desarrollador.')
+            $('.txtJDev').focus();
+        }
+        else if($.trim($('.txtJDev').val()).length>=50){
+            $('.txtJDev')[0].setCustomValidity('El nombre excede el máximo de caracteres (50).')
+            $('.txtJDev').focus();
+        }
+        else if($.trim($('.txtJDesc').val())==""){
+            $('.txtJDesc')[0].setCustomValidity('Ingrese una descripción.')
+            $('.txtJDesc').focus();
+        }
+        else if($.trim($('.txtJDesc').val()).length>=1000){
+            $('.txtJDesc')[0].setCustomValidity('La descripción excede el máximo de caracteres (1000).')
+            $('.txtJDesc').focus();
+        }
+        else if($.trim($('.txtJImg').val())==""){
+            $('.txtSImg')[0].setCustomValidity('Seleccione una imagen.')
+            $('.txtSImg').focus();
+        }
+        else if($.trim($('.txtJDesc').val()).length>=1000){
+            $('.txtJDesc')[0].setCustomValidity('La descripción excede el máximo de caracteres (1000).')
+            $('.txtJDesc').focus();
+        }
+        else if($.trim($('.txtJPrecio').val())==""){
+            $('.txtJPrecio')[0].setCustomValidity('Ingrese un precio válido.')
+            $('.txtJPrecio').focus();
+        }
+        else if($.trim($('.txtJPrecio').val()).length>=10){
+            $('.txtJPrecio')[0].setCustomValidity('El precio excede el máximo de caracteres (10).')
+            $('.txtJPrecio').focus();
+        }
+        else if($.trim($('.txtJStock').val())==""){
+            $('.txtJStock')[0].setCustomValidity('Ingrese un stock válido.')
+            $('.txtJStock').focus();
+        }
+        else if($.trim($('.txtJStock').val()).length>=15){
+            $('.txtJStock')[0].setCustomValidity('El stock excede el máximo de caracteres (15).')
+            $('.txtJStock').focus();
+        }
+        else if($.trim($('.txtJKeys').val())==""){
+            $('.txtJKeys')[0].setCustomValidity('Seleccione un archivo con claves.')
+            $('.txtJKeys').focus();
+        }
+        else if($.trim($('.txtJCategoria').val())==""){
+            $('.txtJCategoria')[0].setCustomValidity('Seleccione un tipo de claves.')
+            $('.txtJCategoria').focus();
         }
     })
 })
