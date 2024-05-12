@@ -23,6 +23,23 @@ $(function(){
         })
     })
 
+    //imágenes API
+    Fancybox.bind('[data-fancybox="galeria1"]', {
+      });
+    Fancybox.bind('[data-fancybox="galeria2"]', { 
+      });
+    Fancybox.bind('[data-fancybox="galeria3"]', {
+      });
+    Fancybox.bind('[data-fancybox="galeria4"]', { 
+      });
+    Fancybox.bind('[data-fancybox="galeria5"]', {
+      });
+    Fancybox.bind('[data-fancybox="galeria6"]', { 
+      });
+    Fancybox.bind('[data-fancybox="galeria7"]', {
+      });
+
+
     //carro
     function agregarElemento(imagen, nombre, precio, cantidad, total) {
         var nuevoItem = $('.carrito');
