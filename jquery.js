@@ -55,7 +55,7 @@ $(function(){
     })
 
     // Vista previa
-    $('.enviarSerie').click(function(){
+    $('#enviarSerie').click(function(){
         if (!($('.txtSImg').val() == '')){
             var fileInput = $('.txtSImg')[0];
             var file = fileInput.files[0];
@@ -82,7 +82,7 @@ $(function(){
         }
     })
 
-    $('.enviarJuego').click(function(){
+    $('#enviarJuego').click(function(){
         if (!($('.txtJImg').val() == '')){
             var fileInput = $('.txtJImg')[0];
             var file = fileInput.files[0];
@@ -170,17 +170,18 @@ $(function(){
         $('.vista-previa').attr('src', 'img/placeholder.png');
     })
 
-    $('.enviarSerie').click(function(){
+    $('#enviarSerie').click(function(){
         $('.txtSTitulo')[0].setCustomValidity('');
+        $('.txtSTitulo').focus();
         $('.txtSDesc')[0].setCustomValidity('');
         $('.txtSImg')[0].setCustomValidity('');
         $('.txtSKeys')[0].setCustomValidity('');
         $('.txtSCategoria')[0].setCustomValidity('');
         $('.txtSFecha')[0].setCustomValidity('');
-        
-        if($.trim($('#titulo').val())==""){
-            $('.titulo')[0].setCustomValidity('Ingrese un RUT válido')
-            $('.titulo').focus();
-        }
+
+        if($.trim($('.txtSTitulo').val())==""){
+            $('.txtSTitulo')[0].setCustomValidity('Ingrese un titulo')
+            $('.txtSTitulo').focus();
+           }
     })
 })
