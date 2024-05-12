@@ -151,7 +151,9 @@ h1{
 .btnConversion{
     background-color: #158a8b;
 }
-
+.btnConversion:hover{
+    background-color: #0f6364;
+}
 
 #rut::placeholder{
     color: #b0bdf8

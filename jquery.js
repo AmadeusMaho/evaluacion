@@ -34,6 +34,7 @@ $(function(){
         $('#tabla-productos tbody').append(nuevoItem);
       }
 
+      $
 
     //verificaciones
     $('#enviarRegistro').click(function(){
