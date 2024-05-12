@@ -1,19 +1,22 @@
 
 $(function(){
 
-
+    $(document).ready(function() {       $('.spinner-border').hide(); });
     $('.btnConversion').click(function(){
+        $('.spinner-border').show();
+        $('.precioJuego').hide();
         $.getJSON('https://mindicador.cl/api', function(data) {
             if ($('.btnConversion').text().trim() == "Convertir a dólares"){
                 var dolar = data.dolar.valor;
                 var precio = $('.precioJuego').text().substring(1, $('.precioJuego').text().length-4).replaceAll('.', '');
                 var precioDolarizado = Math.round((precio / dolar)*100) / 100; //dos decimales
                 $('.precioJuegoConvertido').text("$"+ precioDolarizado + " USD");
-                $('.precioJuego').hide();
                 $('.precioJuegoConvertido').show();
+                $('.spinner-border').hide();
                 $('.btnConversion').text("Convertir a pesos");
             }
             else if ($('.btnConversion').text().trim() == "Convertir a pesos"){
+                $('.spinner-border').hide();
                 $('.precioJuego').show();
                 $('.precioJuegoConvertido').hide();
                 $('.btnConversion').text("Convertir a dólares"); 
@@ -46,6 +49,7 @@ $(function(){
         var imagen = $('.data-precio').text();
         nuevoItem.append('<th scope="row" class="numero-tabla">' + imagen + '</th>');
         $('#tabla-productos tbody').append(nuevoItem);
+        $('spinner-border').hide();
       }
 
     
@@ -108,43 +112,43 @@ $(function(){
 
         var rut = $.trim($('.txtRut').val());
        if($.trim($('.txtRut').val())==""){
-        $('.txtRut')[0].setCustomValidity('Ingrese un RUT válido')
+        $('.txtRut')[0].setCustomValidity('Ingrese un RUT válido.')
         $('.txtRut').focus();
        }
        else if(!(/^\d{8}-[\dk]{1}$/.test(rut))){
-        $('.txtRut')[0].setCustomValidity('Ingrese un RUT válido')
+        $('.txtRut')[0].setCustomValidity('Ingrese un RUT válido.')
         $('.txtRut').focus();
        }
        else if($.trim($('.txtNombre').val())==""){
-        $('.txtNombre')[0].setCustomValidity('Ingrese un nombre');
+        $('.txtNombre')[0].setCustomValidity('Ingrese un nombre.');
         $('.txtNombre').focus();
        }
        else if($.trim($('.txtApellido').val())==""){
-        $('.txtApellido')[0].setCustomValidity('Ingrese un apellido');
+        $('.txtApellido')[0].setCustomValidity('Ingrese un apellido.');
         $('.txtApellido').focus();
        }
        else if($.trim($('.txtEmail').val())==""){
-        $('.txtEmail')[0].setCustomValidity('Ingrese un email valido');
+        $('.txtEmail')[0].setCustomValidity('Ingrese un email valido.');
         $('.txtEmail').focus();
        }
        else if(!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($.trim($('.txtEmail').val())))){
-        $('.txtEmail')[0].setCustomValidity('Ingrese un email valido');
+        $('.txtEmail')[0].setCustomValidity('Ingrese un email valido.');
         $('.txtEmail').focus();
        }
        else if($.trim($('.txtTelefono').val())==""){
-        $('.txtTelefono')[0].setCustomValidity('Ingrese teléfono válido');
+        $('.txtTelefono')[0].setCustomValidity('Ingrese teléfono válido.');
         $('.txtTelefono').focus();
        }
        else if(!(/^[\+]{1}(569|562)[\d]{8}$/.test($.trim($('.txtTelefono').val())))) {
-        $('.txtTelefono')[0].setCustomValidity('Ingrese teléfono válido');
+        $('.txtTelefono')[0].setCustomValidity('Ingrese teléfono válido.');
         $('.txtTelefono').focus();
         }
        else if($.trim($('.selectRegion').val())=="Seleccionar Región"){
-        $('.selectRegion')[0].setCustomValidity('Seleccione una región');
+        $('.selectRegion')[0].setCustomValidity('Seleccione una región.');
         $('.selectRegion').focus();
        }
        else if($.trim($('.selectEd').val())=="Seleccionar"){
-        $('.selectEd')[0].setCustomValidity("Seleccione un nivel educacional");
+        $('.selectEd')[0].setCustomValidity("Seleccione un nivel educacional.");
         $('.selectEd').focus();
        }
     })
@@ -172,7 +176,6 @@ $(function(){
 
     $('#enviarSerie').click(function(){
         $('.txtSTitulo')[0].setCustomValidity('');
-        $('.txtSTitulo').focus();
         $('.txtSDesc')[0].setCustomValidity('');
         $('.txtSImg')[0].setCustomValidity('');
         $('.txtSKeys')[0].setCustomValidity('');
@@ -180,8 +183,28 @@ $(function(){
         $('.txtSFecha')[0].setCustomValidity('');
 
         if($.trim($('.txtSTitulo').val())==""){
-            $('.txtSTitulo')[0].setCustomValidity('Ingrese un titulo')
+            $('.txtSTitulo')[0].setCustomValidity('Ingrese un título.')
             $('.txtSTitulo').focus();
            }
+        else if($.trim($('.txtSDesc').val())==""){
+        $('.txtSDesc')[0].setCustomValidity('Ingrese una descripción.')
+        $('.txtSDesc').focus();
+        }
+        else if($.trim($('.txtSImg').val())==""){
+            $('.txtSImg')[0].setCustomValidity('Seleccione una imagen.')
+            $('.txtSImg').focus();
+        }
+        else if($.trim($('.txtSKeys').val())==""){
+            $('.txtSKeys')[0].setCustomValidity('Seleccione un archivo con claves.')
+            $('.txtSKeys').focus();
+        }
+        else if($.trim($('.txtSCategoria').val())==""){
+            $('.txtSCategoria')[0].setCustomValidity('Seleccione una categoría.')
+            $('.txtSCategoria').focus();
+        }
+        else if($.trim($('.txtSFecha').val())==""){
+            $('.txtSFecha')[0].setCustomValidity('Seleccione una fecha de lanzamiento.')
+            $('.txtSFecha').focus();
+        }
     })
 })
