@@ -198,3 +198,17 @@ h1{
 #descripcion::placeholder{
     color: #b0bdf8
 }
+
+.btnVistaPreviaJ{
+    background-color: #11ced0;
+    color: #14142b;
+    font-weight: bold;
+    border: none;
+}
+
+.btnVistaPreviaS{
+    background-color: #11ced0;
+    color: #14142b;
+    font-weight: bold;
+    border: none;
+}

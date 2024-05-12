@@ -31,24 +31,48 @@ $(function(){
         $('#tabla-productos tbody').append(nuevoItem);
       }
 
-      $('.btn-carro').click(function(){
-        alert("¡Producto agregado con éxito!");
-        agregarElemento('.data-imagen',1,1,1,1)
-      })
+    
+    $('.btn-carro').click(function(){
+    alert("¡Producto agregado con éxito!");
+    agregarElemento('.data-imagen',1,1,1,1)
+    })
 
-      $('.enviarSerie').click(function(){
-        var fileInput = $('.txtSImg')[0];
-        var file = fileInput.files[0];
-        var url = URL.createObjectURL(file);
-        $('.vista-previa').attr('src', url);
-      })
+    // Vista previa
+    $('.enviarSerie').click(function(){
+        if (!($('.txtSImg').val() == '')){
+            var fileInput = $('.txtSImg')[0];
+            var file = fileInput.files[0];
+            var url = URL.createObjectURL(file);
+            $('.vista-previa').attr('src', url);
+        }
+    })
 
-      $('.enviarJuego').click(function(){
-        var fileInput = $('.txtJImg')[0];
-        var file = fileInput.files[0];
-        var url = URL.createObjectURL(file);
-        $('.vista-previa').attr('src', url);
-      })
+    $('.btnVistaPreviaS').click(function(){
+        if (!($('.txtSImg').val() == '')){
+            var fileInput = $('.txtSImg')[0];
+            var file = fileInput.files[0];
+            var url = URL.createObjectURL(file);
+            $('.vista-previa').attr('src', url);
+        }
+    })
+
+    $('.btnVistaPreviaJ').click(function(){
+        if (!($('.txtJImg').val() == '')){
+            var fileInput = $('.txtJImg')[0];
+            var file = fileInput.files[0];
+            var url = URL.createObjectURL(file);
+            $('.vista-previa').attr('src', url);
+        }
+    })
+
+    $('.enviarJuego').click(function(){
+        if (!($('.txtJImg').val() == '')){
+            var fileInput = $('.txtJImg')[0];
+            var file = fileInput.files[0];
+            var url = URL.createObjectURL(file);
+            $('.vista-previa').attr('src', url);
+        }
+    })
 
     //verificaciones 
     //    nuevoItem.append('<td class="imagen-tabla">' + producto + '</td>');
@@ -126,6 +150,7 @@ $(function(){
         $('.txtSKeys').val('');
         $('.txtSCategoria').val('');
         $('.txtSFecha').val('');
+        $('.vista-previa').attr('src', 'img/placeholder.png');
     })
 
     $('#enviarSerie').click(function(){
@@ -135,5 +160,10 @@ $(function(){
         $('.txtSKeys')[0].setCustomValidity('');
         $('.txtSCategoria')[0].setCustomValidity('');
         $('.txtSFecha')[0].setCustomValidity('');
-    }) //en progreso
+        
+        if($.trim($('.txtSTitulo').val())==""){
+            $('.txtSTitulo')[0].setCustomValidity('Ingrese titulo');
+            $('.txtSTitulo').focus()
+        }
+    })
 })
