@@ -31,8 +31,12 @@ $(function(){
 
     //verificaciones
     $('#enviarRegistro').click(function(){
-        var test = $.trim($('.txtRut').val());
+        var rut = $.trim($('.txtRut').val());
        if($.trim($('.txtRut').val())==""){
+        alert("Ingrese rut válido")
+        $('.txtRut').focus();
+       }
+       else if(!(/^\d{8}-[\dk]{1}$/.test(rut))){
         alert("Ingrese rut válido")
         $('.txtRut').focus();
        }
