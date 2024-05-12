@@ -155,18 +155,9 @@ h1{
     background-color: #11ced0;
 }
 
-#rut::placeholder{
+.form-control::placeholder{
     color: #b0bdf8
 }
-#nombre::placeholder{
-    color: #b0bdf8
-}
-#apellido::placeholder{
-    color: #b0bdf8
-}
-#correo::placeholder{
-    color: #b0bdf8
-}
-#telefono::placeholder{
+.txtDesc::placeholder{
     color: #b0bdf8
 }
