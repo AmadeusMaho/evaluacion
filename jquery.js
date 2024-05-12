@@ -170,17 +170,21 @@ $(function(){
         $('.vista-previa').attr('src', 'img/placeholder.png');
     })
 
-    $('.enviarSerie').click(function(){
+    $('#enviarSerie').click(function(){
+        
         $('.txtSTitulo')[0].setCustomValidity('');
         $('.txtSDesc')[0].setCustomValidity('');
         $('.txtSImg')[0].setCustomValidity('');
         $('.txtSKeys')[0].setCustomValidity('');
         $('.txtSCategoria')[0].setCustomValidity('');
         $('.txtSFecha')[0].setCustomValidity('');
-        
-        if($.trim($('.txtSTitulo').val())==""){
-            $('.txtSTitulo')[0].setCustomValidity('Ingrese titulo');
-            $('.txtSTitulo').focus()
+       
+        if($('.txtSTitulo').val()==""){
+            $('.txtSTitulo')[0].setCustomValidity('Ingrese el nombre de la serie');
+            $('.txtSTitulo').focus();
+        }
+        else{
+            alert("Serie agregada con éxito.")
         }
     })
 })
