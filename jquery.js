@@ -105,5 +105,21 @@ $(function(){
         $('.selectNac').val('');
     })
 
+    $('#limpiarSerie').click(function(){
+        $('.txtSTitulo').val('');
+        $('.txtSDesc').val('');
+        $('.txtSImg').val('');
+        $('.txtSKeys').val('');
+        $('.txtSCategoria').val('');
+        $('.txtSFecha').val('');
+    })
 
+    $('#enviarSerie').click(function(){
+        $('.txtSTitulo')[0].setCustomValidity('');
+        $('.txtSDesc')[0].setCustomValidity('');
+        $('.txtSImg')[0].setCustomValidity('');
+        $('.txtSKeys')[0].setCustomValidity('');
+        $('.txtSCategoria')[0].setCustomValidity('');
+        $('.txtSFecha')[0].setCustomValidity('');
+    }) //en progreso
 })
