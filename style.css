@@ -87,19 +87,19 @@ h1{
 }
 
 #btn-carro{
-    background-color: #11ced0;
+    background-color: #4463f2;
     color: white;
     border: none;
 }
 
 #btn-carro:active{
-    background-color: #0c9b9d;
+    background-color: #11ced0;
     color: white;
     border: none;
     
 }
 #btn-carro:hover{
-    background-color: #158a8b ;
+    background-color: #11ced0 ;
 }
 
 #carro{
@@ -149,10 +149,10 @@ h1{
 }
 
 .btnConversion{
-    background-color: #158a8b;
+    background-color: #4463f2;
 }
 .btnConversion:hover{
-    background-color: #0f6364;
+    background-color: #11ced0;
 }
 
 #rut::placeholder{
