@@ -36,6 +36,13 @@ $(function(){
         agregarElemento('.data-imagen',1,1,1,1)
       })
 
+      $('.enviarSerie').click(function(){
+        var fileInput = $('.txtSImg')[0];
+        var file = fileInput.files[0];
+        var url = URL.createObjectURL(file);
+        $('.vista-previa').attr('src', url);
+      })
+
     //verificaciones 
     //    nuevoItem.append('<td class="imagen-tabla">' + producto + '</td>');
     //    nuevoItem.append('<td class="titulo-tabla">' + titulo + '</td>');
@@ -105,5 +112,21 @@ $(function(){
         $('.selectNac').val('');
     })
 
+    $('#limpiarSerie').click(function(){
+        $('.txtSTitulo').val('');
+        $('.txtSDesc').val('');
+        $('.txtSImg').val('');
+        $('.txtSKeys').val('');
+        $('.txtSCategoria').val('');
+        $('.txtSFecha').val('');
+    })
 
+    $('#enviarSerie').click(function(){
+        $('.txtSTitulo')[0].setCustomValidity('');
+        $('.txtSDesc')[0].setCustomValidity('');
+        $('.txtSImg')[0].setCustomValidity('');
+        $('.txtSKeys')[0].setCustomValidity('');
+        $('.txtSCategoria')[0].setCustomValidity('');
+        $('.txtSFecha')[0].setCustomValidity('');
+    }) //en progreso
 })

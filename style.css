@@ -158,6 +158,37 @@ h1{
 .form-control::placeholder{
     color: #b0bdf8
 }
+
+.btn-aceptar{
+    background-color: #4463f2;
+    color: white;
+}
+.btn-aceptar:hover{
+    background-color: #11ced0;
+    color: white;
+}
+
 .txtDesc::placeholder{
+    color: #b0bdf8
+}
+#rut::placeholder{
+    color: #b0bdf8
+}
+#nombre::placeholder{
+    color: #b0bdf8
+}
+#apellido::placeholder{
+    color: #b0bdf8
+}
+#correo::placeholder{
+    color: #b0bdf8
+}
+#telefono::placeholder{
+    color: #b0bdf8
+}
+#titulo::placeholder{
+    color: #b0bdf8
+}
+#descripcion::placeholder{
     color: #b0bdf8
 }
