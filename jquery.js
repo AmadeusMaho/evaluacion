@@ -68,7 +68,7 @@ $(function(){
         $('.txtTelefono')[0].setCustomValidity('Ingrese teléfono válido');
         $('.txtTelefono').focus();
        }
-       else if(!(/^[\+]?[\d]+([\s]?[\d]+){4,14}$/.test($.trim($('.txtTelefono').val())))) {
+       else if(!(/^[\+]{1}(569|562)[\d]{8}$/.test($.trim($('.txtTelefono').val())))) {
         $('.txtTelefono')[0].setCustomValidity('Ingrese teléfono válido');
         $('.txtTelefono').focus();
         }
