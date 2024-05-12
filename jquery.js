@@ -82,5 +82,16 @@ $(function(){
        }
     })
 
+    $('#limpiarRegistro').click(function(){
+        $('.txtRut').val('');
+        $('.txtNombre').val('');
+        $('.txtApellido').val('');
+        $('.txtEmail').val('');
+        $('.txtTelefono').val('');
+        $('.selectRegion').val('');
+        $('.selectEd').val('');
+        $('.selectNac').val('');
+    })
+
 
 })
