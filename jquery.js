@@ -51,7 +51,7 @@ $(function(){
     
     $('.btn-carro').click(function(){
     alert("¡Producto agregado con éxito!");
-    agregarElemento('.data-imagen',1,1,1,1)
+    //agregarElemento('.data-imagen',1,1,1,1)
     })
 
     // Vista previa
@@ -170,7 +170,7 @@ $(function(){
         $('.vista-previa').attr('src', 'img/placeholder.png');
     })
 
-    $('#enviarSerie').click(function(){
+    $('.enviarSerie').click(function(){
         $('.txtSTitulo')[0].setCustomValidity('');
         $('.txtSDesc')[0].setCustomValidity('');
         $('.txtSImg')[0].setCustomValidity('');
@@ -178,9 +178,9 @@ $(function(){
         $('.txtSCategoria')[0].setCustomValidity('');
         $('.txtSFecha')[0].setCustomValidity('');
         
-        if($.trim($('.txtSTitulo').val())==""){
-            $('.txtSTitulo')[0].setCustomValidity('Ingrese titulo');
-            $('.txtSTitulo').focus()
+        if($.trim($('#titulo').val())==""){
+            $('.titulo')[0].setCustomValidity('Ingrese un RUT válido')
+            $('.titulo').focus();
         }
     })
 })
