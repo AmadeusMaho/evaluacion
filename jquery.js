@@ -1,12 +1,6 @@
 
 $(function(){
-
-
-    $('#btn-carro.btn.btn-primary.btn-lg').click(function(){
-        alert("Función en desarrollo.");
-    })
     
-
     $('.btnConversion').click(function(){
         $.getJSON('https://mindicador.cl/api', function(data) {
             if ($('.btnConversion').text().trim() == "Convertir a dólares"){
@@ -27,6 +21,18 @@ $(function(){
     console.log('Error al consumir la API!');
         })
     })
+
+    //carro
+    function agregarElemento(imagen, nombre, precio, cantidad, total) {
+        var nuevoItem = $('.carrito');
+        var imagen = $('.img-producto').text();
+        alert(imagen);
+        nuevoItem.append('<th scope="row" class="numero-tabla">' + imagen + '</th>');
+        nuevoItem.append('<td class="imagen-tabla">' + producto + '</td>');
+        nuevoItem.append('<td class="titulo-tabla">' + titulo + '</td>');
+        nuevoItem.append('<td class="precio-tabla">' + precio + '</td>');
+        $('#tabla-productos tbody').append(nuevoItem);
+      }
 
 
     //verificaciones
