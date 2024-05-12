@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M2A Registrar Series</title>
+    <title>M2A Registro juegos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -74,63 +74,66 @@
   </nav>
     <div class="container mt-5 pt-5">
         <div class="row justify-content-center">
-            <div class="col-md-4">
-                <div class="card">
+            <div class="col-md-6">
+                <div class="card mb-5">
                     <div class="card-header" style="text-align: center; font-size: 20px; background-color: #202043; color: whitesmoke; font-weight: bold;">
-                        Vista previa de la imagen
-                    </div>
-                    <div class="card-body text-center">
-                        <img id="vista-previa" src="img/breakingbad.jpg" alt="Preview" class="img-fluid vista-previa">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header" style="text-align: center; font-size: 20px; background-color: #202043; color: whitesmoke; font-weight: bold;">
-                        Subir Nueva Serie
+                        Subir Nuevo Juego
                     </div>
                     <div class="card-body" style="background-color: #2f2c58;">
-
+                        <form>
                             <div class="mb-3">
-                                <label for="titulo" class="form-label" style="color: whitesmoke;">Título de la Serie</label>
-                                <input type="text" name="titulo" class="txtSTitulo form-control" id="titulo" style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Ingresa el título de la serie" required>
+                                <label for="nJuego" class="form-label" style="color: whitesmoke;">Nombre del juego</label>
+                                <input type="name" name="txtJuego" class="txtJuego form-control" id="nJuego" aria-describedby="emailHelp" style="background-color: #14142b; border-color: #202043; color: white; " placeholder="Ingresa el el nombre del juego">
                             </div>
                             <div class="mb-3">
-                                <label for="descripcion" class="form-label" style="color: whitesmoke;">Descripción</label>
-                                <textarea name="descripcion" class="txtSDesc form-control" id="descripcion" rows="3" style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Descripción de la serie" required></textarea>
+                                <label for="nDev" class="form-label" style="color: whitesmoke;">Desarrollador</label>
+                                <input type="name" name="txtNombre" class="txtDev form-control" id="nDev" style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Ingresa el nombre del desarrollador">
+                            </div>
+                            <div class="mb-3 d-flex flex-column">
+                                <label for="descJuego" class="form-label" style="color: whitesmoke;">Descripción</label>
+                                <textarea name="txtDesc" id="descJuego" class=" txtDesc flex-grow-1 rounded-3" rows="5" style="background-color: #14142b; border-color: #202043; color: white" placeholder="Ingresa una descripción"></textarea>
                             </div>
                             <div class="mb-3">
-                                <label for="imagen" class="form-label" style="color: whitesmoke;">Imagen de la Serie</label>
-                                <input type="file" name="imagen" class="txtSImg form-control" id="imagen" accept="image/*" required>
+                                <label for="precioJuego" class="form-label" style="color: whitesmoke;">Precio</label>
+                                <input type="text" name="txtPrecio" class="txtPrecio form-control" id="precioJuego" style="background-color: #14142b; border-color: #202043; color: white" placeholder="Ingresa un precio">
                             </div>
                             <div class="mb-3">
-                                <label for="archivo" class="form-label" style="color: whitesmoke;">Claves (Encriptadas, zip o rar)</label>
-                                <input type="file" name="archivo" class="txtSKeys form-control" id="archivo" accept=".zip, .rar" required>
+                              <label for="stockJuego" class="form-label" style="color: whitesmoke;">Stock</label>
+                              <input type="number" name="txtStock" class="txtStock form-control" id="stockJuego" min=0 style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Ingresa un precio">
                             </div>
                             <div class="mb-3">
-                              <label for="categoria" class="form-label" style="color: whitesmoke;">Categoría</label>
-                              <select class="txtSCategoria form-select" name="categoria" id="categoria" style="background-color: #14142b; border-color: #202043; color: white;" required>
-                                <option value="">Selecciona una categoría</option>
-                                <option value="Acción">Occidental</option>
-                                <option value="Anime">Anime</option>
+                              <label for="imgJuego" class="form-label" style="color: whitesmoke;">Imagen del Juego</label>
+                              <input type="file" name="fileJuego" class="fileJuego form-control" id="imgJuego" style="background-color: #14142b; border-color: #202043; color: white;">
+                          </div>
+                          <div class="mb-3">
+                            <label for="clavesJuego" class="form-label" style="color: whitesmoke;">Claves (Encriptadas, zip o rar)</label>
+                            <input type="file" name="fileClaves" class="fileClaves form-control" id="clavesJuego" style="background-color: #14142b; border-color: #202043; color: white;">
+                        </div>
+                          <div class="row">
+                            <div class="col-5 pt-2 mt-auto">
+                              <h6 style="color: whitesmoke;">Tipo de clave:</h6>
+                              <select class="selectClave form-select form-select-sm" aria-label="Default select example" name="txtRegion" style="background-color: #14142b; border-color: #202043; color: white">
+                                <option selected>Seleccionar tipo de claves</option>
+                                <option value="1">Clave de Steam</option>
+                                <option value="2">Clave de XBOX</option>
                               </select>
                             </div>
-                            <div class="mb-3">
-                              <label for="lanzamiento" class="form-label" style="color: whitesmoke;">Fecha de Lanzamiento</label>
-                              <input type="date" name="lanzamiento" class="txtSFecha form-control" id="lanzamiento" style="background-color: #14142b; border-color: #202043; color: white;" required>
-                          <div class="row pt-3">
-                            <div class="col-2 d-flex justify-content-start">
-                                <button type="submit" class="btn-aceptar btn me-auto" style="font-weight: bold;" id="limpiarSerie">Limpiar</button>
+                            
+                            <div class="row">
+                              <div class="col pt-4 justify-content-start d-flex">
+                                <button type="submit" class="btn float-end me-auto" style="background-color: #11ced0; font-weight: bold; color: #05030d;" id="limpiarRegistro">Limpiar</button>
+                              </div>
+                              <div class="col pt-4">
+                                <button type="submit" class="btn float-end me-auto" style="background-color: #11ced0; font-weight: bold; color: #05030d;" id="enviarRegistro">Registrar juego</button>
+                              </div>
                             </div>
-                            <div class="col-2 offset-8 d-flex justify-content-end">
-                            <button type="submit" class="btn-aceptar btn ms-auto enviarSerie" style="font-weight: bold; align-items: end;" id="enviarSerie">Agregar</button>
-                            </div>
-                          </div>
+                            
+                            <div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </body>
 </html>

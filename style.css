@@ -161,6 +161,10 @@ h1{
     background-color: #11ced0;
 }
 
+.form-control::placeholder{
+    color: #b0bdf8
+}
+
 .btn-aceptar{
     background-color: #4463f2;
     color: white;
@@ -168,6 +172,10 @@ h1{
 .btn-aceptar:hover{
     background-color: #11ced0;
     color: white;
+}
+
+.txtDesc::placeholder{
+    color: #b0bdf8
 }
 #rut::placeholder{
     color: #b0bdf8
@@ -184,8 +192,6 @@ h1{
 #telefono::placeholder{
     color: #b0bdf8
 }
-
-
 #titulo::placeholder{
     color: #b0bdf8
 }

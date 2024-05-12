@@ -35,6 +35,20 @@ $(function(){
         agregarElemento('.data-imagen',1,1,1,1)
       })
 
+      $('.enviarSerie').click(function(){
+        var fileInput = $('.txtSImg')[0];
+        var file = fileInput.files[0];
+        var url = URL.createObjectURL(file);
+        $('.vista-previa').attr('src', url);
+      })
+
+      $('.enviarJuego').click(function(){
+        var fileInput = $('.txtJImg')[0];
+        var file = fileInput.files[0];
+        var url = URL.createObjectURL(file);
+        $('.vista-previa').attr('src', url);
+      })
+
     //verificaciones 
     //    nuevoItem.append('<td class="imagen-tabla">' + producto + '</td>');
     //    nuevoItem.append('<td class="titulo-tabla">' + titulo + '</td>');
