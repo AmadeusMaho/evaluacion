@@ -25,16 +25,23 @@ $(function(){
     //carro
     function agregarElemento(imagen, nombre, precio, cantidad, total) {
         var nuevoItem = $('.carrito');
-        var imagen = $('.img-producto').text();
+        var imagen = $('.data-precio').text();
         alert(imagen);
         nuevoItem.append('<th scope="row" class="numero-tabla">' + imagen + '</th>');
-        nuevoItem.append('<td class="imagen-tabla">' + producto + '</td>');
-        nuevoItem.append('<td class="titulo-tabla">' + titulo + '</td>');
-        nuevoItem.append('<td class="precio-tabla">' + precio + '</td>');
         $('#tabla-productos tbody').append(nuevoItem);
       }
 
-    //verificaciones
+      $('.btn-carro').click(function(){
+        alert("¡Producto agregado con éxito!");
+        agregarElemento('.data-imagen',1,1,1,1)
+      })
+
+    //verificaciones 
+    //    nuevoItem.append('<td class="imagen-tabla">' + producto + '</td>');
+    //    nuevoItem.append('<td class="titulo-tabla">' + titulo + '</td>');
+    //    nuevoItem.append('<td class="precio-tabla">' + precio + '</td>');
+
+
     $('#enviarRegistro').click(function(){
         $('.txtRut')[0].setCustomValidity('');
         $('.txtNombre')[0].setCustomValidity('');
