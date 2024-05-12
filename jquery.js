@@ -34,7 +34,6 @@ $(function(){
         $('#tabla-productos tbody').append(nuevoItem);
       }
 
-
     //verificaciones
     $('#enviarRegistro').click(function(){
         $('.txtRut')[0].setCustomValidity('');
