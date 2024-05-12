@@ -1,6 +1,7 @@
 
 $(function(){
-    
+
+
     $('.btnConversion').click(function(){
         $.getJSON('https://mindicador.cl/api', function(data) {
             if ($('.btnConversion').text().trim() == "Convertir a dólares"){
