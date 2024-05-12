@@ -10,9 +10,9 @@ $(function(){
                 var dolar = data.dolar.valor;
                 var precio = $('.precioJuego').text().substring(1, $('.precioJuego').text().length-4).replaceAll('.', '');
                 var precioDolarizado = Math.round((precio / dolar)*100) / 100; //dos decimales
+                $('.spinner-border').hide();
                 $('.precioJuegoConvertido').text("$"+ precioDolarizado + " USD");
                 $('.precioJuegoConvertido').show();
-                $('.spinner-border').hide();
                 $('.btnConversion').text("Convertir a pesos");
             }
             else if ($('.btnConversion').text().trim() == "Convertir a pesos"){
