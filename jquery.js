@@ -253,7 +253,7 @@ $(function(){
             $('.txtJNombre').focus();
            }
         else if($.trim($('.txtJNombre').val()).length>=20){
-            $('.txtJNombre')[0].setCustomValidity('Titulo no puede tener más de 20 caracteres');
+            $('.txtJNombre')[0].setCustomValidity('El título no puede tener más de 20 carácteres');
             $('.txtJNombre').focus();
         }
         else if($.trim($('.txtJDev').val())==""){
@@ -263,6 +263,10 @@ $(function(){
         else if($.trim($('.txtJDesc').val())==""){
             $('.txtJDesc')[0].setCustomValidity('Ingrese una descripción del juego.');
             $('.txtJDesc').focus();
+        }
+        else if($.trim($('.txtJDesc').val()).length>=400){
+            $('.txtJNombre')[0].setCustomValidity('Límite de 400 carácteres.');
+            $('.txtJNombre').focus();
         }
         else if($.trim($('.txtJImg').val())==""){
             $('.txtJImg')[0].setCustomValidity('Ingrese una imagen.');
