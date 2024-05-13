@@ -110,6 +110,7 @@ $(function(){
         $('.selectRegion')[0].setCustomValidity('');
         $('.selectEd')[0].setCustomValidity('');
 
+
         var rut = $.trim($('.txtRut').val());
        if($.trim($('.txtRut').val())==""){
         $('.txtRut')[0].setCustomValidity('Ingrese un RUT válido.')
@@ -165,6 +166,10 @@ $(function(){
        }
     })
 
+    $('.txtRut, .txtNombre, .txtApellido, .txtEmail, .txtTelefono').on('keyup', function() {
+        $(this).get(0).setCustomValidity('');
+    });
+    
     $('#limpiarRegistro').click(function(){
         $('.txtRut').val('');
         $('.txtNombre').val('');
@@ -199,13 +204,10 @@ $(function(){
     })
 
     $('#enviarSerie').click(function(){
-        $('.txtSTitulo')[0].setCustomValidity('');
-        $('.txtSDesc')[0].setCustomValidity('');
-        $('.txtSImg')[0].setCustomValidity('');
-        $('.txtSKeys')[0].setCustomValidity('');
-        $('.txtSCategoria')[0].setCustomValidity('');
-        $('.txtSFecha')[0].setCustomValidity('');
+        $('.txtSTitulo, .txtSDesc, .txtSImg, .txtSKeys, .txtSPrecio, .txtSStock, .txtSCategoria, .txtSFecha').each(function() {
+            this.setCustomValidity('');
 
+        });
         if($.trim($('.txtSTitulo').val())==""){
             $('.txtSTitulo')[0].setCustomValidity('Ingrese un título.')
             $('.txtSTitulo').focus();
@@ -226,6 +228,14 @@ $(function(){
             $('.txtSKeys')[0].setCustomValidity('Seleccione un archivo con claves.')
             $('.txtSKeys').focus();
         }
+        else if($.trim($('.txtSPrecio').val())==""){
+            $('.txtSPrecio')[0].setCustomValidity('Ingrese precio unitario.')
+            $('.txtSPrecio').focus();
+        }
+        else if($.trim($('.txtSStock').val())==""){
+            $('.txtSStock')[0].setCustomValidity('Ingrese cantidad de stock disponible.')
+            $('.txtSStock').focus();
+        }
         else if($.trim($('.txtSCategoria').val())==""){
             $('.txtSCategoria')[0].setCustomValidity('Seleccione una categoría.')
             $('.txtSCategoria').focus();
@@ -236,17 +246,16 @@ $(function(){
         }
     })
 
- 
+    $('.txtSTitulo, .txtSDesc, .txtSImg, .txtSKeys, .txtSPrecio, .txtSStock, .txtSCategoria, .txtSFecha').on('keyup', function() {
+        $(this).get(0).setCustomValidity('');
+    });
+
+
 
     $('#enviarJuego').click(function(){
-        $('.txtJNombre')[0].setCustomValidity('');
-        $('.txtJDev')[0].setCustomValidity('');
-        $('.txtJDesc')[0].setCustomValidity('');
-        $('.txtJImg')[0].setCustomValidity('');
-        $('.txtJPrecio')[0].setCustomValidity('');
-        $('.txtJStock')[0].setCustomValidity('');
-        $('.txtJKeys')[0].setCustomValidity('');
-        $('.txtJPlataforma')[0].setCustomValidity('');
+        $('.txtJNombre, .txtJDev, .txtJDesc, .txtJImg, .txtJPrecio, .txtJStock, .txtJKeys, .txtJPlataforma').each(function() {
+            this.setCustomValidity('');
+        });
 
         if($.trim($('.txtJNombre').val())==""){
             $('.txtJNombre')[0].setCustomValidity('Ingrese un titulo.');
@@ -291,4 +300,8 @@ $(function(){
         }
         
     });
+    $('.txtJNombre, .txtJDev, .txtJDesc, .txtJImg, .txtJPrecio, .txtJStock, .txtJKeys, .txtJPlataforma').on('keyup', function() {
+        $(this).get(0).setCustomValidity('');
+    });
+    
 });
