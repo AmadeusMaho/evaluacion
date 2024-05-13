@@ -87,8 +87,7 @@
                     </div>
                 </div>
             </div>
-            <form action="">
-              
+   
             
             <div class="col-md-8">
                 <form class="card mb-5">
@@ -96,14 +95,13 @@
                         Subir Nuevo Juego
                     </div>
                     <div class="card-body" style="background-color: #2f2c58;">
-                    </form>
                             <div class="mb-3">
                                 <label for="nombre" class="form-label" style="color: whitesmoke;">Nombre del Juego</label>
-                                <input type="text" name="nombre" class="txtJNombre form-control" id="nombre" style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Ingresa el título de la serie" required>
+                                <input type="text" name="nombre" class="txtJNombre form-control" id="nombre" style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Ingresa el título del juego (máximo 20 carácteres)" required>
                             </div>
                             <div class="mb-3">
                               <label for="dev" class="form-label" style="color: whitesmoke;">Desarrollador</label>
-                              <input type="text" name="titulo" class="txtJDev form-control" id="dev" style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Ingresa el título de la serie" required>
+                              <input type="text" name="titulo" class="txtJDev form-control" id="dev" style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Ingresa el desarrollador" required>
                           </div>
                             <div class="mb-3">
                                 <label for="descripcion" class="form-label" style="color: whitesmoke;">Descripción</label>
@@ -127,13 +125,15 @@
                             </div>
                             <div class="mb-3">
                               <label for="categoria" class="form-label" style="color: whitesmoke;">Tipo de Clave</label>
-                              <select class="txtSCategoria form-select" name="categoria" id="categoria" style="background-color: #14142b; border-color: #202043; color: white;" required>
+                              <select class="txtJPlataforma form-select" name="categoria" id="categoria" style="background-color: #14142b; border-color: #202043; color: white;" required>
                                 <option value="">Selecciona un tipo de clave</option>
                                 <option value="Steam">Clave de Steam</option>
                                 <option value="XBOX">Clave de XBOX</option>
+                                <option value="Playstation">Clave de Playstation</option>
+                                <option value="Epic">Clave de Epic Games</option>
                               </select>
                             </div>
-                          </form>
+                                                  
                           <div class="row pt-3">
                             <div class="col-2 d-flex justify-content-start">
                                 <button type="submit" class="btn-aceptar btn me-auto" style="font-weight: bold;" id="limpiarJuego">Limpiar</button>

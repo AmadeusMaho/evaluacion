@@ -170,9 +170,20 @@ $(function(){
         $('.vista-previa').attr('src', 'img/placeholder.png');
     })
 
+    $('#limpiarJuego').click(function(){
+        $('.txtJNombre').val('');
+        $('.txtJDev').val('');
+        $('.txtJDesc').val('');
+        $('.txtJImg').val('');
+        $('.txtJPrecio').val('');
+        $('.txtJStock').val('');
+        $('.txtJKeys').val('');
+        $('.txtJPlataforma').val('');
+        $('.vista-previa').attr('src', 'img/placeholder.png');
+    })
+
     $('#enviarSerie').click(function(){
         $('.txtSTitulo')[0].setCustomValidity('');
-        $('.txtSTitulo').focus();
         $('.txtSDesc')[0].setCustomValidity('');
         $('.txtSImg')[0].setCustomValidity('');
         $('.txtSKeys')[0].setCustomValidity('');
@@ -184,4 +195,56 @@ $(function(){
             $('.txtSTitulo').focus();
            }
     })
-})
+
+ 
+
+    $('#enviarJuego').click(function(){
+        $('.txtJNombre')[0].setCustomValidity('');
+        $('.txtJDev')[0].setCustomValidity('');
+        $('.txtJDesc')[0].setCustomValidity('');
+        $('.txtJImg')[0].setCustomValidity('');
+        $('.txtJPrecio')[0].setCustomValidity('');
+        $('.txtJStock')[0].setCustomValidity('');
+        $('.txtJKeys')[0].setCustomValidity('');
+        $('.txtJPlataforma')[0].setCustomValidity('');
+
+        if($.trim($('.txtJNombre').val())==""){
+            $('.txtJNombre')[0].setCustomValidity('Ingrese un titulo.');
+            $('.txtJNombre').focus();
+           }
+        else if($.trim($('.txtJNombre').val()).length>=20){
+            $('.txtJNombre')[0].setCustomValidity('Titulo no puede tener más de 20 caracteres');
+            $('.txtJNombre').focus();
+        }
+        else if($.trim($('.txtJDev').val())==""){
+            $('.txtJDev')[0].setCustomValidity('Ingrese un desarrollador.');
+            $('.txtJDev').focus();
+        }
+        else if($.trim($('.txtJDesc').val())==""){
+            $('.txtJDesc')[0].setCustomValidity('Ingrese una descripción del juego.');
+            $('.txtJDesc').focus();
+        }
+        else if($.trim($('.txtJImg').val())==""){
+            $('.txtJImg')[0].setCustomValidity('Ingrese una imagen.');
+            $('.txtJImg').focus();
+        }
+        else if($.trim($('.txtJPrecio').val())==""){
+            $('.txtJPrecio')[0].setCustomValidity('Ingrese un precio unitario.');
+            $('.txtJPrecio').focus();
+        }
+        else if($.trim($('.txtJStock').val())==""){
+            $('.txtJStock')[0].setCustomValidity('Debe ingresar stock disponible.');
+            $('.txtJStock').focus();
+        }
+        else if($.trim($('.txtJKeys').val())==""){
+            $('.txtJKeys')[0].setCustomValidity('Debe adjuntar las keys, formato ZIP y RAR.');
+            $('.txtJKeys').focus();
+            
+        }
+        else if($.trim($('.txtJPlataforma').val())==""){
+            $('.txtJPlataforma')[0].setCustomValidity('Ingrese plataforma.');
+            $('.txtJPlataforma').focus();
+        }
+        
+    });
+});
