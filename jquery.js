@@ -109,7 +109,7 @@ $(function(){
         $('.txtTelefono')[0].setCustomValidity('');
         $('.selectRegion')[0].setCustomValidity('');
         $('.selectEd')[0].setCustomValidity('');
-
+        $('.selectNac')[0].setCustomValidity('');
 
         var rut = $.trim($('.txtRut').val());
        if($.trim($('.txtRut').val())==""){
@@ -141,12 +141,16 @@ $(function(){
         $('.txtTelefono').focus();
        }
        else if(!(/^[\+]{1}(569|562)[\d]{8}$/.test($.trim($('.txtTelefono').val())))) {
-        $('.txtTelefono')[0].setCustomValidity('Ingrese teléfono válido.');
+        $('.txtTelefono')[0].setCustomValidity('Debe empezar con +569/+562, 8 digitos.');
         $('.txtTelefono').focus();
         }
        else if($.trim($('.selectRegion').val())=="Seleccionar Región"){
         $('.selectRegion')[0].setCustomValidity('Seleccione una región.');
         $('.selectRegion').focus();
+       }
+       else if($.trim($('.selectNac').val())=="Seleccionar"){
+        $('.selectNac')[0].setCustomValidity("Seleccione fecha de nacimiento.");
+        $('.selectNac').focus();
        }
        else if($.trim($('.selectEd').val())=="Seleccionar"){
         $('.selectEd')[0].setCustomValidity("Seleccione un nivel educacional.");
@@ -154,7 +158,7 @@ $(function(){
        }
     })
 
-    $('.txtRut, .txtNombre, .txtApellido, .txtEmail, .txtTelefono').on('keyup', function() {
+    $('.txtRut, .txtNombre, .txtApellido, .txtEmail, .txtTelefono, .selectRegion, .selectEd, .selectNac').on('keyup', function() {
         $(this).get(0).setCustomValidity('');
     });
     
@@ -228,6 +232,9 @@ $(function(){
             $('.txtSFecha')[0].setCustomValidity('Seleccione una fecha de lanzamiento.')
             $('.txtSFecha').focus();
         }
+        else{
+            alert("Serie agregada con éxito.")
+        }
     })
 
     $('.txtSTitulo, .txtSDesc, .txtSImg, .txtSKeys, .txtSPrecio, .txtSStock, .txtSCategoria, .txtSFecha').on('keyup', function() {
@@ -281,6 +288,9 @@ $(function(){
         else if($.trim($('.txtJPlataforma').val())==""){
             $('.txtJPlataforma')[0].setCustomValidity('Ingrese plataforma.');
             $('.txtJPlataforma').focus();
+        }
+        else{
+            alert("Juego agregado con éxito.")
         }
         
     });
