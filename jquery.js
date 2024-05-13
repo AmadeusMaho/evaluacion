@@ -1,17 +1,17 @@
 
 $(function(){
 
-    $(document).ready(function() {       $('.spinner-border').hide(); });
+    $(document).ready(function() {$('.spinner-border').hide();});
     $('.btnConversion').click(function(){
-        $('.spinner-border').show();
         $('.precioJuego').hide();
+        $('.spinner-border').show();
         $.getJSON('https://mindicador.cl/api', function(data) {
             if ($('.btnConversion').text().trim() == "Convertir a dólares"){
                 var dolar = data.dolar.valor;
                 var precio = $('.precioJuego').text().substring(1, $('.precioJuego').text().length-4).replaceAll('.', '');
                 var precioDolarizado = Math.round((precio / dolar)*100) / 100; //dos decimales
-                $('.spinner-border').hide();
                 $('.precioJuegoConvertido').text("$"+ precioDolarizado + " USD");
+                $('.spinner-border').hide();
                 $('.precioJuegoConvertido').show();
                 $('.btnConversion').text("Convertir a pesos");
             }
