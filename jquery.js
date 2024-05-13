@@ -1,17 +1,17 @@
 
 $(function(){
 
-    $(document).ready(function() {       $('.spinner-border').hide(); });
+    $(document).ready(function() {$('.spinner-border').hide();});
     $('.btnConversion').click(function(){
-        $('.spinner-border').show();
         $('.precioJuego').hide();
+        $('.spinner-border').show();
         $.getJSON('https://mindicador.cl/api', function(data) {
             if ($('.btnConversion').text().trim() == "Convertir a dólares"){
                 var dolar = data.dolar.valor;
                 var precio = $('.precioJuego').text().substring(1, $('.precioJuego').text().length-4).replaceAll('.', '');
                 var precioDolarizado = Math.round((precio / dolar)*100) / 100; //dos decimales
-                $('.spinner-border').hide();
                 $('.precioJuegoConvertido').text("$"+ precioDolarizado + " USD");
+                $('.spinner-border').hide();
                 $('.precioJuegoConvertido').show();
                 $('.btnConversion').text("Convertir a pesos");
             }
@@ -124,8 +124,16 @@ $(function(){
         $('.txtNombre')[0].setCustomValidity('Ingrese un nombre.');
         $('.txtNombre').focus();
        }
+       else if($.trim($('.txtNombre').val()).length>=50){
+        $('.txtNombre')[0].setCustomValidity('El nombre excede el máximo de caracteres (50).')
+        $('.txtNombre').focus();
+       }
        else if($.trim($('.txtApellido').val())==""){
         $('.txtApellido')[0].setCustomValidity('Ingrese un apellido.');
+        $('.txtApellido').focus();
+       }
+       else if($.trim($('.txtApellido').val()).length>=50){
+        $('.txtApellido')[0].setCustomValidity('El apellido excede el máximo de caracteres (50).')
         $('.txtApellido').focus();
        }
        else if($.trim($('.txtEmail').val())==""){
@@ -134,6 +142,10 @@ $(function(){
        }
        else if(!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($.trim($('.txtEmail').val())))){
         $('.txtEmail')[0].setCustomValidity('Ingrese un email valido.');
+        $('.txtEmail').focus();
+       }
+       else if($.trim($('.txtEmail').val()).length>=50){
+        $('.txtEmail')[0].setCustomValidity('El email excede el máximo de caracteres (50).')
         $('.txtEmail').focus();
        }
        else if($.trim($('.txtTelefono').val())==""){
@@ -203,10 +215,14 @@ $(function(){
         if($.trim($('.txtSTitulo').val())==""){
             $('.txtSTitulo')[0].setCustomValidity('Ingrese un título.')
             $('.txtSTitulo').focus();
-           }
+        }
+        else if($.trim($('.txtSTitulo').val()).length>=20){
+            $('.txtSTitulo')[0].setCustomValidity('Titulo no puede tener más de 20 caracteres.')
+            $('.txtSTitulo').focus();
+        }
         else if($.trim($('.txtSDesc').val())==""){
-        $('.txtSDesc')[0].setCustomValidity('Ingrese una descripción.')
-        $('.txtSDesc').focus();
+            $('.txtSDesc')[0].setCustomValidity('Ingrese una descripción.')
+            $('.txtSDesc').focus();
         }
         else if($.trim($('.txtSImg').val())==""){
             $('.txtSImg')[0].setCustomValidity('Seleccione una imagen.')
