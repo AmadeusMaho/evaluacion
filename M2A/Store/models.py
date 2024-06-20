@@ -7,11 +7,21 @@ class Juego(models.Model):
     nombre        = models.CharField(max_length=20)
     desarrollador = models.CharField(max_length=50)
     descripcion   = models.CharField(max_length=50)
+    imagen        = models.ImageField(upload_to='juegos/imagenes')
+    ytVidId       = models.CharField(max_length=11)
     precio        = models.IntegerField()
     stock         = models.IntegerField()
-    clave         = models.FileField(upload_to='juegos/claves_zip/',null= False)
-    linkYoutube   = models.CharField(max_length=60)
-    tipoClave     = models.CharField(max_length=40)
+    clave         = models.FileField(upload_to='juegos/archivos_zip/',null= False)
+    tipoClave     = models.ForeignKey('tipoClave', on_delete=models.CASCADE)
+
+class tipoClave(models.Model):
+    idTipo        = models.IntegerField(primary_key=True)
+    nombre        = models.CharField(max_length=20)
+
+class imgJuegos(models.Model):
+    idImg         = models.IntegerField(primary_key=True)
+    idJuego       = models.ForeignKey('Juego', on_delete=models.CASCADE)
+    imagen        = models.ImageField(upload_to='juegos/capturas')
 
 
 class Serie(models.Model):
@@ -22,7 +32,7 @@ class Serie(models.Model):
     stock         = models.IntegerField()
     clave         = models.FileField(upload_to='series/claves_zip/',null= False)
     categoria     = models.ForeignKey('categoriaSerie', on_delete=models.CASCADE)    
-    linkYoutube   = models.CharField(max_length=60)
+    ytVidId       = models.CharField(max_length=11)
 
 class imagenSerie (models.Model):
     idSerie       = models.ForeignKey('Serie', on_delete=models.CASCADE)    
