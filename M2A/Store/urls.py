@@ -6,9 +6,9 @@ urlpatterns = [
     path('principal', views.principal, name='principal'),
     path('carrito', views.carrito, name='carrito'),
     path('juego', views.juego, name='juego'),
+    path('login', views.login, name='login'),
+    path('registroJuegos', views.registroJuegos, name='registroJuegos'),
+    path('registroSeries', views.registroSeries, name='registroSeries'),
     path('plantilla', views.plantilla, name='plantilla'),
-    path('registro', views.registro, name='registro'),
-    path('registrarSerie', views.registrarSerie, name='registrarSerie'),
-    path('registrarJuego', views.registrarJuego, name='registrarJuego')
 
 ]
