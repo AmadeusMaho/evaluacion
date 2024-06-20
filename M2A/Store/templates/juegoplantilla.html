@@ -101,28 +101,27 @@
       </div>
     </div>
   </nav>
-
   <div class="container pt-5">
     <div class="row mt-5 ">
       <div class="col-12 col-lg-7 justify-content-center align-items-center d-flex">
         <iframe width="854" height="420" src="https://www.youtube.com/embed/9agt18c_V1U?autoplay=1&mute=1" title="Balatro - Official Launch Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
       <div class="col justify-content-end mt-4">
-        <h4 style="font-size:40px; text-align: center; color: #b0bdf8; font-weight: bold">{%block nombreJuego %} {%endblock%}</h4>
-        <h4 style="font-size: larger; text-align: center; color: #485aff">{%block desarrolador %} {%endblock%}</h4>
-        <p style="color: white; padding-top: 25px;">{%block descripcion %} {%endblock%}</p>
+        <h4 style="font-size:40px; text-align: center; color: #b0bdf8; font-weight: bold">{{ juego.nombre }}</h4>
+        <h4 style="font-size: larger; text-align: center; color: #485aff">Desarrollador: {{ juego.desarrollador }}</h4>
+        <p style="color: white; padding-top: 25px;">{{ juego.descripcion }}</p>
         <div class="row align-items-center d-flex">
           <div class="col-4 ">
-            <p class="pt-1" id="producto" style="text-align: start; margin-bottom: 10px;">{%block tipoClave %} {%endblock%}</p>
+            <p class="pt-1" id="producto" style="text-align: start; margin-bottom: 10px;">{{ juego.tipoclave }}</p>
           </div>
           <div class="offset-4 col-4">
-            <p class="pt-1" id="stock" style="text-align: center; margin-bottom: 10px;"> {%block stockJuego %} {%endblock%}</p>
+            <p class="pt-1" id="stock" style="text-align: center; margin-bottom: 10px;"> Stock: {{ juego.stock }}</p>
           </div>
           <div class="col-6 d-flex align-items-center">
             <div class="spinner-border" role="status" id="spinner-precio" style="color: #11ced0; width: 25px; height: 25px;">
               <span class="sr-only"></span>
             </div>
-            <p type="text" style="color: success; font-size: 25px; color: #11ced0; position:relative; margin-bottom: 5px; text-align: start;" class="precioJuego">{%block precioJuego %} {%endblock%}</p>
+            <p type="text" style="color: success; font-size: 25px; color: #11ced0; position:relative; margin-bottom: 5px; text-align: start;" class="precioJuego">${{ juego.precio }} CLP</p>
             <p type="text" style="color: success; font-size: 25px; color: #11ced0; position:relative; margin-bottom: 5px; text-align: start;" class="precioJuegoConvertido"></p>
           </div>
           <div class="col-6">

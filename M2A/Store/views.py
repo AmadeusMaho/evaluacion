@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Juego
 
 def principal(request):
     return render(request, 'principal.html', {})
@@ -18,4 +19,8 @@ def registroJuegos(request):
 
 def registroSeries(request):
     return render(request, 'registroSeries.html', {})
+
+def verJuego(request, idJuego):
+    juego = Juego.objects.get(idJuego = idJuego)
+    return render(request, 'juegoplantilla.html', {'juego':juego})
 
