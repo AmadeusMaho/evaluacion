@@ -4,11 +4,11 @@ from django.db import models
 
 class Juego(models.Model):
     idJuego       = models.IntegerField(primary_key=True)
-    nombre        = models.CharField(max_length=20)
+    nombre        = models.CharField(max_length=50)
     desarrollador = models.CharField(max_length=50)
-    descripcion   = models.CharField(max_length=50)
+    descripcion   = models.CharField(max_length=500)
     imagen        = models.ImageField(upload_to='juegos/imagenes')
-    ytVidId       = models.CharField(max_length=11)
+    ytVidId       = models.CharField(max_length=11, null=True)
     precio        = models.IntegerField()
     stock         = models.IntegerField()
     clave         = models.FileField(upload_to='juegos/archivos_zip/',null= False)
@@ -26,14 +26,14 @@ class imgJuegos(models.Model):
 
 class Serie(models.Model):
     idSerie       = models.IntegerField(primary_key=True)
-    nombre        = models.CharField(max_length=20)
-    descripcion   = models.CharField(max_length=50)
+    nombre        = models.CharField(max_length=50)
+    descripcion   = models.CharField(max_length=500)
     precio        = models.IntegerField()
     imagen        = models.ImageField(upload_to='series/imagenes')
     stock         = models.IntegerField()
     clave         = models.FileField(upload_to='series/claves_zip/',null= False)
     categoria     = models.ForeignKey('categoriaSerie', on_delete=models.CASCADE)    
-    ytVidId       = models.CharField(max_length=11)
+    ytVidId       = models.CharField(max_length=11, null=True)
 
 class imagenSerie (models.Model):
     idSerie       = models.ForeignKey('Serie', on_delete=models.CASCADE)    
