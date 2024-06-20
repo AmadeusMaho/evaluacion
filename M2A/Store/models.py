@@ -11,4 +11,4 @@ class Juego(models.Model):
     precio        = models.IntegerField()
     stock         = models.IntegerField()
     clave         = models.FileField(upload_to='juegos/archivos_zip/',null= False)
-    tipoClave     = models.CharField(max_length=40)
+    tipoClave     = models.IntegerField()
