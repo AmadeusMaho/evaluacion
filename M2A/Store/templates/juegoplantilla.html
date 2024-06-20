@@ -38,8 +38,8 @@
           <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
         </svg>
       </a>
-        <a href="../Login.html" id="logintext" class="ms-auto d-none d-lg-block" style="text-decoration: none; color: white; padding-right: 7px;">Registrarse</a>
-        <a href="../Login.html">
+        <a href="login" id="logintext" class="ms-auto d-none d-lg-block" style="text-decoration: none; color: white; padding-right: 7px;">Registrarse</a>
+        <a href="login">
           <svg xmlns="http://www.w3.org/2000/svg" width="50" height="45" fill="currentColor" class="bi bi-person-circle d-none d-lg-block" viewBox="0 0 16 16" style="color: whitesmoke;">
             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
             <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
@@ -108,25 +108,21 @@
         <iframe width="854" height="420" src="https://www.youtube.com/embed/9agt18c_V1U?autoplay=1&mute=1" title="Balatro - Official Launch Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
       <div class="col justify-content-end mt-4">
-        <h4 style="font-size:40px; text-align: center; color: #b0bdf8; font-weight: bold">Balatro</h4>
-        <h4 style="font-size: larger; text-align: center; color: #485aff">Desarrollador: Local Thunk</h4>
-        <p style="color: white; padding-top: 25px;">Introdúcete en el psicodélico y exclusivo mundo de Balatro. Déjate seducir por la banda sonora synthwave, relájate, huye de la rutina diaria y prepárate disfrutar del mejor rollo roguelike que encontrarás jamás.
-
-          Mejora tu colección y descubre cartas y secretos nuevos en cada partida.
-          ¡Analiza la pantalla de estadísticas detalladas para estudiar tus mejores manos, los comodines más usados y mil cosas más!
-          Recuerda aquellos monitores CRT y disfruta de un detallado pixel art a mano.</p>
+        <h4 style="font-size:40px; text-align: center; color: #b0bdf8; font-weight: bold">{%block nombreJuego %} {%endblock%}</h4>
+        <h4 style="font-size: larger; text-align: center; color: #485aff">{%block desarrolador %} {%endblock%}</h4>
+        <p style="color: white; padding-top: 25px;">{%block descripcion %} {%endblock%}</p>
         <div class="row align-items-center d-flex">
           <div class="col-4 ">
-            <p class="pt-1" id="producto" style="text-align: start; margin-bottom: 10px;">Clave de Steam</p>
+            <p class="pt-1" id="producto" style="text-align: start; margin-bottom: 10px;">{%block tipoClave %} {%endblock%}</p>
           </div>
           <div class="offset-4 col-4">
-            <p class="pt-1" id="stock" style="text-align: center; margin-bottom: 10px;"> Stock: 212</p>
+            <p class="pt-1" id="stock" style="text-align: center; margin-bottom: 10px;"> {%block stockJuego %} {%endblock%}</p>
           </div>
           <div class="col-6 d-flex align-items-center">
             <div class="spinner-border" role="status" id="spinner-precio" style="color: #11ced0; width: 25px; height: 25px;">
               <span class="sr-only"></span>
             </div>
-            <p type="text" style="color: success; font-size: 25px; color: #11ced0; position:relative; margin-bottom: 5px; text-align: start;" class="precioJuego">$8.200 CLP</p>
+            <p type="text" style="color: success; font-size: 25px; color: #11ced0; position:relative; margin-bottom: 5px; text-align: start;" class="precioJuego">{%block precioJuego %} {%endblock%}</p>
             <p type="text" style="color: success; font-size: 25px; color: #11ced0; position:relative; margin-bottom: 5px; text-align: start;" class="precioJuegoConvertido"></p>
           </div>
           <div class="col-6">
@@ -174,12 +170,9 @@
     />
 </div>
   </div> 
-
-
       </div>
     </div>
   </div>
-  
 </body>
 </html>
 

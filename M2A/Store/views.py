@@ -9,3 +9,13 @@ def carrito(request):
 
 def juego(request):
     return render(request, 'juegoplantilla.html', {})
+
+def login(request):
+    return render(request, 'login.html', {})
+
+def registroJuegos(request):
+    return render(request, 'registroJuegos.html', {})
+
+def registroSeries(request):
+    return render(request, 'registroSeries.html', {})
+
