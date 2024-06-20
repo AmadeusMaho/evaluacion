@@ -226,3 +226,9 @@ h1{
     transform: scale(1.05); 
     transition: transform 0.3s ease;
 }
+
+.footer {
+    width: 100%;
+    background-color: #05030d; /* Ensure background color matches the footer's */
+    border-top: 1px solid #b0bdf8; /* Border color to match the footer's */
+  }
