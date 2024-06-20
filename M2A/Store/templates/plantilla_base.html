@@ -92,8 +92,9 @@
                     <li><a class="dropdown-item" href="{% url 'principal' %}#tituloportada">Todos los juegos</a></li>
                   </ul>
                 </li>
+  {% if user.is_authenticated  %}
                 <li class="nav-item">
-                  <a class="nav-link active d-lg-none" aria-current="page" href="{% url 'login' %}" style="color: white;">Registrarse</a>
+                  <a class="nav-link active d-lg-none" aria-current="page" href="{% url 'login' %}" style="color: white;">Cerrar sesión</a>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white">
@@ -104,15 +105,18 @@
                     <li><a class="dropdown-item" href="{% url 'registroSeries' %}">Registrar una Serie</a></li>
                   </ul>
                 </li>
+  {% else %}
+                <li class="nav-item">
+                  <a class="nav-link active d-lg-none" aria-current="page" href="{% url 'login' %}" style="color: white;">Registrarse</a>
+                </li>
+  {% endif %}
               </ul>
             </div>
           </div>
         </div>
       </nav>
-      <div class="container">
-        {% block contenido %} {% endblock %}
-      </div>
-      <div class="container-fluid d-flex flex-column min-vh-100" style="padding: 0;">
+  {% block contenido %} {% endblock %}
+      <div class="container-fluid d-flex flex-column min-vh-50" style="padding: 0;">
         <footer class="footer mt-auto py-3 " style="background-color: #05030d;">
           <div class="d-flex align-items-center" style="justify-content: center; padding-top: 15px; padding-bottom: 15px;">
 
