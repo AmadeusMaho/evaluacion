@@ -9,7 +9,7 @@ def carrito(request):
 # Create your views here.
 
 def juego(request):
-    return render(request, 'juegoplantilla.html', {})
+    return render(request, 'juegoplantilla copy.html', {})
 
 def login(request):
     return render(request, 'login.html', {})
