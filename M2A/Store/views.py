@@ -24,3 +24,5 @@ def verJuego(request, idJuego):
     juego = Juego.objects.get(idJuego = idJuego)
     return render(request, 'juegoplantilla.html', {'juego':juego})
 
+def plantilla(request):
+    return render(request, 'plantilla_base.html', {})

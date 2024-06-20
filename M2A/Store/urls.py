@@ -10,4 +10,6 @@ urlpatterns = [
     path('registroJuegos', views.registroJuegos, name='registroJuegos'),
     path('registroSeries', views.registroSeries, name='registroSeries'),
     path('<int:idJuego>/', views.verJuego, name='verJuego'),
+    path('plantilla', views.plantilla, name='plantilla'),
+
 ]
