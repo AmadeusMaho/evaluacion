@@ -9,7 +9,6 @@ urlpatterns = [
     path('login', views.login, name='login'),
     path('registroJuegos', views.registroJuegos, name='registroJuegos'),
     path('registroSeries', views.registroSeries, name='registroSeries'),
-    path('juego/<int:idJuego>/', views.verJuego, name='verJuego'),
+    path('<int:idJuego>/', views.verJuego, name='verJuego'),
     path('plantilla', views.plantilla, name='plantilla'),
-
 ]

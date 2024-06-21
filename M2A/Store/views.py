@@ -24,5 +24,10 @@ def verJuego(request, idJuego):
     juego = Juego.objects.get(idJuego = idJuego)
     return render(request, 'juegoplantilla.html', {'juego':juego})
 
+def verJuegosPrincipal(request):
+    juegos = Juego.objects.all()
+    context = {'juegos':juegos}
+    return render(request, 'principal.html', context)
+
 def plantilla(request):
     return render(request, 'plantilla_base.html', {})
