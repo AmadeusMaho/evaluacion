@@ -1,6 +1,7 @@
 
 $(function(){
 
+    //conversión a dólares
     $(document).ready(function() {$('.spinner-border').hide();});
     $('.btnConversion').click(function(){
         $('.precioJuego').hide();
@@ -55,10 +56,9 @@ $(function(){
     
     $('.btn-carro').click(function(){
     alert("¡Producto agregado con éxito!");
-    //agregarElemento('.data-imagen',1,1,1,1)
     })
 
-    // Vista previa
+    //vista previa
     $('#enviarSerie').click(function(){
         if (!($('.txtSImg').val() == '')){
             var fileInput = $('.txtSImg')[0];
@@ -99,6 +99,12 @@ $(function(){
     //    nuevoItem.append('<td class="imagen-tabla">' + producto + '</td>');
     //    nuevoItem.append('<td class="titulo-tabla">' + titulo + '</td>');
     //    nuevoItem.append('<td class="precio-tabla">' + precio + '</td>');
+
+    // $('#enviarRegistro').click(function(){
+    //     ('input').each(function(){
+    //         $(this)[0].setCustomValidity('');
+    //     })
+    // })
 
 
     $('#enviarRegistro').click(function(){
