@@ -287,7 +287,7 @@ $(function(){
 
 
     $('#enviarJuego').click(function(){
-        $('.txtJNombre, .txtJDev, .txtJDesc, .txtJImg, .txtJPrecio, .txtJStock, .txtJKeys, .txtJPlataforma').each(function() {
+        $('.txtJNombre, .txtJDev, .txtJDesc, .txtJImg, .txtLink, .txtJPrecio, .txtJStock, .txtJKeys, .txtJPlataforma').each(function() {
             this.setCustomValidity('');
         });
 
@@ -328,12 +328,17 @@ $(function(){
             $('.txtJKeys').focus();
             
         }
+        else if($.trim($('.txtLink').val())==""){
+            $('.txtLink')[0].setCustomValidity('Debe ingresar el link de youtube.');
+            $('.txtLink').focus();
+            
+        }
         else if($.trim($('.txtJPlataforma').val())==""){
             $('.txtJPlataforma')[0].setCustomValidity('Ingrese plataforma.');
             $('.txtJPlataforma').focus();
         }
         else{
-            alert("Juego agregado con éxito.")
+            print("formulario correcto")
         }
         
     });

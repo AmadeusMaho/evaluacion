@@ -1,0 +1,41 @@
+{% extends "plantilla_base.html"  %}
+{% block titulo %} Juegos  {% endblock %}
+{% block contenido %}
+
+<h1>Lista de juegos:</h1>
+<table class="table table-resposive">
+    <tr class="listado" >
+        <th >ID</th>
+        <th >Imagen</th>
+        <th >Nombre</th>
+        <th >Desarrollador</th>
+        <th >Descripción</th>"
+        <th >ID Youtube</th>
+        <th >Precio</th>
+        <th >Stock</th>
+        <th >Claves</th>
+        <th >Plataforma</th>
+        <th style="color: cornflowerblue">Modificar</th>
+        <th style="color:red" >Eliminar</th>
+
+    </tr>
+    {%for juego in juegos%}
+    </tr>
+        <td > {{juego.idJuego}} </td>
+        <td ><a href="{{juego.idJuego}}"><img src="{{juego.imagen.url}}" alt="No disponible" style="max-width: 100px; max-height: 200px;"></a></td>
+        <td >{{juego.nombre}}</td>
+        <td >{{juego.desarrollador}}</td>
+        <td >{{juego.descripcion}}</td>
+        <td >{{juego.ytVidId}}</td>
+        <td >{{juego.precio}}</td>
+        <td >{{juego.stock}}</td>
+        <td >{{juego.claves.url}}</td>
+        <td >{{juego.tipoJuego}}</td>
+        <td class="text-center"><a href="{% url 'registroJuegos'}" class="btn btn-info btn-lg"></a></td>
+        <td class="text-center"><a href="{% url 'eliminarJuego' idJuego=juego.idJuego %}" class="btn btn-danger btn-lg"></a></td>
+
+    {%endfor%}
+    </tr>
+        <a href="{%url 'registroJuegos' %}"><button class="btn btnAgregar btn-success">Agregar Juego</button></a>
+
+{%endblock%}

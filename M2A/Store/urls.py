@@ -13,5 +13,7 @@ urlpatterns = [
     path('registroSeries', views.registroSeries, name='registroSeries'),
     path('<int:idJuego>/', views.verJuego, name='verJuego'),
     path('plantilla', views.plantilla, name='plantilla'),
-   
+    path('listadoJuegos', views.listadoJuegos, name='listadoJuegos'),
+    path('eliminarJuego/<int:idJuego>', views.eliminarJuego, name='eliminarJuego'),
+    path('subirJuego', views.subirJuego, name='subirJuego'),
 ]

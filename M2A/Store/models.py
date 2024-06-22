@@ -6,7 +6,7 @@ class Juego(models.Model):
     idJuego       = models.IntegerField(primary_key=True)
     nombre        = models.CharField(max_length=50)
     desarrollador = models.CharField(max_length=50)
-    descripcion   = models.CharField(max_length=220)
+    descripcion   = models.CharField(max_length=550)
     imagen        = models.ImageField(upload_to='juegos/imagenes')
     ytVidId       = models.CharField(max_length=11, null=True)
     precio        = models.IntegerField()
