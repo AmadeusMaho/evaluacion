@@ -13,63 +13,17 @@
     </div>
 
     <div class="carousel-inner">
+      {%for juego in juegos%}
       <div class="carousel-item active">
-        <a href="../games/persona3.html">
-          <img src="../static/img/portada.png" class="d-block w-100" alt="...">
+        <a href="{{juego.idJuego}}">
+          <img src="{{juego.imagen.url}}" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
-            <h5 class="h5portada">Lo más vendido, Persona 3 Reload</h5>
+            <h5 class="h5portada">Lo más vendido, {{juego.nombre}} </h5>
             <p class="descripcionportada">Enfréntate a la hora oscura y descubre el misterio del tártaro con este nuevo remake de Atlus</p>
           </div>
         </a>
-        
       </div>
-      <div class="carousel-item">
-        <a href="../games/bg3.html">
-          <img src="../static/img/bg3.jpg" class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-block">
-            <h5 class="h5portada">Baldur's Gate 3</h5>
-            <p class="descripcionportada">Reúne a tu grupo y regresa a los Reinos Olvidados en una historia de compañerismo, traición, sacrificio, supervivencia y la atracción de un poder absoluto.</p>
-          </div>
-        </a>
-      </div>
-      <div class="carousel-item">
-        <a href="../games/helldivers2.html">
-          <img src="../static/img/hellsdiver.png" class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-block">
-            <h5 class="h5portada">Hellsdiver 2</h5>
-            <p class="descripcionportada">Únete a última línea de ataque de la galaxia y liberala de la invasión de aliénigenas junto a tus amigos en este frenético shooter en tercera persona. ¡Por la democracia!</p>
-          </div>
-        </a>
-
-      </div>
-      <div class="carousel-item">
-        <a href="../games/valheim.html">
-          <img src="../static/img/valheim.jpg" class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-block">
-            <h5 class="h5portada">Valheim</h5>
-            <p class="descripcionportada">¡Lucha, construye y conquista tu viaje en una saga digna de la bendición de Odin en esta aventura cooperativa!</p>
-          </div>
-        </a>
-       
-      </div>
-      <div class="carousel-item">
-        <a href="../games/dd2.html">
-          <img src="../static/img/dd2.jpg" class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-block">
-            <h5 class="h5portada">Recién estrenado, Dragon's Dogma 2</h5>
-            <p class="descripcionportada">La nueva secuela de Dragon's Dogma incluye un RPG de mundo abierto, clases y gráficos de última generación. ¡A precio de escándalo!</p>
-          </div>
-        </a>
-      </div>
-      <div class="carousel-item">
-        <a href="../games/balatro.html">
-          <img src="../static/img/balatro.jpg" class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-block">
-            <h5 class="h5portada">Lo más nuevo, Balatro</h5>
-            <p class="descripcionportada">Balatro es un hipnótico constructor de mazos donde podrás jugar manos ilegales de póker. ¡Experimenta con este roguelike de póker único, aquí en M2A!</p>
-          </div>
-        </a>
-      </div>
+      {%endfor%}
     </div>
 
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
@@ -102,7 +56,7 @@
           <p class="card-text desc" style="margin-bottom: 5px;">{{juego.descripcion}}</p>
           <div class="row">
             <div class="col-6">
-              <p class="pt-0" style="position: absolute; bottom: 40px;" id="producto"> Clave de Steam</p>
+              <p class="pt-0" style="position: absolute; bottom: 40px;" id="producto"> Clave de Steam </p>
               <p style="color: success; font-size: 30px; margin: 0cm; position: absolute; bottom: 10px;">${{juego.precio}} </p>
             </div>
             <div class="col-4 offset-2" style=" padding-left: 15px;">
