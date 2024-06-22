@@ -36,3 +36,9 @@ def verJuegosPrincipal(request):
 
 def plantilla(request):
     return render(request, 'plantilla_base.html', {})
+
+def agregarCarro(request, idJuego):
+    context = {}
+    item = Juego.objects.get(idJuego = idJuego)
+    context = {'item': item}
+    return render(request, 'carrito.html', context)

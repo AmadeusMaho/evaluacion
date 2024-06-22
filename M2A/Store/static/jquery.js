@@ -69,7 +69,8 @@ $(function(){
 
     
     $('.btn-carro').click(function(){
-    alert("¡Producto agregado con éxito!");
+        alert("¡Producto agregado con éxito!");
+        
     })
 
     //vista previa

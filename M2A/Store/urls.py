@@ -13,5 +13,6 @@ urlpatterns = [
     path('registroSeries', views.registroSeries, name='registroSeries'),
     path('<int:idJuego>/', views.verJuego, name='verJuego'),
     path('plantilla', views.plantilla, name='plantilla'),
+    path('<int:idJuego>/carrito', views.agregarCarro, name='agregarCarro'),
    
 ]
