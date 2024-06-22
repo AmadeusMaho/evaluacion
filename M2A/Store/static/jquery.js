@@ -2,10 +2,10 @@
 $(function(){
 
     $(document).ready(function() {
-        $('.desc1').each(function(){
-            if ($(this).text().length > 213){
+        $('.desc').each(function(){
+            if ($(this).text().length > 220){
                 var desc = $(this).text();
-                desc = desc.substring(0,213)
+                desc = desc.substring(0,220)
                 desc = desc.split(" ");
                 desc.pop()
                 desc = desc.join(" ") + " ...";
@@ -13,6 +13,7 @@ $(function(){
             };
         })   
     });
+
 
     //conversión a dólares
     $(document).ready(function() {$('.spinner-border').hide();});
