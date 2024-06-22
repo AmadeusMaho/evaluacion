@@ -46,8 +46,8 @@ class categoriaSerie (models.Model):
 
 class Usuario ( models.Model):
     idUsuario = models.IntegerField(primary_key=True)
-    nombre    = models.CharField(max_length=20)
-    apellido  = models.CharField(max_length=20)
+    nombre    = models.CharField(max_length=35)
+    apellido  = models.CharField(max_length=35)
     email  = models.EmailField(max_length=70)
     telefono = models.CharField(max_length=40)
     region = models.ForeignKey('Region', on_delete=models.CASCADE)   
