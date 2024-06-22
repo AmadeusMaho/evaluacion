@@ -11,6 +11,7 @@
       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5" aria-label="Slide 6"></button>
     </div>
+
     <div class="carousel-inner">
       <div class="carousel-item active">
         <a href="../games/persona3.html">
@@ -70,6 +71,7 @@
         </a>
       </div>
     </div>
+
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Atrás</span>
@@ -91,7 +93,7 @@
     <div class="col">
       <div class="card"  style="width: 20rem; height: 480px; margin: 0 auto;">
         <a href="{{juego.idJuego}}">
-          <img src="{{juego.imagen.url}}" class="card-img-top border-0" alt="...">
+          <img src="{{juego.imagen.url}}" class="card-img-top border-0" alt="No disponible">
         </a>
 
         <div class="card-body">
@@ -119,141 +121,7 @@
       </div>
     </div>
     {%endfor%}
-    <div class="col">
-      
-      <div class="card"  style="width: 20rem; height: 480px; margin: 0 auto;">
-        
-        <a href="../games/minecraft.html">
-          <img src="../static/img/portadaminecraft.jpg" class="card-img-top border-0" alt="...">
-        </a>
-        
-        <div class="card-body">
-          <h5 class="card-title" id="titulojuego">Minecraft</h5>
-          <h4 class="card-title" style="font-size: small;" id="desarrollador">Desarrollador: Mojang</h4>
-          <p class="card-text" style="margin-bottom: 5px;">¡Da rienda suelta a tu creatividad y al constructor que llevas dentro! Sumérgete en el puntiagudo mundo de Minecraft con un objetivo concreto: ¡divertirte! Construye y combate en este sandbox de mundo abierto.</p>
-          <div class="row">
-            <div class="col-6">
-              <p class="pt-0" style="position: absolute; bottom: 40px;" id="producto"> Clave de XBOX</p>
-              <p style="color: success; font-size: 30px; margin: 0cm; position: absolute; bottom: 10px;">$21.800</p>
-            </div>
-            <div class="col-4 offset-2" style=" padding-left: 15px;">
-              <p class="pt-0" style="margin:0cm; position: absolute; bottom: 57px;" id="stock"> Stock: 460</p>
-              <a class="btn-carro btn btn-primary btn-lg" href="#" role="button" style="position: absolute; bottom: 10px; width: 20%;" id="btn-carro" 
-              data-titulo="Minecraft" data-imagen="img/portadaminecraft.jpg" data-precio="21800">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                  <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card"  style="width: 20rem; height: 480px; margin: 0 auto;">
-        <a href="../games/dd2.html">
-          <img src="../static/img/dd2.jpg" class="card-img-top border-0" alt="...">
-        </a>
-        <div class="card-body">
-          <h5 class="card-title" id="titulojuego">Dragon's Dogma 2</h5>
-          <h4 class="card-title" style="font-size: small;" id="desarrollador">Desarrollador: Capcom</h4>
-          <p class="card-text" >La nueva secuela de Dragon's Dogma incluye un RPG de mundo abierto, clases y gráficos de última generación. ¡A precio de escándalo!</p>
-          <div class="row">
-            <div class="col-6">
-              <p class="pt-0" style="position: absolute; bottom: 40px;" id="producto"> Clave de Steam</p>
-              <p style="color: success; font-size: 30px; margin: 0cm; position: absolute; bottom: 10px;">$55.990</p>
-            </div>
-            <div class="col-4 offset-2" style=" padding-left: 15px;">
-              <p class="pt-0" style="margin:0cm; position: absolute; bottom: 57px;" id="stock"> Stock: 26</p>
-              <a class="btn-carro btn btn-primary btn-lg" href="#" role="button" style="position: absolute; bottom: 10px; width: 20%;" id="btn-carro">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                  <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card"  style="width: 20rem; height: 480px; margin: 0 auto;">
-        <a href="../games/persona3.html">
-          <img src="../static/img/portada.png" class="card-img-top border-0" alt="...">
-        </a>
-        <div class="card-body">
-          <h5 class="card-title" id="titulojuego">Persona 3: Reload</h5>
-          <h4 class="card-title" style="font-size: small;" id="desarrollador">Desarrollador: Atlus</h4>
-          <p class="card-text" style="margin-bottom: 5px;">Sumérgete en la Hora Oscura y despierta lo más profundo de tu corazón. Nueva versión del RPG que definió el género y que ahora renace para la era moderna con gráficos y una jugabilidad de última generación.</p>
-          <div class="row">
-            <div class="col-6">
-              <p class="pt-0" style="position: absolute; bottom: 40px;" id="producto"> Clave de Steam</p>
-              <p style="color: success; font-size: 30px; margin: 0cm; position: absolute; bottom: 10px;">$60.000</p>
-            </div>
-            <div class="col-4 offset-2" style=" padding-left: 15px;">
-              <p class="pt-0" style="margin:0cm; position: absolute; bottom: 57px;" id="stock"> Stock: 84</p>
-              <a class="btn-carro btn btn-primary btn-lg" href="#" role="button" style="position: absolute; bottom: 10px; width: 20%;" id="btn-carro">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                  <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card"  style="width: 20rem; height: 480px; margin: 0 auto;">
-        <a href="2">
-          <img src="../static/img/bg3.jpg" class="card-img-top border-0" alt="...">
-        </a>
-        <div class="card-body">
-          <h5 class="card-title" id="titulojuego">Baldur's Gate 3</h5>
-          <h4 class="card-title" style="font-size: small;" id="desarrollador">Desarrollador: Larian Studios</h4>
-          <p class="card-text" style="margin-bottom: 5px;">
-            Reúne a un grupo y emprendan juntos una campaña épica en este RPG de próxima generación ambientado en el mundo de Calabozos y Dragones, que llega de la mano de los creadores de Divinity: Original Sin II.</p>
-          <div class="row">
-            <div class="col-6">
-              <p class="pt-0" style="position: absolute; bottom: 40px;"  id="producto"> Clave de Steam</p>
-              <p style="color: success; font-size: 30px; margin: 0cm; position: absolute; bottom: 10px;">$39.999</p>
-            </div>
-            <div class="col-4 offset-2" style=" padding-left: 15px;">
-              <p class="pt-0" style="margin:0cm; position: absolute; bottom: 57px;" id="stock"> Stock: 99</p>
-              <a class="btn-carro btn btn-primary btn-lg" href="#" role="button" style="position: absolute; bottom: 10px; width: 20%;" id="btn-carro">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                  <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card"  style="width: 20rem; height: 480px; margin: 0 auto;">
-        <a href="../games/helldivers2.html">
-          <img src="../static/img/hellsdiver.png" class="card-img-top border-0" alt="...">
-        </a>
-        <div class="card-body">
-          <h5 class="card-title" id="titulojuego">Helldivers™ 2</h5>
-          <h4 class="card-title" style="font-size: small;" id="desarrollador">Desarrollador: Arrowhead Std.</h4>
-          <p class="card-text" >Únete a la lucha por la libertad en una galaxia hostil en un juego de disparos en tercera persona rápido, frenético y feroz.</p>
-          <div class="row">
-            <div class="col-6">
-              <p class="pt-0" style="position: absolute; bottom: 40px;" id="producto"> Clave de Steam</p>
-              <p style="color: success; font-size: 30px; margin: 0cm; position: absolute; bottom: 10px;">$27.900</p>
-            </div>
-            <div class="col-4 offset-2" style=" padding-left: 15px;">
-              <p class="pt-0" style="margin:0cm; position: absolute; bottom: 57px;" id="stock"> Stock: 15</p>
-              <a class="btn-carro btn btn-primary btn-lg" href="#" role="button" style="position: absolute; bottom: 10px; width: 20%;" id="btn-carro">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                  <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>   
+   
   </div>
 
 </div>

@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Juego
+from M2A.settings import MEDIA_URL
 
 def principal(request):
     return render(request, 'principal.html', {})
@@ -25,8 +26,12 @@ def verJuego(request, idJuego):
     return render(request, 'juegoplantilla.html', {'juego':juego})
 
 def verJuegosPrincipal(request):
+    context = {}
     juegos = Juego.objects.all()
-    context = {'juegos':juegos}
+    context = {
+    'juegos': juegos,
+    'MEDIA_URL': MEDIA_URL  # Accedemos a MEDIA_URL desde settings
+    }
     return render(request, 'principal.html', context)
 
 def plantilla(request):
