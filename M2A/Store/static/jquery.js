@@ -1,6 +1,19 @@
 
 $(function(){
 
+    $(document).ready(function() {
+        $('.desc1').each(function(){
+            if ($(this).text().length > 213){
+                var desc = $(this).text();
+                desc = desc.substring(0,213)
+                desc = desc.split(" ");
+                desc.pop()
+                desc = desc.join(" ") + " ...";
+                $(this).text(desc);
+            };
+        })   
+    });
+
     //conversión a dólares
     $(document).ready(function() {$('.spinner-border').hide();});
     $('.btnConversion').click(function(){
@@ -96,28 +109,29 @@ $(function(){
     })
 
     //verificaciones 
-    //    nuevoItem.append('<td class="imagen-tabla">' + producto + '</td>');
-    //    nuevoItem.append('<td class="titulo-tabla">' + titulo + '</td>');
-    //    nuevoItem.append('<td class="precio-tabla">' + precio + '</td>');
 
-    // $('#enviarRegistro').click(function(){
-    //     ('input').each(function(){
-    //         $(this)[0].setCustomValidity('');
-    //     })
-    // })
-
-
-    $('#enviarRegistro').click(function(){
-        $('.txtRut')[0].setCustomValidity('');
-        $('.txtNombre')[0].setCustomValidity('');
-        $('.txtApellido')[0].setCustomValidity('');
-        $('.txtEmail')[0].setCustomValidity('');
-        $('.txtTelefono')[0].setCustomValidity('');
-        $('.selectRegion')[0].setCustomValidity('');
-        $('.selectEd')[0].setCustomValidity('');
-        $('.selectNac')[0].setCustomValidity('');
-
-        var rut = $.trim($('.txtRut').val());
+    //rut test
+    function verificarRUT(rut){
+        var suma = 0
+        var mult = 2;
+        var run = rut.substring(0,8);
+        run = run.split('').reverse();
+        $.each(run, function(index, dig){
+         suma+=dig*mult;
+         mult+=1;
+         if(mult==8){mult=2};
+      })
+      var div=suma/11
+      var result=11-Math.abs(suma-Math.trunc(div)*11)
+      if(result==11){return '0'} else if(result==10){return 'K'}
+      else return result;
+      };
+          
+      $('#enviarRegistro').click(function(){
+        $('input,select').each(function() {
+            $(this)[0].setCustomValidity('');
+        });
+       var rut = $.trim($('.txtRut').val());
        if($.trim($('.txtRut').val())==""){
         $('.txtRut')[0].setCustomValidity('Ingrese un RUT válido.')
         $('.txtRut').focus();
@@ -126,20 +140,24 @@ $(function(){
         $('.txtRut')[0].setCustomValidity('Ingrese un RUT válido.')
         $('.txtRut').focus();
        }
+       else if(verificarRUT(rut)!=rut.substring(9,10)){
+        $('.txtRut')[0].setCustomValidity('Ingrese un RUT válido.')
+        $('.txtRut').focus();
+    }
        else if($.trim($('.txtNombre').val())==""){
         $('.txtNombre')[0].setCustomValidity('Ingrese un nombre.');
         $('.txtNombre').focus();
        }
-       else if($.trim($('.txtNombre').val()).length>=50){
-        $('.txtNombre')[0].setCustomValidity('El nombre excede el máximo de caracteres (50).')
+       else if($.trim($('.txtNombre').val()).length>=35){
+        $('.txtNombre')[0].setCustomValidity('El nombre excede el máximo de caracteres (35).')
         $('.txtNombre').focus();
        }
        else if($.trim($('.txtApellido').val())==""){
         $('.txtApellido')[0].setCustomValidity('Ingrese un apellido.');
         $('.txtApellido').focus();
        }
-       else if($.trim($('.txtApellido').val()).length>=50){
-        $('.txtApellido')[0].setCustomValidity('El apellido excede el máximo de caracteres (50).')
+       else if($.trim($('.txtApellido').val()).length>=35){
+        $('.txtApellido')[0].setCustomValidity('El apellido excede el máximo de caracteres (35).')
         $('.txtApellido').focus();
        }
        else if($.trim($('.txtEmail').val())==""){
@@ -150,8 +168,8 @@ $(function(){
         $('.txtEmail')[0].setCustomValidity('Ingrese un email valido.');
         $('.txtEmail').focus();
        }
-       else if($.trim($('.txtEmail').val()).length>=50){
-        $('.txtEmail')[0].setCustomValidity('El email excede el máximo de caracteres (50).')
+       else if($.trim($('.txtEmail').val()).length>=70){
+        $('.txtEmail')[0].setCustomValidity('El email excede el máximo de caracteres (70).')
         $('.txtEmail').focus();
        }
        else if($.trim($('.txtTelefono').val())==""){
@@ -166,7 +184,11 @@ $(function(){
         $('.selectRegion')[0].setCustomValidity('Seleccione una región.');
         $('.selectRegion').focus();
        }
-       else if($.trim($('.selectNac').val())=="Seleccionar"){
+       else if($.trim($('.selectRegion').val())==""){
+        $('.selectRegion')[0].setCustomValidity('Seleccione una región.');
+        $('.selectRegion').focus();
+       }
+       else if($.trim($('.selectNac').val())==""){
         $('.selectNac')[0].setCustomValidity("Seleccione fecha de nacimiento.");
         $('.selectNac').focus();
        }
@@ -174,21 +196,20 @@ $(function(){
         $('.selectEd')[0].setCustomValidity("Seleccione un nivel educacional.");
         $('.selectEd').focus();
        }
-    })
+       else if($.trim($('.selectEd').val())==""){
+        $('.selectEd')[0].setCustomValidity("Seleccione un nivel educacional.");
+        $('.selectEd').focus();
+       }
+    });
 
     $('.txtRut, .txtNombre, .txtApellido, .txtEmail, .txtTelefono, .selectRegion, .selectEd, .selectNac').on('keyup', function() {
         $(this).get(0).setCustomValidity('');
     });
     
     $('#limpiarRegistro').click(function(){
-        $('.txtRut').val('');
-        $('.txtNombre').val('');
-        $('.txtApellido').val('');
-        $('.txtEmail').val('');
-        $('.txtTelefono').val('');
-        $('.selectRegion').val('');
-        $('.selectEd').val('');
-        $('.selectNac').val('');
+        $('input,select').each(function() {
+            $(this).val('');
+        });
     })
 
     $('#limpiarSerie').click(function(){
