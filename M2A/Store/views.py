@@ -8,7 +8,10 @@ from .forms import juegoForm
 from .forms import customLoginForm
 from django.contrib.auth.views import LoginView,LogoutView
 import re
+<<<<<<< HEAD
 from django.core.exceptions import ObjectDoesNotExist
+=======
+>>>>>>> 6d1b273c12210de37caf19a882640402d7fed0d1
 
 def principal(request):
     return render(request, 'principal.html', {})
@@ -61,20 +64,23 @@ def verJuegosPrincipal(request):
 def plantilla(request):
     return render(request, 'plantilla_base.html', {})
 
-@login_required
+
 def agregarJuegoCarro(request, idJuego):
     context = {}
     try:
         usuario = request.user
-        item = Juego.objects.get(idJuego = idJuego)
-        carro, creado = Carrito.objects.get_or_create(usuario=usuario)
-        carro.juegos.add(item)
-        context['exito'] = 'Se agregó el producto'
+        if usuario.is_aunthenticated:
+            item = Juego.objects.get(idJuego = idJuego)
+            carro, creado = Carrito.objects.get_or_create(usuario=usuario)
+            carro.juegos.add(item)
+            context['exito'] = 'Se agregó el producto'
+        else:
+            context['errorSesion'] = 'Error al agregar el producto'
+            return redirect(verCarro)
     except:
-        context['Error'] = 'Error al agregar el producto'
+        context['error'] = 'Error al agregar el producto'
     return redirect(verCarro)
 
-@login_required
 def verCarro(request):
     context = {}
     try:
