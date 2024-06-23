@@ -14,6 +14,19 @@ $(function(){
         })   
     });
 
+    $(document).ready(function() {
+        $('.descripcionportada').each(function(){
+            if ($(this).text().length > 100){
+                var desc = $(this).text();
+                desc = desc.substring(0,100)
+                desc = desc.split(" ");
+                desc.pop()
+                desc = desc.join(" ") + " ...";
+                $(this).text(desc);
+            };
+        })   
+    });
+
     //conversión a dólares
     $(document).ready(function() {$('.spinner-border').hide();});
     $('.btnConversion').click(function(){
@@ -346,8 +359,8 @@ $(function(){
             $('.txtJDesc')[0].setCustomValidity('Ingrese una descripción del juego.');
             $('.txtJDesc').focus();
         }
-        else if($.trim($('.txtJDesc').val()).length>=400){
-            $('.txtJNombre')[0].setCustomValidity('Límite de 400 carácteres.');
+        else if($.trim($('.txtJDesc').val()).length>=520){
+            $('.txtJNombre')[0].setCustomValidity('Límite de 520 carácteres.');
             $('.txtJNombre').focus();
         }
         else if($.trim($('.txtJImg').val())==""){

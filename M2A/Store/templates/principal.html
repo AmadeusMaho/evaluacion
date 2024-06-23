@@ -4,28 +4,26 @@
 <div class="container pt-5"> 
   <div id="carouselExampleCaptions" class="carousel slide mt-5 d-flex justify-content-center align-items-center" data-bs-ride="carousel">
     <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5" aria-label="Slide 6"></button>
+      {% for juego in juegos %}
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %} aria-label="Slide {{ forloop.counter }}">
+        </button>
+      {% endfor %}
     </div>
-
+    
     <div class="carousel-inner">
-      {%for juego in juegos%}
-      <div class="carousel-item active">
-        <a href="{{juego.idJuego}}">
-          <img src="{{juego.imagen.url}}" class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-block">
-            <h5 class="h5portada">Lo más vendido, {{juego.nombre}} </h5>
-            <p class="descripcionportada">Enfréntate a la hora oscura y descubre el misterio del tártaro con este nuevo remake de Atlus</p>
-          </div>
-        </a>
-      </div>
-      {%endfor%}
+      {% for juego in juegos %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+          <a href="{{ juego.idJuego }}">
+            <img src="{{ juego.imagen.url }}" class="d-block w-100" alt="No disponible">
+            <div class="carousel-caption d-none d-md-block">
+              <h5 class="h5portada">Lo más vendido, {{ juego.nombre }} </h5>
+              <p class="descripcionportada">{{ juego.descripcion }}</p>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
     </div>
-
+  
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Atrás</span>
@@ -35,6 +33,7 @@
       <span class="visually-hidden">Siguiente</span>
     </button>
   </div>
+ 
 </div>
 <h1 id="tituloportada" class="tituloportada pt-4">Las mejores tendencias de anime y videojuegos, ahora más cerca que nunca.</h1>
 <div class="container pt-5">
