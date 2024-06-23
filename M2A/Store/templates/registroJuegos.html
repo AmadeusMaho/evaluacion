@@ -38,8 +38,13 @@
                                 <textarea name="descripcion" class="txtJDesc form-control" id="descripcion" rows="3" style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Descripción del juego" required>{{juego.descripcion}}</textarea>
                             </div>
                             <div class="mb-3">
+                                {%if juego.imagen%}
+                                <label for="imagen" class="form-label" style="color: whitesmoke;">Imagen del Juego: {{juego.imagen.url}} </label>
+                                <input type="file" name="imagenSubida" value="{{juego.imagen.url}}" class="Img form-control" id="imagen" accept="image/*">
+                                {%else%}
                                 <label for="imagen" class="form-label" style="color: whitesmoke;">Imagen del Juego</label>
-                                <input type="file" name="imagen" value="{{juego.imagen.url}}" class="txtJImg form-control" id="imagen" accept="image/*" required>
+                                <input type="file" name="imagen" value="{{juego.imagen.url}}" class="Img form-control" id="imagen" accept="image/*" required>
+                                {%endif%}
                             </div>
                             <div class="mb-3">
                               <label for="precio" class="form-label" style="color: whitesmoke;">Precio</label>
@@ -50,8 +55,13 @@
                             <input type="number" name="stock" value="{{juego.stock}}" class="txtJStock form-control" id="stock" style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Ingresa el stock" required min="0">
                         </div>
                             <div class="mb-3">
+                                {%if juego.clave%}
+                                <label for="archivo" class="form-label" style="color: whitesmoke;">Claves: {{juego.clave.url}} </label>
+                                <input type="file" name="archivoSubido" value="{{juego.clave.url}}" class="txtJKeys form-control" id="archivo" accept=".zip,.rar">
+                                {%else%}
                                 <label for="archivo" class="form-label" style="color: whitesmoke;">Claves (Encriptadas, zip o rar)</label>
-                                <input type="file" name="archivo" value="{{juego.clave}}" class="txtJKeys form-control" id="archivo" accept=".zip, .rar" required>
+                                <input type="file" name="archivo" value="{{juego.clave.url}}" class="txtJKeys form-control" id="archivo" accept=".zip,.rar" required>
+                                {%endif%}
                             </div>
                             <div class="mb-3">
                               <label for="link" class="form-label" style="color: whitesmoke;">Link de Youtube</label>

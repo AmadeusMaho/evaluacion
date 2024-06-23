@@ -113,11 +113,9 @@ def subirJuego(request):
         nombre        = request.POST['nombre']
         desarrollador = request.POST['titulo']
         descripcion   = request.POST['descripcion']
-        imagen        = request.FILES['imagen']
         ytVidId       = request.POST['link']
         precio        = request.POST['precio']
         stock         = request.POST['stock']
-        clave         = request.FILES['archivo']
         
         #convertir idjuego en un string para comparar
         str(idJuego)
@@ -127,11 +125,11 @@ def subirJuego(request):
                     nombre = nombre,
                     desarrollador = desarrollador,
                     descripcion = descripcion,
-                    imagen = imagen,
+                    imagen = request.FILES['imagen'],
                     ytVidId = ytVidId,
                     precio = precio,
                     stock = stock,
-                    clave = clave,
+                    clave = request.FILES['archivo'],
                     tipoClave = tipoClave.objects.get(idTipo=request.POST['tipoClave'])
                     )
             else:
@@ -139,12 +137,14 @@ def subirJuego(request):
                 juego.nombre = nombre
                 juego.desarrollador = desarrollador
                 juego.descripcion = descripcion
-                juego.imagen = imagen
                 juego.ytVidId = ytVidId
                 juego.precio = precio
                 juego.stock = stock
-                juego.clave = clave
                 juego.tipoClave = tipoClave.objects.get(idTipo=request.POST['tipoClave'])
+                if 'imagen' in request.FILES:
+                    juego.imagen = request.FILES['imagen']
+                if 'archivo' in request.FILES:
+                    juego.clave = request.FILES['archivo']
                 juego.save()
                 
     context['juegos'] = Juego.objects.all()
