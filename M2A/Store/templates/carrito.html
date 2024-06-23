@@ -22,7 +22,7 @@
               {% for item in listado %}
                 <tr class="carrito">
                     <td>{{item.idJuego}}</td>
-                    <td><img src="{{item.imagen.url}}" alt="..." style="width:100px"></td>
+                    <td><a href="{{item.idJuego}}"><img src="{{item.imagen.url}}" alt="No disponible" style="max-width: 100px; max-height: 140px;"></a></td>
                     <td>{{item.nombre}}</td>
                     <td class="precio-carro">{{item.precio}}</td>
                     <td>

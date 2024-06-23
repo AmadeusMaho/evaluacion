@@ -3,6 +3,7 @@ from .models import Juego, Carrito, tipoClave, imgJuegos
 from M2A.settings import MEDIA_URL
 from django.contrib.auth.decorators import login_required
 from .forms import juegoForm
+import re
 
 def principal(request):
     return render(request, 'principal.html', {})
@@ -117,12 +118,16 @@ def subirJuego(request):
         ytVidId       = request.POST['link']
         precio        = request.POST['precio']
         stock         = request.POST['stock']
+
+        # buscar youtube id
+        m = re.search(r"([\d\w]{11})", ytVidId)
+        ytVidId = m.group()
         
         #convertir idjuego en un string para comparar
         str(idJuego)
         if 'enviarJuego' in request.POST:
             if idJuego == "0":
-                 Juego.objects.create(
+                 juego1= Juego.objects.create(
                     nombre = nombre,
                     desarrollador = desarrollador,
                     descripcion = descripcion,
@@ -133,6 +138,13 @@ def subirJuego(request):
                     clave = request.FILES['archivo'],
                     tipoClave = tipoClave.objects.get(idTipo=request.POST['tipoClave'])
                     )
+                 if request.FILES.getlist('captura'):
+                    capturas = request.FILES.getlist('captura')
+                    for imagen in capturas:
+                        imgJuegos.objects.create(
+                            idJuego = juego1,
+                            imagen = imagen
+                        )
             else:
                 juego = Juego.objects.get(idJuego = request.POST['txtId'])
                 juego.nombre = nombre
@@ -147,16 +159,33 @@ def subirJuego(request):
                 if 'archivo' in request.FILES:
                     juego.clave = request.FILES['archivo']
                 juego.save()
+                if request.FILES.getlist('captura'):
+                    capturas = request.FILES.getlist('captura')
+                    capturas_old = imgJuegos.objects.filter(idJuego=juego)
+                    for old in capturas_old:
+                        old.delete()
+                    for imagen in capturas:
+                        imgJuegos.objects.create(
+                            idJuego = juego,
+                            imagen = imagen
+                        )
                 
-    context['juegos'] = Juego.objects.all()
-    return render(request, 'listadoJuegos.html', context)
+    #context['juegos'] = Juego.objects.all()
+    #return render(request, 'listadoJuegos.html', context)
+    return redirect(listadoJuegos)
 
 
 def modificarJuego(request, idJuego):
     juego = Juego.objects.get(idJuego = idJuego)
     tipoClaves = tipoClave.objects.all()
+    capturas = imgJuegos.objects.filter(idJuego=juego)
+    urlCapturas = ""
+    for i in capturas:
+        urlCapturas += i.imagen.url + " "
     context = {
     'juego': juego,
     'tipoClaves': tipoClaves,
+    'capturas' : capturas,
+    'urlCapturas' : urlCapturas
     }
     return render(request, 'registroJuegos.html', context)
