@@ -20,7 +20,7 @@ class tipoClave(models.Model):
     nombre        = models.CharField(max_length=20)
 
 class imgJuegos(models.Model):
-    idImg         = models.IntegerField(primary_key=True)
+    idImg         = models.AutoField(primary_key=True)
     idJuego       = models.ForeignKey('Juego', on_delete=models.CASCADE)
     imagen        = models.ImageField(upload_to='juegos/capturas')
 

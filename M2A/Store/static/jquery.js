@@ -27,7 +27,7 @@ $(function(){
         })   
     });
 
-    //conversión a dólares
+//conversión a dólares
     $(document).ready(function() {$('.spinner-border').hide();});
     $('.btnConversion').click(function(){
         $('.precioJuego').hide();
@@ -69,21 +69,6 @@ $(function(){
     Fancybox.bind('[data-fancybox="galeria7"]', {
       });
 
-
-    //carro
-    function agregarElemento(imagen, nombre, precio, cantidad, total) {
-        var nuevoItem = $('.carrito');
-        var imagen = $('.data-precio').text();
-        nuevoItem.append('<th scope="row" class="numero-tabla">' + imagen + '</th>');
-        $('#tabla-productos tbody').append(nuevoItem);
-        $('spinner-border').hide();
-      }
-    
-    $('.btn-carro').click(function(){
-        alert("¡Producto agregado con éxito!");
-
-    })
-
 // calcular subtotal
     $(document).ready($(function() {
         var suma = 0
@@ -123,15 +108,15 @@ $(function(){
     });
 
 
-    //vista previa
-    $('#enviarSerie').click(function(){
-        if (!($('.txtSImg').val() == '')){
-            var fileInput = $('.txtSImg')[0];
-            var file = fileInput.files[0];
-            var url = URL.createObjectURL(file);
-            $('.vista-previa').attr('src', url);
-        }
-    })
+//vista previa
+    // $('#enviarSerie').click(function(){
+    //     if (!($('.txtSImg').val() == '')){
+    //         var fileInput = $('.txtSImg')[0];
+    //         var file = fileInput.files[0];
+    //         var url = URL.createObjectURL(file);
+    //         $('.vista-previa').attr('src', url);
+    //     }
+    // })
 
     $('.btnVistaPreviaS').click(function(){
         if (!($('.txtSImg').val() == '')){
@@ -143,8 +128,8 @@ $(function(){
     })
 
     $('.btnVistaPreviaJ').click(function(){
-        if (!($('.txtJImg').val() == '')){
-            var fileInput = $('.txtJImg')[0];
+        if (!($('imagen1').val() == '')){
+            var fileInput = $('imagen1')[0];
             var file = fileInput.files[0];
             var url = URL.createObjectURL(file);
             $('.vista-previa').attr('src', url);
@@ -195,7 +180,7 @@ $(function(){
        else if(verificarRUT(rut)!=rut.substring(9,10)){
         $('.txtRut')[0].setCustomValidity('Ingrese un RUT válido.')
         $('.txtRut').focus();
-    }
+       }   
        else if($.trim($('.txtNombre').val())==""){
         $('.txtNombre')[0].setCustomValidity('Ingrese un nombre.');
         $('.txtNombre').focus();
@@ -394,7 +379,7 @@ $(function(){
             $('.txtJPlataforma').focus();
         }
         else{
-            print("formulario correcto")
+            console.log("formulario correcto")
         }
         
     });

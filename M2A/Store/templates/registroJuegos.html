@@ -40,10 +40,19 @@
                             <div class="mb-3">
                                 {%if juego.imagen%}
                                 <label for="imagen" class="form-label" style="color: whitesmoke;">Imagen del Juego: {{juego.imagen.url}} </label>
-                                <input type="file" name="imagen" value="{{juego.imagen}}" class="Img form-control" id="imagen" accept="image/*">
+                                <input type="file" name="imagen" value="{{juego.imagen}}" class="Img form-control imagen1" id="imagen" accept="image/*">
                                 {%else%}
                                 <label for="imagen" class="form-label" style="color: whitesmoke;">Imagen del Juego</label>
-                                <input type="file" name="imagen" value="{{juego.imagen}}" class="Img form-control" id="imagen" accept="image/*" required>
+                                <input type="file" name="imagen" value="{{juego.imagen}}" class="Img form-control imagen1" id="imagen" accept="image/*" required>
+                                {%endif%}
+                            </div>
+                            <div class="mb-3">
+                                {%if capturas%}
+                                <label for="captura" class="form-label" style="color: whitesmoke;">Capturas del Juego: {{urlCapturas}} </label>
+                                <input type="file" name="captura" value="{{captura.imagen}}" class="Img form-control" id="captura" accept="image/*" multiple>
+                                {%else%}
+                                <label for="captura" class="form-label" style="color: whitesmoke;">Capturas del Juego</label>
+                                <input type="file" name="captura" value="{{juego.imagen}}" class="Img form-control" id="captura" accept="image/*" required multiple>
                                 {%endif%}
                             </div>
                             <div class="mb-3">
