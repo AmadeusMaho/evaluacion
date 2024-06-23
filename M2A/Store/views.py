@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Juego, Carrito, tipoClave, imgJuegos
+from .models import Juego, Carrito, tipoClave, Serie, imagenSerie,categoriaSerie, imgJuegos
 from M2A.settings import MEDIA_URL
 from django.contrib.auth.decorators import login_required
 from .forms import juegoForm
@@ -27,8 +27,12 @@ def registroJuegos(request):
     return render(request, 'registroJuegos.html', context)
 
 def registroSeries(request):
-    
-    return render(request, 'registroSeries.html', {})
+    categorias = categoriaSerie.objects.all()
+
+    context = {
+    'categorias': categorias
+    }
+    return render(request, 'registroSeries.html', context)
 
 def verJuego(request, idJuego):
     juego = Juego.objects.get(idJuego = idJuego)
@@ -189,3 +193,86 @@ def modificarJuego(request, idJuego):
     'urlCapturas' : urlCapturas
     }
     return render(request, 'registroJuegos.html', context)
+
+
+def listadoSeries(request):
+    series = Serie.objects.all()
+    categorias = categoriaSerie.objects.all()
+    context = {
+    'series': series,
+    'categorias': categorias 
+    }
+    return render(request, 'listadoSeries.html', context)
+
+
+def eliminarSerie(request, idSerie):
+    context = {}
+    try:
+        serie = Serie.objects.get(idSerie = idSerie)
+        serie.delete()
+        context['exito'] = 'Serie eliminada con éxito'
+    except:
+        context['error'] = 'Error al eliminar la Serie'
+    
+    serie = Serie.objects.all()
+    context['serie'] = serie
+    return render(request, 'listadoSeries.html', context)
+
+
+def subirSerie(request):
+    context = {}
+    if request.method == 'POST':
+        
+        idSerie         = request.POST['txtId']
+        nombre          = request.POST['titulo']
+        estudio         = request.POST['estudio']
+        descripcion     = request.POST['descripcion']
+        precio          = request.POST['precio']
+        stock           = request.POST['stock']
+        ytVidId         = request.POST['link']
+        fechalanz       = request.POST['lanzamiento']
+        
+        #convertir idserie en un string para comparar
+        str(idSerie)
+        if 'enviarSerie' in request.POST:
+            if idSerie == "0":
+                 Serie.objects.create(
+                    nombre = nombre,
+                    estudio = estudio,
+                    descripcion = descripcion,
+                    imagen = request.FILES['imagen'],
+                    ytVidId = ytVidId,
+                    precio = precio,
+                    stock = stock,
+                    clave = request.FILES['archivo'],
+                    fechalanz = fechalanz,
+                    categoria = categoriaSerie.objects.get(idCategoria=request.POST['categoria'])
+                    )
+            else:
+                serie = Serie.objects.get(idSerie = request.POST['txtId'])
+                serie.nombre = nombre
+                serie.estudio = estudio
+                serie.descripcion = descripcion
+                serie.ytVidId = ytVidId
+                serie.precio = precio
+                serie.stock = stock
+                serie.fechalanz = fechalanz
+                serie.categoria = categoriaSerie.objects.get(idCategoria=request.POST['categoria'])
+                if 'imagen' in request.FILES:
+                    serie.imagen = request.FILES['imagen']
+                if 'archivo' in request.FILES:
+                    serie.clave = request.FILES['archivo']
+                serie.save()
+                
+    context['series'] = Serie.objects.all()
+    return render(request, 'listadoSeries.html', context)
+
+
+def modificarSerie(request, idSerie):
+    serie = Serie.objects.get(idSerie = idSerie)
+    categorias = categoriaSerie.objects.all()
+    context = {
+    'serie': serie,
+    'categorias': categorias,
+    }
+    return render(request, 'registroSeries.html', context)
