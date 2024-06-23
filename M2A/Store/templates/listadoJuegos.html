@@ -2,8 +2,8 @@
 {% block titulo %} Juegos  {% endblock %}
 {% block contenido %}
 
-<h1>Lista de juegos:</h1>
-<table class="table table-resposive">
+<h1 class="pt-5 mt-5">Lista de juegos:</h1>
+<table class="table table-resposive mb-0">
     <tr class="listado" >
         <th >ID</th>
         <th >Imagen</th>
@@ -38,5 +38,5 @@
     {%endfor%}
     </tr>
         <a href="{%url 'registroJuegos' %}"><button class="btn btnAgregar btn-success">Agregar Juego</button></a>
-
+    <table class="table table-resposive">
 {%endblock%}
