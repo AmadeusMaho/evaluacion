@@ -47,7 +47,12 @@ def plantilla(request):
 
 def listadoJuegos(request):
     juegos = Juego.objects.all()
-    return render(request, 'listadoJuegos.html', {'juegos':juegos})
+    tipoClaves = tipoClave.objects.all()
+    context = {
+    'juegos': juegos,
+    'tipoClaves': tipoClaves 
+    }
+    return render(request, 'listadoJuegos.html', context)
 
 def eliminarJuego(request, idJuego):
     context = {}
@@ -64,7 +69,6 @@ def eliminarJuego(request, idJuego):
 
 def subirJuego(request):
     context = {'form': juegoForm()}
-    # captura de solicitud realizada por el usuario
     if request.method == 'POST':
         idJuego       = request.POST['txtId']
         nombre        = request.POST['nombre']
@@ -75,12 +79,24 @@ def subirJuego(request):
         precio        = request.POST['precio']
         stock         = request.POST['stock']
         clave         = request.FILES['archivo']
-        tipoClave     = request.POST['tipoClave']
+        
+        #convertir idjuego en un string para comparar
+        str(idJuego)
         if 'enviarJuego' in request.POST:
-            juego = None
-            if request.POST['txtId'] != "0":
-                juego = Juego()
-                juego.idJuego = idJuego
+            if idJuego == "0":
+                 Juego.objects.create(
+                    nombre = nombre,
+                    desarrollador = desarrollador,
+                    descripcion = descripcion,
+                    imagen = imagen,
+                    ytVidId = ytVidId,
+                    precio = precio,
+                    stock = stock,
+                    clave = clave,
+                    tipoClave = tipoClave.objects.get(idTipo=request.POST['tipoClave'])
+                    )
+            else:
+                juego = Juego.objects.get(idJuego = request.POST['txtId'])
                 juego.nombre = nombre
                 juego.desarrollador = desarrollador
                 juego.descripcion = descripcion
@@ -89,6 +105,18 @@ def subirJuego(request):
                 juego.precio = precio
                 juego.stock = stock
                 juego.clave = clave
-                juego.tipoClave = tipoClave
+                juego.tipoClave = tipoClave.objects.get(idTipo=request.POST['tipoClave'])
+                juego.save()
+                
     context['juegos'] = Juego.objects.all()
     return render(request, 'listadoJuegos.html', context)
+
+
+def modificarJuego(request, idJuego):
+    juego = Juego.objects.get(idJuego = idJuego)
+    tipoClaves = tipoClave.objects.all()
+    context = {
+    'juego': juego,
+    'tipoClaves': tipoClaves,
+    }
+    return render(request, 'registroJuegos.html', context)

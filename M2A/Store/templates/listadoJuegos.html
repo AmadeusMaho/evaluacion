@@ -22,16 +22,17 @@
     {%for juego in juegos%}
     </tr>
         <td > {{juego.idJuego}} </td>
-        <td ><a href="{{juego.idJuego}}"><img src="{{juego.imagen.url}}" alt="No disponible" style="max-width: 100px; max-height: 200px;"></a></td>
+        <td ><a href="{{juego.idJuego}}"><img src="{{juego.imagen.url}}" alt="No disponible" style="max-width: 100px; max-height: 140px;"></a></td>
         <td >{{juego.nombre}}</td>
         <td >{{juego.desarrollador}}</td>
         <td >{{juego.descripcion}}</td>
         <td >{{juego.ytVidId}}</td>
-        <td >{{juego.precio}}</td>
+        <td >${{juego.precio}}</td>
         <td >{{juego.stock}}</td>
         <td >{{juego.claves.url}}</td>
-        <td >{{juego.tipoJuego}}</td>
-        <td class="text-center"><a href="{% url 'registroJuegos'}" class="btn btn-info btn-lg"></a></td>
+        <td >{{juego.tipoClave.nombre}}
+        </td>
+        <td class="text-center"><a href="{% url 'modificarJuego' idJuego=juego.idJuego %}" class="btn btn-info btn-lg"></a></td>
         <td class="text-center"><a href="{% url 'eliminarJuego' idJuego=juego.idJuego %}" class="btn btn-danger btn-lg"></a></td>
 
     {%endfor%}

@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Juego(models.Model):
-    idJuego       = models.IntegerField(primary_key=True)
+    idJuego       = models.AutoField(primary_key=True)
     nombre        = models.CharField(max_length=50)
     desarrollador = models.CharField(max_length=50)
     descripcion   = models.CharField(max_length=550)

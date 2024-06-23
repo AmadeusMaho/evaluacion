@@ -100,14 +100,14 @@ $(function(){
         }
     })
 
-    $('#enviarJuego').click(function(){
-        if (!($('.txtJImg').val() == '')){
-            var fileInput = $('.txtJImg')[0];
-            var file = fileInput.files[0];
-            var url = URL.createObjectURL(file);
-            $('.vista-previa').attr('src', url);
-        }
-    })
+    //$('#enviarJuego').click(function(){
+        //if (!($('.txtJImg').val() == '')){
+          //  var fileInput = $('.txtJImg')[0];
+         //   var file = fileInput.files[0];
+         //   var url = URL.createObjectURL(file);
+         //   $('.vista-previa').attr('src', url);
+       // }
+   // })
 
     //verificaciones 
 
@@ -334,6 +334,10 @@ $(function(){
             $('.txtLink').focus();
             
         }
+        //else if($.trim($('.txtLink').val()).length!=43){
+          //  $('.txtLink')[0].setCustomValidity('Link inválido');
+            //$('.txtLink').focus();
+        //}
         else if($.trim($('.txtJPlataforma').val())==""){
             $('.txtJPlataforma')[0].setCustomValidity('Ingrese plataforma.');
             $('.txtJPlataforma').focus();

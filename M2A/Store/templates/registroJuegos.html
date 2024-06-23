@@ -10,7 +10,7 @@
                         Vista previa de la imagen
                     </div>
                     <div class="card-body text-center">
-                        <img id="vista-previa" src="" alt="Preview" class="img-fluid vista-previa">
+                        <img id="vista-previa" src="{{juego.imagen.url}}" alt="Preview" class="img-fluid vista-previa">
                         <button type="button" class="btnVistaPreviaJ btn btn-primary btn-sm mt-3" style="width: 60%;">Vista previa</button>
                     </div>
                 </div>
@@ -22,50 +22,55 @@
                     <div class="card-header" style="text-align: center; font-size: 20px; background-color: #202043; color: whitesmoke; font-weight: bold;">
                         Subir Nuevo Juego
                     </div>
+                
                     <div class="card-body" style="background-color: #2f2c58;">
-                      <input type="hidden" name="txtId" value="0{{idJuego}}">
+                      <input type="hidden" name="txtId" value="0{{juego.idJuego}}">
                             <div class="mb-3">
                                 <label for="nombre" class="form-label" style="color: whitesmoke;">Nombre del Juego</label>
-                                <input type="text" name="nombre" class="txtJNombre form-control" id="nombre" style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Ingresa el título del juego (máximo 20 carácteres)" required>
+                                <input type="text" value="{{juego.nombre}}" name="nombre" class="txtJNombre form-control" id="nombre" style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Ingresa el título del juego (máximo 20 carácteres)" required>
                             </div>
                             <div class="mb-3">
                               <label for="dev" class="form-label" style="color: whitesmoke;">Desarrollador</label>
-                              <input type="text" name="titulo" class="txtJDev form-control" id="dev" style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Ingresa el desarrollador" required>
+                              <input type="text" value="{{juego.desarrollador}}" name="titulo" class="txtJDev form-control" id="dev" style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Ingresa el desarrollador" required>
                           </div>
                             <div class="mb-3">
                                 <label for="descripcion" class="form-label" style="color: whitesmoke;">Descripción</label>
-                                <textarea name="descripcion" class="txtJDesc form-control" id="descripcion" rows="3" style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Descripción del juego" required></textarea>
+                                <textarea name="descripcion" class="txtJDesc form-control" id="descripcion" rows="3" style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Descripción del juego" required>{{juego.descripcion}}</textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="imagen" class="form-label" style="color: whitesmoke;">Imagen del Juego</label>
-                                <input type="file" name="imagen" class="txtJImg form-control" id="imagen" accept="image/*" required>
+                                <input type="file" name="imagen" value="{{juego.imagen.url}}" class="txtJImg form-control" id="imagen" accept="image/*" required>
                             </div>
                             <div class="mb-3">
                               <label for="precio" class="form-label" style="color: whitesmoke;">Precio</label>
-                              <input type="number" name="precio" class="txtJPrecio form-control" id="precio" style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Ingresa el precio en CLP" required>
+                              <input type="number" name="precio" value="{{juego.precio}}" class="txtJPrecio form-control" id="precio" style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Ingresa el precio en CLP" required>
                           </div>
                           <div class="mb-3">
                             <label for="stock" class="form-label" style="color: whitesmoke;">Stock</label>
-                            <input type="number" name="stock" class="txtJStock form-control" id="stock" style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Ingresa el stock" required>
+                            <input type="number" name="stock" value="{{juego.stock}}" class="txtJStock form-control" id="stock" style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Ingresa el stock" required>
                         </div>
                             <div class="mb-3">
                                 <label for="archivo" class="form-label" style="color: whitesmoke;">Claves (Encriptadas, zip o rar)</label>
-                                <input type="file" name="archivo" class="txtJKeys form-control" id="archivo" accept=".zip, .rar" required>
+                                <input type="file" name="archivo" value="{{juego.clave}}" class="txtJKeys form-control" id="archivo" accept=".zip, .rar" required>
                             </div>
                             <div class="mb-3">
                               <label for="link" class="form-label" style="color: whitesmoke;">Link de Youtube</label>
-                              <textarea name="link" class="txtLink form-control" id="link" style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Ejemplo: https://www.youtube.com/watch?v=3T8iNYmI0-M" required></textarea>
+                              <input type="text" value="{{juego.ytVidId}}" name="link" class="txtLink form-control" id="link" style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Ejemplo: https://www.youtube.com/watch?v=3T8iNYmI0-M" required>
                           </div>
                             <div class="mb-3">
                               <label for="categoria" class="form-label" style="color: whitesmoke;">Tipo de Clave</label>
-                              <select class="txtJPlataforma form-select" name="categoria" id="categoria" style="background-color: #14142b; border-color: #202043; color: white;" required>
+                              <select class="txtJPlataforma form-select" name="tipoClave" value="{{juego.tipoClave}}" id="categoria" style="background-color: #14142b; border-color: #202043; color: white;" required>
                                 <option value="">Selecciona un tipo de clave</option>
                                 {%for tipoClave in tipoClaves%}
-                                <option name="tipoClave" value="{{tipoClave.idTipo}}">{{tipoClave.nombre}}</option>
+                                {%if juego.tipoClave.idTipo == tipoClave.idTipo %}
+                                <option name="idTpoClave" value="{{tipoClave.idTipo}}" selected>{{tipoClave.nombre}}</option>
+                                {%else%}
+                                <option name="idTpoClave" value="{{tipoClave.idTipo}}">{{tipoClave.nombre}}</option>
+                                {%endif%}
                                 {%endfor%}
                               </select>
                             </div>
-                                                  
+                                             
                           <div class="row pt-3">
                             <div class="col-2 d-flex justify-content-start">
                                 <button class="btn-aceptar btn me-auto" style="font-weight: bold;" id="limpiarJuego">Limpiar</button>
