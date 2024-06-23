@@ -48,14 +48,15 @@ class categoriaSerie (models.Model):
     nombre = models.CharField(max_length=40)
 
 class Usuario ( models.Model):
-    idUsuario = models.IntegerField(primary_key=True)
+    idUsuario = models.AutoField(primary_key=True)
     nombre    = models.CharField(max_length=35)
     apellido  = models.CharField(max_length=35)
-    email  = models.EmailField(max_length=70)
-    telefono = models.CharField(max_length=40)
-    region = models.ForeignKey('Region', on_delete=models.CASCADE)   
-    nivelEducacional = models.ForeignKey('nivelEducacional', on_delete=models.CASCADE)   
-    fechaNac = models.DateField(default='2000-01-01')
+    rut       = models.CharField(max_length=40, default='11111111-1')
+    email     = models.EmailField(max_length=70)
+    telefono  = models.CharField(max_length=40)
+    region    = models.ForeignKey('Region', on_delete=models.CASCADE)   
+    nivelEd   = models.ForeignKey('nivelEducacional', on_delete=models.CASCADE)   
+    fechaNac  = models.DateField(default='2000-01-01')
 
 class Region (models.Model):
     idRegion = models.IntegerField(primary_key=True)

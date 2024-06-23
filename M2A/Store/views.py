@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
-from .models import Juego, Carrito, tipoClave, Serie, imagenSerie,categoriaSerie, imgJuegos
+from .models import Juego, Carrito, tipoClave, Serie, imagenSerie,categoriaSerie, imgJuegos, Usuario, Region, nivelEducacional
 from M2A.settings import MEDIA_URL
 from django.contrib.auth.decorators import login_required
 from .forms import juegoForm
+from .forms import customLoginForm
+from django.contrib.auth.views import LoginView,LogoutView
 import re
 
 def principal(request):
@@ -15,8 +17,14 @@ def carrito(request):
 def juego(request):
     return render(request, 'juegoplantilla copy.html', {})
 
-def login(request):
-    return render(request, 'login.html', {})
+def registroUsuarios(request):
+    regiones = Region.objects.all()
+    nivelesEducacionales = nivelEducacional.objects.all()
+    context = {
+    'regiones': regiones,
+    'nivelesEducacionales': nivelesEducacionales,
+    }
+    return render(request, 'registroUsuarios.html', context)
 
 def registroJuegos(request):
     tipoClaves = tipoClave.objects.all()
@@ -92,6 +100,7 @@ def eliminarJuegoCarro(request, idJuego):
         context['error'] = 'Error al eliminar el producto'
     return redirect(verCarro)
 
+# juegos:
 
 def listadoJuegos(request):
     juegos = Juego.objects.all()
@@ -198,6 +207,8 @@ def modificarJuego(request, idJuego):
     return render(request, 'registroJuegos.html', context)
 
 
+#series:
+
 def listadoSeries(request):
     series = Serie.objects.all()
     categorias = categoriaSerie.objects.all()
@@ -279,3 +290,88 @@ def modificarSerie(request, idSerie):
     'categorias': categorias,
     }
     return render(request, 'registroSeries.html', context)
+
+#usuarios:
+
+def listadoUsuarios(request):
+    usuario = Usuario.objects.all()
+    regiones = Region.objects.all()
+    nivelesEducacionales = nivelEducacional.objects.all()
+    context = {
+    'usuario': usuario,
+    'regiones': regiones,
+    'nivelesEducacionales': nivelesEducacionales,
+    }
+    return render(request, 'listadoUsuarios.html', context)
+
+
+def eliminarUsuario(request, idUsuario):
+    context = {}
+    try:
+        usuario = Usuario.objects.get(idUsuario = idUsuario)
+        usuario.delete()
+        context['exito'] = 'Usuario eliminado con éxito'
+    except:
+        context['error'] = 'Error al eliminar el Usuario'
+    
+    usuarios = Usuario.objects.all()
+    context['usuario'] = usuarios
+    return render(request, 'listadoUsuarios.html', context)
+
+
+def registrarse(request):
+    context = {}
+    if request.method == 'POST':
+        
+        idUsuario = request.POST['txtId']
+        nombre    = request.POST['txtNombre']
+        apellido  = request.POST['txtApellido']
+        rut       = request.POST['txtRut']
+        email     = request.POST['txtEmail']
+        telefono  = request.POST['txtTelefono']
+        fechaNac  = request.POST['edad']
+        #convertir idusuario en un string para comparar
+        str(idUsuario)
+        if 'enviarRegistro' in request.POST:
+            if idUsuario == "0":
+                 Usuario.objects.create(
+                    nombre = nombre,
+                    apellido = apellido,
+                    rut = rut,
+                    email = email,
+                    telefono = telefono,
+                    region = Region.objects.get(idRegion=request.POST['txtRegion']),
+                    nivelEd = nivelEducacional.objects.get(idEducacion=request.POST['txtNvlEducacional']),
+                    fechaNac = fechaNac
+                    )
+            else:
+                usuario = Usuario.objects.get(idUsuario = request.POST['txtId'])
+                usuario.nombre = nombre
+                usuario.apellido = apellido
+                usuario.rut = rut
+                usuario.email = email
+                usuario.telefono = telefono
+                usuario.fechaNac = fechaNac
+                usuario.region = Region.objects.get(idRegion=request.POST['txtRegion'])
+                usuario.nivelEd = nivelEducacional.objects.get(idEducacion=request.POST['txtNvlEducacional'])
+                usuario.save()
+                
+    context['usuario'] = Usuario.objects.all()
+    return render(request, 'listadoUsuarios.html', context)
+
+def modificarUsuario(request, idUsuario):
+    usuario = Usuario.objects.get(idUsuario = idUsuario)
+    nivelesEducacionales = nivelEducacional.objects.all()
+    regiones = Region.objects.all()
+    context = {
+    'usuario': usuario,
+    'nivelesEducacionales': nivelesEducacionales,
+    'regiones': regiones,
+    }
+    return render(request, 'registroUsuarios.html', context)
+
+
+class CustomLoginView(LoginView):
+    template_name = 'login.html' 
+    authentication_form = customLoginForm
+    redirect_authenticated_user = True

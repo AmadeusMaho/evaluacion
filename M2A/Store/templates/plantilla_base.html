@@ -41,15 +41,16 @@
             </svg>
           </a>
   {% if user.is_authenticated %}
-            <a href="{% url 'principal' %}" id="logintext" class="ms-auto d-none d-lg-block" style="text-decoration: none; color: white; padding-right: 7px;">Cerrar sesión</a>
-            <a href="{% url 'principal' %}">
+  {% csrf_token %}
+            <a href="{% url 'logout' %}" id="logintext" class="ms-auto d-none d-lg-block" style="text-decoration: none; color: white; padding-right: 7px;">Cerrar sesión</a>
+            <a href="{% url 'logout' %}">
               <svg xmlns="http://www.w3.org/2000/svg" width="50" height="45" fill="currentColor" class="bi bi-person-circle d-none d-lg-block" viewBox="0 0 16 16" style="color: whitesmoke;">
                 <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
                 <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
               </svg>
             </a>
   {% else %}
-            <a href="{% url 'login' %}" id="logintext" class="ms-auto d-none d-lg-block" style="text-decoration: none; color: white; padding-right: 7px;">Registrarse</a>
+            <a href="{% url 'login' %}" id="logintext" class="ms-auto d-none d-lg-block" style="text-decoration: none; color: white; padding-right: 7px;">Iniciar Sesión</a>
             <a href="{% url 'login' %}">
               <svg xmlns="http://www.w3.org/2000/svg" width="50" height="45" fill="currentColor" class="bi bi-person-circle d-none d-lg-block" viewBox="0 0 16 16" style="color: whitesmoke;">
                 <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
@@ -96,20 +97,21 @@
                 </li>
   {% if user.is_authenticated  %}
                 <li class="nav-item">
-                  <a class="nav-link active d-lg-none" aria-current="page" href="{% url 'login' %}" style="color: white;">Cerrar sesión</a>
+                  <a class="nav-link active d-lg-none" aria-current="page" href="{% url 'registroUsuarios' %}" style="color: white;">Cerrar sesión</a>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white">
-                    Registros
+                    Administración
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{% url 'listadoJuegos' %}">Registrar un Juego</a></li>
-                    <li><a class="dropdown-item" href="{% url 'listadoSeries' %}">Registrar una Serie</a></li>
+                    <li><a class="dropdown-item" href="{% url 'listadoJuegos' %}">Lista de juegos</a></li>
+                    <li><a class="dropdown-item" href="{% url 'listadoSeries' %}">Lista de series</a></li>
+                    <li><a class="dropdown-item" href="{% url 'listadoUsuarios' %}">Lista de usuarios</a></li>
                   </ul>
                 </li>
   {% else %}
                 <li class="nav-item">
-                  <a class="nav-link active d-lg-none" aria-current="page" href="{% url 'login' %}" style="color: white;">Registrarse</a>
+                  <a class="nav-link active d-lg-none" aria-current="page" href="{% url 'registroUsuarios' %}" style="color: white;">Registrarse</a>
                 </li>
   {% endif %}
               </ul>
