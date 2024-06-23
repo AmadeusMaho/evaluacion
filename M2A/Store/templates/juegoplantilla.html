@@ -42,34 +42,18 @@
       </div>
     </div> 
     <h1 class="mt-5" style="color: #b0bdf8; text-align: center; font-weight: bold;">Capturas:</h1>
-<div class="row mt-5">
 
-  <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-    <img
-    data-fancybox="galeria1"
-      src="https://i.guim.co.uk/img/media/6e67f271b1a0a0cc29c4b99e97d5f49dfcde446c/0_19_1719_1031/master/1719.jpg?width=465&dpr=1&s=none"
-      class="w-100 shadow-1-strong rounded mb-4 hover-overlay img-clickable"
-      alt="Balatro1"
-    />
-  </div>
-  <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-    <img
-    data-fancybox="galeria1"
-      src="https://www.pcinvasion.com/wp-content/uploads/2024/02/Balatro-mobile.jpg"
-      class="w-100 shadow-1-strong rounded mb-4 hover-overlay img-clickable"
-      alt="Balatro1"
-    />
-  </div>
+    <div class="row mt-5">
+      {%for captura in capturas%}
+      <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+        <img src="{{ captura.imagen.url }}" 
+        class="img-fluid w-100 shadow-1-strong rounded mb-4 hover-overlay img-clickable" 
+        alt="Captura" 
+        data-fancybox="galeria1">
+      </div> 
+      {%endfor%}
+    </div>
 
-  <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-    <img
-    data-fancybox="galeria1"
-      src="https://colemono.com/wp-content/uploads/2024/03/chrome_LFim70030P.jpg"
-      class="w-100 shadow-1-strong rounded mb-4 hover-overlay img-clickable"
-      alt="Balatro1"
-    />
-</div>
-  </div> 
       </div>
     </div>
   </div>

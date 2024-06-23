@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Juego, Carrito, tipoClave, Serie, imagenSerie,categoriaSerie
+from .models import Juego, Carrito, tipoClave, Serie, imagenSerie,categoriaSerie, imgJuegos
 from M2A.settings import MEDIA_URL
 from django.contrib.auth.decorators import login_required
 from .forms import juegoForm
@@ -35,7 +35,8 @@ def registroSeries(request):
 
 def verJuego(request, idJuego):
     juego = Juego.objects.get(idJuego = idJuego)
-    return render(request, 'juegoplantilla.html', {'juego':juego})
+    capturas = imgJuegos.objects.filter(idJuego=juego)
+    return render(request, 'juegoplantilla.html', {'juego': juego, 'capturas': capturas})
 
 def verJuegosPrincipal(request):
     juegos = Juego.objects.all()
