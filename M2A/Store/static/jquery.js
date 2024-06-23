@@ -73,23 +73,40 @@ $(function(){
 
 // calcular subtotal
     $(document).ready($(function() {
+        var suma = 0
         $('#carro tr').each(function() {
-            var cantidad = $(this).find('.cantidad').val();
-            var precio = $(this).find('.precio-carro').text();
-            var subtotal = cantidad * precio;
-            
-            $(this).find('.subtotal').text(Math.trunc(subtotal));
+            if(parseFloat($(this).find('.cantidad').val()) && parseFloat($(this).find('.precio-carro').text())){
+                var cantidad = $(this).find('.cantidad').val();
+                var precio = $(this).find('.precio-carro').text();
+                var subtotal = Math.trunc(cantidad * precio);
+                $(this).find('.subtotal').text(subtotal);
+                suma+=subtotal
+            }        
         });
+        $('#subtotal').text(suma);
     }));
 
     $(":input").bind('keyup mouseup', function () {
+        var suma = 0
         $('#carro tr').each(function() {
-            var cantidad = $(this).find('.cantidad').val();
-            var precio = $(this).find('.precio-carro').text();
-            var subtotal = cantidad * precio;
-            
-            $(this).find('.subtotal').text(Math.trunc(subtotal));
-        });            
+            if(parseFloat($(this).find('.cantidad').val()) && parseFloat($(this).find('.precio-carro').text())){
+                var cantidad = $(this).find('.cantidad').val();
+                var precio = $(this).find('.precio-carro').text();
+                var subtotal = Math.trunc(cantidad * precio);
+                $(this).find('.subtotal').text(subtotal);
+                suma+=subtotal
+            }        
+        });
+        $('#subtotal').text(suma);           
+    });
+
+//total
+    $(document).ready($(function() {
+        $('#total').text(Math.round(parseFloat($('#subtotal').text())*1.19));
+    }));
+
+    $(":input").bind('keyup mouseup', function () {
+        $('#total').text(Math.round(parseFloat($('#subtotal').text())*1.19));
     });
 
 

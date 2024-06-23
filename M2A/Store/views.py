@@ -69,6 +69,20 @@ def verCarro(request):
         context = {}
     return render(request, 'carrito.html', context)
 
+@login_required
+def eliminarJuegoCarro(request, idJuego):
+    context = {}
+    try:
+        usuario = request.user
+        listado = Carrito.objects.get(usuario = usuario)
+        juego = listado.juegos.get(idJuego = idJuego)
+        listado = listado.juegos
+        listado.remove(juego)
+        context['exito'] = 'Producto eliminado del carrito'
+    except:
+        context['error'] = 'Error al eliminar el producto'
+    return redirect(verCarro)
+
 
 def listadoJuegos(request):
     juegos = Juego.objects.all()

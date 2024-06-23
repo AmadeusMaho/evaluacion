@@ -29,8 +29,8 @@
                       <input type="number" class="form-control cantidad" min="1" max="{{item.stock}}" value="1">
                     </td>
                     <td class="subtotal"></td>
-                    <td>
-                      <button class="btn btn-danger eliminar">Eliminar</button>
+                    <td>                
+                      <a href="{% url 'eliminarJuegoCarro' idJuego=item.idJuego%}" class="btn btn-danger eliminar">Eliminar</a>
                     </td>
                 </tr>
               {% endfor %}
@@ -47,7 +47,7 @@
                     <span id="subtotal">0</span>
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Total $
+                    Total (IVA incluido) $
                     <span id="total">0</span>
                   </li>
                 </ul>
