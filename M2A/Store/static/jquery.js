@@ -14,7 +14,6 @@ $(function(){
         })   
     });
 
-
     //conversión a dólares
     $(document).ready(function() {$('.spinner-border').hide();});
     $('.btnConversion').click(function(){
@@ -66,11 +65,50 @@ $(function(){
         $('#tabla-productos tbody').append(nuevoItem);
         $('spinner-border').hide();
       }
-
     
     $('.btn-carro').click(function(){
-    alert("¡Producto agregado con éxito!");
+        alert("¡Producto agregado con éxito!");
+
     })
+
+// calcular subtotal
+    $(document).ready($(function() {
+        var suma = 0
+        $('#carro tr').each(function() {
+            if(parseFloat($(this).find('.cantidad').val()) && parseFloat($(this).find('.precio-carro').text())){
+                var cantidad = $(this).find('.cantidad').val();
+                var precio = $(this).find('.precio-carro').text();
+                var subtotal = Math.trunc(cantidad * precio);
+                $(this).find('.subtotal').text(subtotal);
+                suma+=subtotal
+            }        
+        });
+        $('#subtotal').text(suma);
+    }));
+
+    $(":input").bind('keyup mouseup', function () {
+        var suma = 0
+        $('#carro tr').each(function() {
+            if(parseFloat($(this).find('.cantidad').val()) && parseFloat($(this).find('.precio-carro').text())){
+                var cantidad = $(this).find('.cantidad').val();
+                var precio = $(this).find('.precio-carro').text();
+                var subtotal = Math.trunc(cantidad * precio);
+                $(this).find('.subtotal').text(subtotal);
+                suma+=subtotal
+            }        
+        });
+        $('#subtotal').text(suma);           
+    });
+
+//total
+    $(document).ready($(function() {
+        $('#total').text(Math.round(parseFloat($('#subtotal').text())*1.19));
+    }));
+
+    $(":input").bind('keyup mouseup', function () {
+        $('#total').text(Math.round(parseFloat($('#subtotal').text())*1.19));
+    });
+
 
     //vista previa
     $('#enviarSerie').click(function(){

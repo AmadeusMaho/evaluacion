@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .models import Juego,tipoClave
+from django.shortcuts import render, redirect
+from .models import Juego, Carrito, tipoClave
 from M2A.settings import MEDIA_URL
 from django.contrib.auth.decorators import login_required
 from .forms import juegoForm
@@ -43,6 +43,45 @@ def verJuegosPrincipal(request):
 
 def plantilla(request):
     return render(request, 'plantilla_base.html', {})
+
+@login_required
+def agregarJuegoCarro(request, idJuego):
+    context = {}
+    try:
+        usuario = request.user
+        item = Juego.objects.get(idJuego = idJuego)
+        carro, creado = Carrito.objects.get_or_create(usuario=usuario)
+        carro.juegos.add(item)
+        context['exito'] = 'Se agregó el producto'
+    except:
+        context['Error'] = 'Error al agregar el producto'
+    return redirect(verCarro)
+
+@login_required
+def verCarro(request):
+    context = {}
+    try:
+        usuario = request.user
+        listado = Carrito.objects.get(usuario = usuario)
+        listado = listado.juegos.all
+        context = {"listado": listado}
+    except:
+        context = {}
+    return render(request, 'carrito.html', context)
+
+@login_required
+def eliminarJuegoCarro(request, idJuego):
+    context = {}
+    try:
+        usuario = request.user
+        listado = Carrito.objects.get(usuario = usuario)
+        juego = listado.juegos.get(idJuego = idJuego)
+        listado = listado.juegos
+        listado.remove(juego)
+        context['exito'] = 'Producto eliminado del carrito'
+    except:
+        context['error'] = 'Error al eliminar el producto'
+    return redirect(verCarro)
 
 
 def listadoJuegos(request):
