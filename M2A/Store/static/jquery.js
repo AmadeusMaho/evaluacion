@@ -363,10 +363,10 @@ $(function(){
             $('.txtJNombre')[0].setCustomValidity('Límite de 520 carácteres.');
             $('.txtJNombre').focus();
         }
-        else if($.trim($('.txtJImg').val())==""){
-            $('.txtJImg')[0].setCustomValidity('Ingrese una imagen.');
-            $('.txtJImg').focus();
-        }
+        //else if($.trim($('.txtJImg').val())==""){
+          //  $('.txtJImg')[0].setCustomValidity('Ingrese una imagen.');
+          //  $('.txtJImg').focus();
+      //  }
         else if($.trim($('.txtJPrecio').val())==""){
             $('.txtJPrecio')[0].setCustomValidity('Ingrese un precio unitario.');
             $('.txtJPrecio').focus();
@@ -375,11 +375,11 @@ $(function(){
             $('.txtJStock')[0].setCustomValidity('Debe ingresar stock disponible.');
             $('.txtJStock').focus();
         }
-        else if($.trim($('.txtJKeys').val())==""){
-            $('.txtJKeys')[0].setCustomValidity('Debe adjuntar las keys, formato ZIP y RAR.');
-            $('.txtJKeys').focus();
+       // else if($.trim($('.txtJKeys').val())==""){
+          //  $('.txtJKeys')[0].setCustomValidity('Debe adjuntar las keys, formato ZIP y RAR.');
+          //  $('.txtJKeys').focus();
             
-        }
+        //}
         else if($.trim($('.txtLink').val())==""){
             $('.txtLink')[0].setCustomValidity('Debe ingresar el link de youtube.');
             $('.txtLink').focus();
