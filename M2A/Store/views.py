@@ -8,10 +8,7 @@ from .forms import juegoForm
 from .forms import customLoginForm
 from django.contrib.auth.views import LoginView,LogoutView
 import re
-<<<<<<< HEAD
 from django.core.exceptions import ObjectDoesNotExist
-=======
->>>>>>> 6d1b273c12210de37caf19a882640402d7fed0d1
 
 def principal(request):
     return render(request, 'principal.html', {})
