@@ -232,7 +232,7 @@ h1{
     background-color: #05030d;
   }
 
-#carro{
+.table{
     border-radius: 6px;
     overflow:hidden
 }
