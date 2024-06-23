@@ -27,8 +27,10 @@ class imgJuegos(models.Model):
 
 class Serie(models.Model):
     idSerie       = models.IntegerField(primary_key=True)
+    estudio       = models.CharField(max_length=50, null=True)
     nombre        = models.CharField(max_length=50)
     descripcion   = models.CharField(max_length=220)
+    fechalanz     = models.DateField(default='2000-01-01')
     precio        = models.IntegerField()
     imagen        = models.ImageField(upload_to='series/imagenes')
     stock         = models.IntegerField()
@@ -53,7 +55,7 @@ class Usuario ( models.Model):
     telefono = models.CharField(max_length=40)
     region = models.ForeignKey('Region', on_delete=models.CASCADE)   
     nivelEducacional = models.ForeignKey('nivelEducacional', on_delete=models.CASCADE)   
-    fechaNac = models.DateField()
+    fechaNac = models.DateField(default='2000-01-01')
 
 class Region (models.Model):
     idRegion = models.IntegerField(primary_key=True)
