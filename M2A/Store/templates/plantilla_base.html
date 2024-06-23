@@ -42,7 +42,11 @@
           </a>
   {% if user.is_authenticated %}
   {% csrf_token %}
-            <a href="{% url 'logout' %}" id="logintext" class="ms-auto d-none d-lg-block" style="text-decoration: none; color: white; padding-right: 7px;">Cerrar sesión</a>
+          
+   <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: none;">
+    {% csrf_token %}
+    </form>
+        <a href="#" class="ms-auto d-none d-lg-block" onclick="document.getElementById('logout-form').submit();" style="text-decoration: none; color: white; padding-right: 7px;">Cerrar Sesión</a>
             <a href="{% url 'logout' %}">
               <svg xmlns="http://www.w3.org/2000/svg" width="50" height="45" fill="currentColor" class="bi bi-person-circle d-none d-lg-block" viewBox="0 0 16 16" style="color: whitesmoke;">
                 <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>

@@ -2,16 +2,13 @@ from django.shortcuts import render, redirect
 from .models import Juego, Carrito, tipoClave, Serie, imagenSerie,categoriaSerie, imgJuegos, Usuario, Region, nivelEducacional
 from M2A.settings import MEDIA_URL
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.models import User
 from .forms import juegoForm
-<<<<<<< HEAD
 from .forms import customLoginForm
 from django.contrib.auth.views import LoginView,LogoutView
-
-
-
-=======
 import re
->>>>>>> b04b2f1b94d33377cf77115163770148948a03b5
+from django.core.exceptions import ObjectDoesNotExist
 
 def principal(request):
     return render(request, 'principal.html', {})
@@ -325,7 +322,6 @@ def eliminarUsuario(request, idUsuario):
 def registrarse(request):
     context = {}
     if request.method == 'POST':
-        
         idUsuario = request.POST['txtId']
         nombre    = request.POST['txtNombre']
         apellido  = request.POST['txtApellido']
@@ -335,9 +331,15 @@ def registrarse(request):
         fechaNac  = request.POST['edad']
         #convertir idusuario en un string para comparar
         str(idUsuario)
+        try:
+            existeUser = User.objects.get(email = email)
+            context['error'] = "El email ya está registrado"
+            return render(request, 'registroUsuarios.html', context)
+        except ObjectDoesNotExist:
+            pass
         if 'enviarRegistro' in request.POST:
             if idUsuario == "0":
-                 Usuario.objects.create(
+                Usuario.objects.create(
                     nombre = nombre,
                     apellido = apellido,
                     rut = rut,
@@ -347,7 +349,24 @@ def registrarse(request):
                     nivelEd = nivelEducacional.objects.get(idEducacion=request.POST['txtNvlEducacional']),
                     fechaNac = fechaNac
                     )
+                user = User.objects.create(id=request.POST['txtId'])
+                user.username = email
+                user.email = email
+                user.set_password(rut[0:4]) 
+                user.save()
+
+                auth_user = authenticate(request, username=email, password=rut[0:4])
+                if auth_user is not None:
+                    login(request, auth_user)
+                    return redirect('principal')
+            
             else:
+                user = User.objects.get(id=request.POST['txtId'])
+                user.username = email
+                user.email = email
+                user.set_password(rut[0:4]) 
+                user.save()
+
                 usuario = Usuario.objects.get(idUsuario = request.POST['txtId'])
                 usuario.nombre = nombre
                 usuario.apellido = apellido
@@ -360,7 +379,7 @@ def registrarse(request):
                 usuario.save()
                 
     context['usuario'] = Usuario.objects.all()
-    return render(request, 'listadoUsuarios.html', context)
+    return render(request, 'principal.html', context)
 
 def modificarUsuario(request, idUsuario):
     usuario = Usuario.objects.get(idUsuario = idUsuario)
