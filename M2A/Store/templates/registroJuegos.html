@@ -10,7 +10,7 @@
                         Vista previa de la imagen
                     </div>
                     <div class="card-body text-center">
-                        <img id="vista-previa" src="{{juego.imagen.url}}" alt="Preview" class="img-fluid vista-previa">
+                        <img id="vista-previa" src="{{juego.imagen.url}}" alt="" class="img-fluid vista-previa">
                         <button type="button" class="btnVistaPreviaJ btn btn-primary btn-sm mt-3" style="width: 60%;">Vista previa</button>
                     </div>
                 </div>
@@ -18,7 +18,7 @@
             
             <div class="col-md-8">
                 <form class="card mb-5 " action="{% url 'subirJuego' %}" method="post" enctype="multipart/form-data">
-                  {% csrf_token %}
+    {% csrf_token %}
                     <div class="card-header" style="text-align: center; font-size: 20px; background-color: #202043; color: whitesmoke; font-weight: bold;">
                         Subir Nuevo Juego
                     </div>
@@ -43,11 +43,11 @@
                             </div>
                             <div class="mb-3">
                               <label for="precio" class="form-label" style="color: whitesmoke;">Precio</label>
-                              <input type="number" name="precio" value="{{juego.precio}}" class="txtJPrecio form-control" id="precio" style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Ingresa el precio en CLP" required>
+                              <input type="number" name="precio" value="{{juego.precio}}" class="txtJPrecio form-control" id="precio" style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Ingresa el precio en CLP" required min="0">
                           </div>
                           <div class="mb-3">
                             <label for="stock" class="form-label" style="color: whitesmoke;">Stock</label>
-                            <input type="number" name="stock" value="{{juego.stock}}" class="txtJStock form-control" id="stock" style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Ingresa el stock" required>
+                            <input type="number" name="stock" value="{{juego.stock}}" class="txtJStock form-control" id="stock" style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Ingresa el stock" required min="0">
                         </div>
                             <div class="mb-3">
                                 <label for="archivo" class="form-label" style="color: whitesmoke;">Claves (Encriptadas, zip o rar)</label>
@@ -84,8 +84,4 @@
             </div>
         </div>
     </div>
-
-
-</body>
-</html>
 {% endblock %}
