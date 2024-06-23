@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-lg-8">
             <h2 style="color: #4ac8f0; font-weight: bold">Carrito de Compras</h2>
-            <table class="table">
+            <table class="table" id="carro">
               <thead>
                 <tr>
                   <th scope="col">#</th>
@@ -19,19 +19,21 @@
               </thead>
               <tbody>
                 <!-- items carrito con class para asignarles valores en jquery -->
+              {% for item in listado %}
                 <tr class="carrito">
                     <td>{{item.idJuego}}</td>
                     <td><img src="{{item.imagen.url}}" alt="..." style="width:100px"></td>
                     <td>{{item.nombre}}</td>
-                    <td>{{item.precio}}</td>
+                    <td class="precio-carro">{{item.precio}}</td>
                     <td>
-                      <input type="number" class="form-control cantidad" value="1">
+                      <input type="number" class="form-control cantidad" min="1" max="{{item.stock}}" value="1">
                     </td>
-                    <td class="cantidad-total">$10554</td>
+                    <td class="subtotal"></td>
                     <td>
                       <button class="btn btn-danger eliminar">Eliminar</button>
                     </td>
-                  </tr>
+                </tr>
+              {% endfor %}
               </tbody>
             </table>
           </div>

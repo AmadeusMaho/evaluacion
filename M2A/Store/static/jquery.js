@@ -14,7 +14,6 @@ $(function(){
         })   
     });
 
-
     //conversión a dólares
     $(document).ready(function() {$('.spinner-border').hide();});
     $('.btnConversion').click(function(){
@@ -66,12 +65,33 @@ $(function(){
         $('#tabla-productos tbody').append(nuevoItem);
         $('spinner-border').hide();
       }
-
     
     $('.btn-carro').click(function(){
         alert("¡Producto agregado con éxito!");
-        
+
     })
+
+// calcular subtotal
+    $(document).ready($(function() {
+        $('#carro tr').each(function() {
+            var cantidad = $(this).find('.cantidad').val();
+            var precio = $(this).find('.precio-carro').text();
+            var subtotal = cantidad * precio;
+            
+            $(this).find('.subtotal').text(Math.trunc(subtotal));
+        });
+    }));
+
+    $(":input").bind('keyup mouseup', function () {
+        $('#carro tr').each(function() {
+            var cantidad = $(this).find('.cantidad').val();
+            var precio = $(this).find('.precio-carro').text();
+            var subtotal = cantidad * precio;
+            
+            $(this).find('.subtotal').text(Math.trunc(subtotal));
+        });            
+    });
+
 
     //vista previa
     $('#enviarSerie').click(function(){

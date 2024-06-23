@@ -1,6 +1,7 @@
-from django.shortcuts import render
-from .models import Juego
+from django.shortcuts import render, redirect
+from .models import Juego, Carrito
 from M2A.settings import MEDIA_URL
+from django.contrib.auth.decorators import login_required
 
 def principal(request):
     return render(request, 'principal.html', {})
@@ -37,8 +38,27 @@ def verJuegosPrincipal(request):
 def plantilla(request):
     return render(request, 'plantilla_base.html', {})
 
-def agregarCarro(request, idJuego):
+@login_required
+def agregarJuegoCarro(request, idJuego):
     context = {}
-    item = Juego.objects.get(idJuego = idJuego)
-    context = {'item': item}
+    try:
+        usuario = request.user
+        item = Juego.objects.get(idJuego = idJuego)
+        carro, creado = Carrito.objects.get_or_create(usuario=usuario)
+        carro.juegos.add(item)
+        context['exito'] = 'Se agregó el producto'
+    except:
+        context['Error'] = 'Error al agregar el producto'
+    return redirect(verCarro)
+
+@login_required
+def verCarro(request):
+    context = {}
+    try:
+        usuario = request.user
+        listado = Carrito.objects.get(usuario = usuario)
+        listado = listado.juegos.all
+        context = {"listado": listado}
+    except:
+        context = {}
     return render(request, 'carrito.html', context)

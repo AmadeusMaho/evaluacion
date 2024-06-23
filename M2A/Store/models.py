@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -61,3 +62,9 @@ class Region (models.Model):
 class nivelEducacional(models.Model):
     idEducacion = models.IntegerField(primary_key=True)
     nombre = models.CharField(max_length=60)
+
+class Carrito(models.Model):
+    idCarro = models.AutoField(primary_key=True)
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
+    juegos = models.ManyToManyField('Juego', related_name='carritos', blank=True)
+    series = models.ManyToManyField('Serie', related_name='carritos', blank=True)
