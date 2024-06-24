@@ -67,7 +67,7 @@ def agregarJuegoCarro(request, idJuego):
     context = {}
     try:
         usuario = request.user
-        if usuario.is_aunthenticated:
+        if usuario.is_authenticated:
             item = Juego.objects.get(idJuego = idJuego)
             carro, creado = Carrito.objects.get_or_create(usuario=usuario)
             carro.juegos.add(item)
@@ -78,6 +78,7 @@ def agregarJuegoCarro(request, idJuego):
     except:
         context['error'] = 'Error al agregar el producto'
     return redirect(verCarro)
+
 
 def verCarro(request):
     context = {}
@@ -399,7 +400,7 @@ def registrarse(request):
                 user.email = email
                 user.set_password(rut[0:4]) 
                 user.save()
-                messages.exito(request, "Usuario modificado con éxito")
+                messages.success(request, "Usuario modificado con éxito")
                 return redirect('listadoUsuarios')  
     context['usuario'] = Usuario.objects.all()
     return render(request, 'registroUsuarios.html', context)

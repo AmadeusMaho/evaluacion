@@ -119,8 +119,8 @@ $(function(){
     // })
 
     $('.btnVistaPreviaS').click(function(){
-        if (!($('.txtSImg').val() == '')){
-            var fileInput = $('.txtSImg')[0];
+        if (!($('.Img').val() == '')){
+            var fileInput = $('.Img')[0];
             var file = fileInput.files[0];
             var url = URL.createObjectURL(file);
             $('.vista-previa').attr('src', url);
@@ -128,8 +128,8 @@ $(function(){
     })
 
     $('.btnVistaPreviaJ').click(function(){
-        if (!($('imagen1').val() == '')){
-            var fileInput = $('imagen1')[0];
+        if (!($('.Img').val() == '')){
+            var fileInput = $('.Img')[0];
             var file = fileInput.files[0];
             var url = URL.createObjectURL(file);
             $('.vista-previa').attr('src', url);
@@ -253,9 +253,13 @@ $(function(){
         $('.txtSTitulo').val('');
         $('.txtSDesc').val('');
         $('.txtSImg').val('');
+        $('.txtLink').val('');
         $('.txtSKeys').val('');
         $('.txtSCategoria').val('');
+        $('.txtSEstudio').val('');
         $('.txtSFecha').val('');
+        $('.txtSPrecio').val('');
+        $('.txtSStock').val('');
         $('.vista-previa').attr('src', 'img/placeholder.png');
     })
 
@@ -267,6 +271,7 @@ $(function(){
         $('.txtJPrecio').val('');
         $('.txtJStock').val('');
         $('.txtJKeys').val('');
+        $('.txtLink').val('');
         $('.txtJPlataforma').val('');
         $('.vista-previa').attr('src', 'img/placeholder.png');
     })
@@ -295,6 +300,10 @@ $(function(){
         else if($.trim($('.txtSKeys').val())==""){
             $('.txtSKeys')[0].setCustomValidity('Seleccione un archivo con claves.')
             $('.txtSKeys').focus();
+        }
+        else if($.trim($('.txtSEstudio').val())==""){
+            $('.txtSEstudio')[0].setCustomValidity('Seleccione un archivo con claves.')
+            $('.txtSEstudio').focus();
         }
         else if($.trim($('.txtSPrecio').val())==""){
             $('.txtSPrecio')[0].setCustomValidity('Ingrese precio unitario.')
