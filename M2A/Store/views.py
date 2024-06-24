@@ -8,7 +8,8 @@ from .forms import juegoForm
 from .forms import customLoginForm
 from django.contrib.auth.views import LoginView,LogoutView
 import re
-from django.core.exceptions import MultipleObjectsReturned,ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist
+from django.contrib import messages
 
 def principal(request):
     return render(request, 'principal.html', {})
@@ -341,17 +342,19 @@ def registrarse(request):
         telefono  = request.POST['txtTelefono']
         fechaNac  = request.POST['edad']
         #convertir idusuario en un string para comparar
-        try:
-            usuario_existente = Usuario.objects.get(rut=rut)
-            context['error'] = "El rut ya existe"
-            return render(request, 'registroUsuarios.html', context)
-        except ObjectDoesNotExist:
-            pass
         str(idUsuario)
         if 'enviarRegistro' in request.POST:
             print("pasó a enviar registro")
             if idUsuario == "0":
                 print("pasó a idusuario")
+                try:
+                    usuario_existente = Usuario.objects.get(rut=rut)
+                    context['error'] = "El rut ya existe"
+                    messages.error(request, "El rut ya existe")
+                    return redirect('registroUsuarios')
+                    #return render(request, 'registroUsuarios.html', context)
+                except ObjectDoesNotExist:
+                    pass
                 Usuario.objects.create(
                     nombre = nombre,
                     apellido = apellido,
@@ -379,7 +382,6 @@ def registrarse(request):
                     return redirect('principal')
             
             else:
-
                 usuario = Usuario.objects.get(idUsuario = request.POST['txtId'])
                 usuario.nombre = nombre
                 usuario.apellido = apellido
@@ -397,9 +399,8 @@ def registrarse(request):
                 user.email = email
                 user.set_password(rut[0:4]) 
                 user.save()
-
-               
-                
+                messages.exito(request, "Usuario modificado con éxito")
+                return redirect('listadoUsuarios')  
     context['usuario'] = Usuario.objects.all()
     return render(request, 'registroUsuarios.html', context)
 
