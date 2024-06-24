@@ -1,18 +1,15 @@
 {% extends "plantilla_base.html" %}
 {% block titulo %} Usuarios  {% endblock %}
 {% block contenido %}
-          {%if error%}
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          {{error}}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        {%endif%}
-        {%if exito%}
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-          {{exito}}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        {%endif%}
+
+{%if messages%}
+    <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top:5%; margin-right:5%; margin-left:5%">
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{%endif%}
 <h1 class="pt-5 mt-5" style="font-weight:bold; color:#31d2f2">Lista de Usuarios Registrados:</h1>
 <table class="table table-resposive mb-0 mr-2 ml-2">
     <tr class="listado" >
