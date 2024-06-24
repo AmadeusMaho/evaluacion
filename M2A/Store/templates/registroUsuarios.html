@@ -5,6 +5,12 @@
     <div class="container mt-5 pt-5">
       <div class="col d-flex flex-column min-vh-100">
         <div class="row justify-content-center">
+          {%if error%}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          {{error}}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+          {%endif%}
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header" style="text-align: center; font-size: 20px; background-color: #202043; color: whitesmoke; font-weight: bold;">

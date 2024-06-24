@@ -1,6 +1,18 @@
 {% extends "plantilla_base.html" %}
 {% block titulo %} Usuarios  {% endblock %}
 {% block contenido %}
+          {%if error%}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          {{error}}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {%endif%}
+        {%if exito%}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          {{exito}}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {%endif%}
 <h1 class="pt-5 mt-5" style="font-weight:bold; color:#31d2f2">Lista de Usuarios Registrados:</h1>
 <table class="table table-resposive mb-0 mr-2 ml-2">
     <tr class="listado" >
@@ -8,19 +20,19 @@
         <th >Nombre</th>
         <th >Apellido</th>
         <th >RUT</th>
-        <th >email</th>"
+        <th >Email</th>"
         <th >Teléfono</th>
         <th >Región</th>
         <th >Nivel Educacional</th>
         <th >Fecha Nacimiento</th>
-        <th style="color: cornflowerblue">Modificar</th>
-        <th style="color:red" >Eliminar</th>
+        <th style="color: cornflowerblue; text-align:center">Modificar</th>
+        <th style="color:red;text-align:center">Eliminar</th>
 
     </tr>
     {%for usuario in usuario%}
     </tr>
-        <td > {{usuario.idUsuario}} </td>
-        <td > {{usuario.nombre}}</td>
+        <td >{{usuario.idUsuario}} </td>
+        <td >{{usuario.nombre}}</td>
         <td >{{usuario.apellido}}</td>
         <td >{{usuario.rut}}</td>
         <td >{{usuario.email}}</td>

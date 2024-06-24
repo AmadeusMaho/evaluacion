@@ -8,7 +8,7 @@ from .forms import juegoForm
 from .forms import customLoginForm
 from django.contrib.auth.views import LoginView,LogoutView
 import re
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import MultipleObjectsReturned,ObjectDoesNotExist
 
 def principal(request):
     return render(request, 'principal.html', {})
@@ -139,8 +139,8 @@ def subirJuego(request):
         stock         = request.POST['stock']
 
         # buscar youtube id
-        m =  re.search(r"([\d\w-_]{11})", ytVidId)
-        ytVidId = m.group()
+        #m =  re.search(r"([\d\w-_]{11})", ytVidId)
+        #ytVidId = m.group()
         
         #convertir idjuego en un string para comparar
         str(idJuego)
@@ -250,8 +250,8 @@ def subirSerie(request):
         fechalanz       = request.POST['lanzamiento']
         
         # buscar youtube id
-        m =  re.search(r"([\d\w-_]{11})", ytVidId)
-        ytVidId = m.group()
+        ##m =  re.search(r"([\d\w-_]{11})", ytVidId)
+        #ytVidId = m.group()
         
         #convertir idserie en un string para comparar
         str(idSerie)
@@ -269,6 +269,7 @@ def subirSerie(request):
                     fechalanz = fechalanz,
                     categoria = categoriaSerie.objects.get(idCategoria=request.POST['categoria'])
                     )
+                 context['exito'] = "Serie creada con éxito"
             else:
                 serie = Serie.objects.get(idSerie = request.POST['txtId'])
                 serie.nombre = nombre
@@ -284,6 +285,7 @@ def subirSerie(request):
                 if 'archivo' in request.FILES:
                     serie.clave = request.FILES['archivo']
                 serie.save()
+                context['exito'] = "Serie actualizada con éxito"
                 
     context['series'] = Serie.objects.all()
     return render(request, 'listadoSeries.html', context)
@@ -316,7 +318,9 @@ def eliminarUsuario(request, idUsuario):
     context = {}
     try:
         usuario = Usuario.objects.get(idUsuario = idUsuario)
+        userDjango = User.objects.get(id = idUsuario)
         usuario.delete()
+        userDjango.delete()
         context['exito'] = 'Usuario eliminado con éxito'
     except:
         context['error'] = 'Error al eliminar el Usuario'
@@ -337,6 +341,12 @@ def registrarse(request):
         telefono  = request.POST['txtTelefono']
         fechaNac  = request.POST['edad']
         #convertir idusuario en un string para comparar
+        try:
+            usuario_existente = Usuario.objects.get(rut=rut)
+            context['error'] = "El rut ya existe"
+            return render(request, 'registroUsuarios.html', context)
+        except ObjectDoesNotExist:
+            pass
         str(idUsuario)
         if 'enviarRegistro' in request.POST:
             print("pasó a enviar registro")
@@ -353,7 +363,6 @@ def registrarse(request):
                     fechaNac = fechaNac
                     )
                 userCreado = Usuario.objects.get(rut = rut)
-
                 user = User.objects.create_user(
                     id = userCreado.idUsuario,
                     username = email,
