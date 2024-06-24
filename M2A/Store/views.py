@@ -166,6 +166,8 @@ def subirJuego(request):
                             idJuego = juego1,
                             imagen = imagen
                         )
+                 messages.success(request, "Juego creado con éxito")
+                 return redirect('listadoJuegos')
             else:
                 juego = Juego.objects.get(idJuego = request.POST['txtId'])
                 juego.nombre = nombre
@@ -190,10 +192,11 @@ def subirJuego(request):
                             idJuego = juego,
                             imagen = imagen
                         )
+                messages.success(request, "Juego modificado con éxito")
+                return redirect('listadoJuegos')
                 
     #context['juegos'] = Juego.objects.all()
     #return render(request, 'listadoJuegos.html', context)
-    return redirect(listadoJuegos)
 
 
 def modificarJuego(request, idJuego):
@@ -271,7 +274,8 @@ def subirSerie(request):
                     fechalanz = fechalanz,
                     categoria = categoriaSerie.objects.get(idCategoria=request.POST['categoria'])
                     )
-                 context['exito'] = "Serie creada con éxito"
+                 messages.success(request, "Serie creada con éxito")
+                 return redirect('listadoSeries')
             else:
                 serie = Serie.objects.get(idSerie = request.POST['txtId'])
                 serie.nombre = nombre
@@ -287,11 +291,8 @@ def subirSerie(request):
                 if 'archivo' in request.FILES:
                     serie.clave = request.FILES['archivo']
                 serie.save()
-                context['exito'] = "Serie actualizada con éxito"
-                
-    context['series'] = Serie.objects.all()
-    return render(request, 'listadoSeries.html', context)
-
+                messages.success(request, "Serie modificada con éxito")
+                return redirect('listadoSeries')
 
 def modificarSerie(request, idSerie):
     serie = Serie.objects.get(idSerie = idSerie)

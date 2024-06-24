@@ -2,6 +2,15 @@
 {% block titulo %} Series  {% endblock %}
 {% block contenido %}
 
+{%if messages%}
+    <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top:5%; margin-right:5%; margin-left:5%">
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{%endif%}
+
 <h1 class="pt-5 mt-5" style="font-weight:bold; color:#31d2f2">Lista de Series:</h1>
 <table class="table table-resposive mb-0">
     <tr class="listado" >
