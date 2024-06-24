@@ -16,18 +16,15 @@ urlpatterns = [
     path('<int:idJuego>/', views.verJuego, name='verJuego'),
     path('plantilla', views.plantilla, name='plantilla'),
     path('agregarJuegoCarro/<int:idJuego>', views.agregarJuegoCarro, name='agregarJuegoCarro'),
-    path('eliminarJuegoCarro/<int:idJuego>', views.eliminarJuegoCarro, name='eliminarJuegoCarro'),
-    
+    path('eliminarJuegoCarro/<int:idJuego>', views.eliminarJuegoCarro, name='eliminarJuegoCarro'),    
     path('listadoJuegos', views.listadoJuegos, name='listadoJuegos'),
     path('eliminarJuego/<int:idJuego>', views.eliminarJuego, name='eliminarJuego'),
     path('registroJuegos/<int:idJuego>', views.modificarJuego, name='modificarJuego'),
     path('subirJuego', views.subirJuego, name='subirJuego'),
-
     path('listadoSeries', views.listadoSeries, name='listadoSeries'),
     path('eliminarSerie/<int:idSerie>', views.eliminarSerie, name='eliminarSerie'),
     path('registroSeries/<int:idSerie>', views.modificarSerie, name='modificarSerie'),
     path('subirSerie', views.subirSerie, name='subirSerie'),
-
     path('listadoUsuarios', views.listadoUsuarios, name='listadoUsuarios'),
     path('eliminarUsuario/<int:idUsuario>', views.eliminarUsuario, name='eliminarUsuario'),
     path('registroUsuarios/<int:idUsuario>', views.modificarUsuario, name='modificarUsuario'),

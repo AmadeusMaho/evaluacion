@@ -139,7 +139,7 @@ def subirJuego(request):
         stock         = request.POST['stock']
 
         # buscar youtube id
-        m = re.search(r"([\d\w]{11})", ytVidId)
+        m =  re.search(r"([\d\w-_]{11})", ytVidId)
         ytVidId = m.group()
         
         #convertir idjuego en un string para comparar
@@ -249,6 +249,10 @@ def subirSerie(request):
         ytVidId         = request.POST['link']
         fechalanz       = request.POST['lanzamiento']
         
+        # buscar youtube id
+        m =  re.search(r"([\d\w-_]{11})", ytVidId)
+        ytVidId = m.group()
+        
         #convertir idserie en un string para comparar
         str(idSerie)
         if 'enviarSerie' in request.POST:
@@ -334,14 +338,10 @@ def registrarse(request):
         fechaNac  = request.POST['edad']
         #convertir idusuario en un string para comparar
         str(idUsuario)
-        try:
-            existeUser = User.objects.get(email = email)
-            context['error'] = "El email ya está registrado"
-            return render(request, 'registroUsuarios.html', context)
-        except ObjectDoesNotExist:
-            pass
         if 'enviarRegistro' in request.POST:
+            print("pasó a enviar registro")
             if idUsuario == "0":
+                print("pasó a idusuario")
                 Usuario.objects.create(
                     nombre = nombre,
                     apellido = apellido,
@@ -352,23 +352,24 @@ def registrarse(request):
                     nivelEd = nivelEducacional.objects.get(idEducacion=request.POST['txtNvlEducacional']),
                     fechaNac = fechaNac
                     )
-                user = User.objects.create(id=request.POST['txtId'])
-                user.username = email
-                user.email = email
-                user.set_password(rut[0:4]) 
+                userCreado = Usuario.objects.get(rut = rut)
+
+                user = User.objects.create_user(
+                    id = userCreado.idUsuario,
+                    username = email,
+                    email = email,
+                    password = (rut[0:4])
+                )
+                user.set_password(rut[0:4])
                 user.save()
 
                 auth_user = authenticate(request, username=email, password=rut[0:4])
                 if auth_user is not None:
+                    print("hizo el request user")
                     login(request, auth_user)
                     return redirect('principal')
             
             else:
-                user = User.objects.get(id=request.POST['txtId'])
-                user.username = email
-                user.email = email
-                user.set_password(rut[0:4]) 
-                user.save()
 
                 usuario = Usuario.objects.get(idUsuario = request.POST['txtId'])
                 usuario.nombre = nombre
@@ -380,9 +381,18 @@ def registrarse(request):
                 usuario.region = Region.objects.get(idRegion=request.POST['txtRegion'])
                 usuario.nivelEd = nivelEducacional.objects.get(idEducacion=request.POST['txtNvlEducacional'])
                 usuario.save()
+            
+                print("pasó al otro else")
+                user = User.objects.get(id = usuario.idUsuario)
+                user.username = email
+                user.email = email
+                user.set_password(rut[0:4]) 
+                user.save()
+
+               
                 
     context['usuario'] = Usuario.objects.all()
-    return render(request, 'principal.html', context)
+    return render(request, 'registroUsuarios.html', context)
 
 def modificarUsuario(request, idUsuario):
     usuario = Usuario.objects.get(idUsuario = idUsuario)
