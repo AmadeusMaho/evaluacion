@@ -84,7 +84,7 @@ def agregarJuegoCarro(request, idJuego):
                 'imagen' : item.imagen.url if item.imagen else '',
                 'cantidad': 1
                     }
-            # request.session['carrito'] = carritoSesion
+            request.session['carrito'] = carritoSesion
             # context = {'listado' : carritoSesion}
             # print(carritoSesion)
             # print("Muestro el carro!")
