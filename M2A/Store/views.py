@@ -82,11 +82,11 @@ def agregarJuegoCarro(request, idJuego):
                 'imagen' : item.imagen.url if item.imagen else '',
                 'cantidad': 1
                     }
-            request.session['carrito'] = carritoSesion
-            context = {'listado' : carritoSesion}
-            print(carritoSesion)
-            print("Muestro el carro!")
-            return render(request, 'carrito.html', context)
+            # request.session['carrito'] = carritoSesion
+            # context = {'listado' : carritoSesion}
+            # print(carritoSesion)
+            # print("Muestro el carro!")
+            return redirect(verCarro)
             #carro.juegos.add(item)
         else:
             context['errorSesion'] = 'Error al agregar el producto'
@@ -97,11 +97,14 @@ def agregarJuegoCarro(request, idJuego):
 
 
 def verCarro(request):
-    return render(request, 'carrito.html')
+    context = {}
+    carritoSesion = request.session.get('carrito', {})
+    request.session['carrito'] = carritoSesion
+    context = {'listado' : carritoSesion}
+    return render(request, 'carrito.html', context)
 
 
 #No funciona, está deshabilitado de la plantilla (la url), si se incluye tira el error de idJuego y no funciona el carro
-@login_required
 def eliminarJuegoCarro(request, idJuego):
     context = {}
     try:
