@@ -120,7 +120,7 @@ def eliminarJuegoCarro(request, idJuego):
                 # si solo hay uno se elimina.
                 del carritoSesion[str(idJuego)]
         request.session['carrito'] = carritoSesion
-        return render(request, 'carrito.html',context)
+        return redirect(verCarro)
         #usuario = request.user
         #listado = Carrito.objects.get(usuario = usuario)
         #juego = listado.juegos.get(idJuego = idJuego)
@@ -129,7 +129,7 @@ def eliminarJuegoCarro(request, idJuego):
         #context['exito'] = 'Producto eliminado del carrito'
     except:
         context['error'] = 'Error al eliminar el producto'
-        return render(request, 'carrito.html', context)
+        return redirect(verCarro)
 
 # juegos:
 
