@@ -69,9 +69,25 @@ def agregarJuegoCarro(request, idJuego):
         usuario = request.user
         if usuario.is_authenticated:
             item = Juego.objects.get(idJuego = idJuego)
-            carro, creado = Carrito.objects.get_or_create(usuario=usuario)
-            carro.juegos.add(item)
-            context['exito'] = 'Se agregó el producto'
+            #carro, creado = Carrito.objects.get_or_create(usuario=request.user)
+            carritoSesion = request.session.get('carrito', {})
+            if str(idJuego) in carritoSesion:
+                carritoSesion[str(idJuego)]['cantidad'] += 1
+            else:
+                carritoSesion[str(idJuego)] = {
+                'idJuego': str(item.idJuego),
+                'nombre' : item.nombre,
+                'precio' : str(item.precio),
+                'stock'  : item.stock,
+                'imagen' : item.imagen.url if item.imagen else '',
+                'cantidad': 1
+                    }
+            request.session['carrito'] = carritoSesion
+            context = {'listado' : carritoSesion}
+            print(carritoSesion)
+            print("Muestro el carro!")
+            return render(request, 'carrito.html', context)
+            #carro.juegos.add(item)
         else:
             context['errorSesion'] = 'Error al agregar el producto'
             return redirect(verCarro)
@@ -81,29 +97,32 @@ def agregarJuegoCarro(request, idJuego):
 
 
 def verCarro(request):
-    context = {}
-    try:
-        usuario = request.user
-        listado = Carrito.objects.get(usuario = usuario)
-        listado = listado.juegos.all
-        context = {"listado": listado}
-    except:
-        context = {}
-    return render(request, 'carrito.html', context)
+    return render(request, 'carrito.html')
 
+
+#No funciona, está deshabilitado de la plantilla (la url), si se incluye tira el error de idJuego y no funciona el carro
 @login_required
 def eliminarJuegoCarro(request, idJuego):
     context = {}
     try:
-        usuario = request.user
-        listado = Carrito.objects.get(usuario = usuario)
-        juego = listado.juegos.get(idJuego = idJuego)
-        listado = listado.juegos
-        listado.remove(juego)
-        context['exito'] = 'Producto eliminado del carrito'
+        carritoSesion = request.session.get('carrito', {})
+        if str(idJuego) in carritoSesion:
+            if carritoSesion[str(idJuego)]['cantidad'] > 1:
+                carritoSesion[str(idJuego)]['cantidad'] -= 1
+            else:
+                # si solo hay uno se elimina.
+                del carritoSesion[str(idJuego)]
+        request.session['carrito'] = carritoSesion
+        return redirect(verCarro)
+        #usuario = request.user
+        #listado = Carrito.objects.get(usuario = usuario)
+        #juego = listado.juegos.get(idJuego = idJuego)
+        #listado = listado.juegos
+        #listado.remove(juego)
+        #context['exito'] = 'Producto eliminado del carrito'
     except:
         context['error'] = 'Error al eliminar el producto'
-    return redirect(verCarro)
+        return redirect(verCarro)
 
 # juegos:
 
@@ -166,8 +185,6 @@ def subirJuego(request):
                             idJuego = juego1,
                             imagen = imagen
                         )
-                 messages.success(request, "Juego creado con éxito")
-                 return redirect('listadoJuegos')
             else:
                 juego = Juego.objects.get(idJuego = request.POST['txtId'])
                 juego.nombre = nombre
@@ -192,11 +209,10 @@ def subirJuego(request):
                             idJuego = juego,
                             imagen = imagen
                         )
-                messages.success(request, "Juego modificado con éxito")
-                return redirect('listadoJuegos')
                 
     #context['juegos'] = Juego.objects.all()
     #return render(request, 'listadoJuegos.html', context)
+    return redirect(listadoJuegos)
 
 
 def modificarJuego(request, idJuego):
@@ -274,8 +290,7 @@ def subirSerie(request):
                     fechalanz = fechalanz,
                     categoria = categoriaSerie.objects.get(idCategoria=request.POST['categoria'])
                     )
-                 messages.success(request, "Serie creada con éxito")
-                 return redirect('listadoSeries')
+                 context['exito'] = "Serie creada con éxito"
             else:
                 serie = Serie.objects.get(idSerie = request.POST['txtId'])
                 serie.nombre = nombre
@@ -291,8 +306,11 @@ def subirSerie(request):
                 if 'archivo' in request.FILES:
                     serie.clave = request.FILES['archivo']
                 serie.save()
-                messages.success(request, "Serie modificada con éxito")
-                return redirect('listadoSeries')
+                context['exito'] = "Serie actualizada con éxito"
+                
+    context['series'] = Serie.objects.all()
+    return render(request, 'listadoSeries.html', context)
+
 
 def modificarSerie(request, idSerie):
     serie = Serie.objects.get(idSerie = idSerie)

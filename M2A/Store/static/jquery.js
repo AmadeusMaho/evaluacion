@@ -289,6 +289,10 @@ $(function(){
             $('.txtSTitulo')[0].setCustomValidity('Titulo no puede tener más de 20 caracteres.')
             $('.txtSTitulo').focus();
         }
+        else if($.trim($('.txtSEstudio').val())==""){
+            $('.txtSEstudio')[0].setCustomValidity('Ingrese un estudio')
+            $('.txtSEstudio').focus();
+        }
         else if($.trim($('.txtSDesc').val())==""){
             $('.txtSDesc')[0].setCustomValidity('Ingrese una descripción.')
             $('.txtSDesc').focus();
@@ -301,12 +305,12 @@ $(function(){
             $('.txtSKeys')[0].setCustomValidity('Seleccione un archivo con claves.')
             $('.txtSKeys').focus();
         }
-        else if($.trim($('.txtSEstudio').val())==""){
-            $('.txtSEstudio')[0].setCustomValidity('Seleccione un archivo con claves.')
-            $('.txtSEstudio').focus();
-        }
         else if($.trim($('.txtSPrecio').val())==""){
             $('.txtSPrecio')[0].setCustomValidity('Ingrese precio unitario.')
+            $('.txtSPrecio').focus();
+        }
+        else if($.trim($('.txtSPrecio').val())<=0){
+            $('.txtSPrecio')[0].setCustomValidity('Precio no puede ser 0 o menos')
             $('.txtSPrecio').focus();
         }
         else if($.trim($('.txtSStock').val())==""){
@@ -363,6 +367,10 @@ $(function(){
       //  }
         else if($.trim($('.txtJPrecio').val())==""){
             $('.txtJPrecio')[0].setCustomValidity('Ingrese un precio unitario.');
+            $('.txtJPrecio').focus();
+        }
+        else if($.trim($('.txtJPrecio').val())<=0){
+            $('.txtJPrecio')[0].setCustomValidity('Precio no puede ser 0 o menos.');
             $('.txtJPrecio').focus();
         }
         else if($.trim($('.txtJStock').val())==""){
