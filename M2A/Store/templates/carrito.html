@@ -30,7 +30,7 @@
                     </td>
                     <td class="subtotal"></td>
                     <td>                
-                      <a href="" class="btn btn-danger eliminar">Eliminar</a>
+                      <a href="{% url 'eliminarJuegoCarro' idJuego=item.idJuego%}" class="btn btn-danger eliminar">Eliminar</a>
                     </td>
                 </tr>
               {% endfor %}

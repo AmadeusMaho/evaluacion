@@ -11,11 +11,13 @@ import re
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
 
+
 def principal(request):
     return render(request, 'principal.html', {})
 
 def carrito(request):
-    return render(request, 'carrito.html', {})
+    carritoSesion = request.session.get('carrito', {})
+    return render(request, 'carrito.html', carritoSesion)
 # Create your views here.
 
 def juego(request):
@@ -90,10 +92,10 @@ def agregarJuegoCarro(request, idJuego):
             #carro.juegos.add(item)
         else:
             context['errorSesion'] = 'Error al agregar el producto'
-            return redirect(verCarro)
+            return render(request, 'carrito.html', context)
     except:
         context['error'] = 'Error al agregar el producto'
-    return redirect(verCarro)
+        return render(request, 'carrito.html', context)
 
 
 def verCarro(request):
@@ -108,12 +110,14 @@ def eliminarJuegoCarro(request, idJuego):
         carritoSesion = request.session.get('carrito', {})
         if str(idJuego) in carritoSesion:
             if carritoSesion[str(idJuego)]['cantidad'] > 1:
+                print("Cantidad superior a uno (llego aquí)")
                 carritoSesion[str(idJuego)]['cantidad'] -= 1
+                print("Intento eliminarlo")
             else:
                 # si solo hay uno se elimina.
                 del carritoSesion[str(idJuego)]
         request.session['carrito'] = carritoSesion
-        return redirect(verCarro)
+        return render(request, 'carrito.html',context)
         #usuario = request.user
         #listado = Carrito.objects.get(usuario = usuario)
         #juego = listado.juegos.get(idJuego = idJuego)
@@ -122,7 +126,7 @@ def eliminarJuegoCarro(request, idJuego):
         #context['exito'] = 'Producto eliminado del carrito'
     except:
         context['error'] = 'Error al eliminar el producto'
-        return redirect(verCarro)
+        return render(request, 'carrito.html', context)
 
 # juegos:
 
