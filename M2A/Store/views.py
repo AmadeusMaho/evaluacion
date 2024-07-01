@@ -69,30 +69,30 @@ def agregarJuegoCarro(request, idJuego):
     context = {}
     try:
         usuario = request.user
-        if usuario.is_authenticated:
-            item = Juego.objects.get(idJuego = idJuego)
-            #carro, creado = Carrito.objects.get_or_create(usuario=request.user)
-            carritoSesion = request.session.get('carrito', {})
-            if str(idJuego) in carritoSesion:
-                carritoSesion[str(idJuego)]['cantidad'] += 1
-            else:
-                carritoSesion[str(idJuego)] = {
-                'idJuego': str(item.idJuego),
-                'nombre' : item.nombre,
-                'precio' : str(item.precio),
-                'stock'  : item.stock,
-                'imagen' : item.imagen.url if item.imagen else '',
-                'cantidad': 1
-                    }
-            request.session['carrito'] = carritoSesion
-            # context = {'listado' : carritoSesion}
-            # print(carritoSesion)
-            # print("Muestro el carro!")
-            return redirect(verCarro)
-            #carro.juegos.add(item)
+        # if usuario.is_authenticated:
+        item = Juego.objects.get(idJuego = idJuego)
+        #carro, creado = Carrito.objects.get_or_create(usuario=request.user)
+        carritoSesion = request.session.get('carrito', {})
+        if str(idJuego) in carritoSesion:
+            carritoSesion[str(idJuego)]['cantidad'] += 1
         else:
-            context['errorSesion'] = 'Error al agregar el producto'
-            return render(request, 'carrito.html', context)
+            carritoSesion[str(idJuego)] = {
+            'idJuego': str(item.idJuego),
+            'nombre' : item.nombre,
+            'precio' : str(item.precio),
+            'stock'  : item.stock,
+            'imagen' : item.imagen.url if item.imagen else '',
+            'cantidad': 1
+                }
+        request.session['carrito'] = carritoSesion
+        # context = {'listado' : carritoSesion}
+        # print(carritoSesion)
+        # print("Muestro el carro!")
+        return redirect(verCarro)
+        #carro.juegos.add(item)
+        # else:
+        #     context['errorSesion'] = 'Error al agregar el producto'
+        #     return render(request, 'carrito.html', context)
     except:
         context['error'] = 'Error al agregar el producto'
         return render(request, 'carrito.html', context)

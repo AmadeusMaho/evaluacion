@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-lg-8">
             <h2 style="color: #4ac8f0; font-weight: bold">Carrito de Compras</h2>
-  {% if user.is_authenticated %}
+  {% comment %} {% if user.is_authenticated %} {% endcomment %}
             <table class="table" id="carro">
               <thead>
                 <tr>
@@ -22,7 +22,7 @@
               {% for idJuego, item in listado.items %}
                 <tr class="carrito">
                     <td>{{item.idJuego}}</td>
-                    <td><a href="{{item.idJuego}}"><img src="{{item.imagen}}" alt="No disponible" style="max-width: 100px; max-height: 140px;"></a></td>
+                    <td><a href="{% url 'verJuego' idJuego=item.idJuego%}"><img src="{{item.imagen}}" alt="No disponible" style="max-width: 100px; max-height: 140px;"></a></td>
                     <td>{{item.nombre}}</td>
                     <td class="precio-carro">{{item.precio}}</td>
                     <td>
@@ -55,7 +55,7 @@
               </div>
             </div>
           </div>
-  {% else %}
+  {% comment %} {% else %}
       <div class="col">
         <div class="card">
           <div class="card-body">
@@ -67,7 +67,7 @@
           </div>
         </div>
       </div>
-  {% endif %}
+  {% endif %} {% endcomment %}
         </div>
       </div>
       <div class="container-fluid d-flex flex-column min-vh-100" style="padding: 0;">
