@@ -11,6 +11,11 @@ import re
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
 
+#transbank
+from transbank.webpay.webpay_plus.transaction import Transaction
+from transbank.common.integration_type import IntegrationType
+import random
+
 
 def principal(request):
     return render(request, 'principal.html', {})
@@ -32,6 +37,7 @@ def registroUsuarios(request):
     }
     return render(request, 'registroUsuarios.html', context)
 
+@login_required
 def registroJuegos(request):
     tipoClaves = tipoClave.objects.all()
 
@@ -40,6 +46,7 @@ def registroJuegos(request):
     }
     return render(request, 'registroJuegos.html', context)
 
+@login_required
 def registroSeries(request):
     categorias = categoriaSerie.objects.all()
 
@@ -106,7 +113,6 @@ def verCarro(request):
     return render(request, 'carrito.html', context)
 
 
-#No funciona, está deshabilitado de la plantilla (la url), si se incluye tira el error de idJuego y no funciona el carro
 def eliminarJuegoCarro(request, idJuego):
     context = {}
     try:
@@ -132,7 +138,7 @@ def eliminarJuegoCarro(request, idJuego):
         return redirect(verCarro)
 
 # juegos:
-
+@login_required
 def listadoJuegos(request):
     juegos = Juego.objects.all()
     tipoClaves = tipoClave.objects.all()
@@ -142,6 +148,7 @@ def listadoJuegos(request):
     }
     return render(request, 'listadoJuegos.html', context)
 
+@login_required
 def eliminarJuego(request, idJuego):
     context = {}
     try:
@@ -155,6 +162,7 @@ def eliminarJuego(request, idJuego):
     context['juegos'] = juegos
     return render(request, 'listadoJuegos.html', context)
 
+@login_required
 def subirJuego(request):
     context = {'form': juegoForm()}
     if request.method == 'POST':
@@ -221,7 +229,7 @@ def subirJuego(request):
     #return render(request, 'listadoJuegos.html', context)
     return redirect(listadoJuegos)
 
-
+@login_required
 def modificarJuego(request, idJuego):
     juego = Juego.objects.get(idJuego = idJuego)
     tipoClaves = tipoClave.objects.all()
@@ -240,6 +248,7 @@ def modificarJuego(request, idJuego):
 
 #series:
 
+@login_required
 def listadoSeries(request):
     series = Serie.objects.all()
     categorias = categoriaSerie.objects.all()
@@ -249,7 +258,7 @@ def listadoSeries(request):
     }
     return render(request, 'listadoSeries.html', context)
 
-
+@login_required
 def eliminarSerie(request, idSerie):
     context = {}
     try:
@@ -263,7 +272,7 @@ def eliminarSerie(request, idSerie):
     context['serie'] = serie
     return render(request, 'listadoSeries.html', context)
 
-
+@login_required
 def subirSerie(request):
     context = {}
     if request.method == 'POST':
@@ -318,7 +327,7 @@ def subirSerie(request):
     context['series'] = Serie.objects.all()
     return render(request, 'listadoSeries.html', context)
 
-
+@login_required
 def modificarSerie(request, idSerie):
     serie = Serie.objects.get(idSerie = idSerie)
     categorias = categoriaSerie.objects.all()
@@ -329,7 +338,7 @@ def modificarSerie(request, idSerie):
     return render(request, 'registroSeries.html', context)
 
 #usuarios:
-
+@login_required
 def listadoUsuarios(request):
     usuario = Usuario.objects.all()
     regiones = Region.objects.all()
@@ -341,7 +350,7 @@ def listadoUsuarios(request):
     }
     return render(request, 'listadoUsuarios.html', context)
 
-
+@login_required
 def eliminarUsuario(request, idUsuario):
     context = {}
     try:
@@ -431,6 +440,7 @@ def registrarse(request):
     context['usuario'] = Usuario.objects.all()
     return render(request, 'registroUsuarios.html', context)
 
+
 def modificarUsuario(request, idUsuario):
     usuario = Usuario.objects.get(idUsuario = idUsuario)
     nivelesEducacionales = nivelEducacional.objects.all()
@@ -447,3 +457,27 @@ class CustomLoginView(LoginView):
     template_name = 'login.html' 
     authentication_form = customLoginForm
     redirect_authenticated_user = True
+
+
+#transbank
+
+def init_transaction(request):
+    ordenCompra = str(random.randint(1000000, 99999999))
+    id_sesion = str(random.randint(1000000, 99999999))
+    monto = 10000  # Monto de la transacción
+    return_url = request.build_absolute_uri('/commit_transaction/')
+
+    response = Transaction.create(ordenCompra, id_sesion, monto, return_url)
+
+    return render(request, 'webpay/init_transaction.html', {
+        'url': response['url'],
+        'token': response['token']
+    })
+
+def commit_transaction(request):
+    token = request.POST.get("token_ws")
+    response = Transaction.commit(token)
+
+    return render(request, 'webpay/commit_transaction.html', {
+        'response': response
+    })
