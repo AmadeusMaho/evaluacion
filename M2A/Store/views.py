@@ -463,21 +463,24 @@ class CustomLoginView(LoginView):
 
 def init_transaction(request):
     ordenCompra = str(random.randint(1000000, 99999999))
-    id_sesion = str(random.randint(1000000, 99999999))
-    monto = 10000  # Monto de la transacción
-    return_url = request.build_absolute_uri('/commit_transaction/')
+    id_sesion = request.session.get('sessionid')
+    monto = 1000
+    return_url = request.build_absolute_uri('commit_transaction')
 
     response = Transaction.create(ordenCompra, id_sesion, monto, return_url)
 
-    return render(request, 'webpay/init_transaction.html', {
+    return render(request, 'carrito.html', {
         'url': response['url'],
         'token': response['token']
     })
 
 def commit_transaction(request):
-    token = request.POST.get("token_ws")
+    token = request.POST.get('token_ws')
     response = Transaction.commit(token)
 
-    return render(request, 'webpay/commit_transaction.html', {
-        'response': response
-    })
+    if response and response.get('detailOutput'):
+        
+        return render(request, 'carrito.html', {'response': response})
+    else:
+        
+        return render(request, 'error.html', {'error_message': 'Error al confirmar la transacción'})
