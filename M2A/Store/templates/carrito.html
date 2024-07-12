@@ -48,13 +48,13 @@
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center">
                     Total (IVA incluido) $
-                    <span id="total">0</span>
+                    <span name="total" id="total">0</span>
                   </li>
                 </ul>
-                <form action="{{ url }}" method="post">
+                <form action="{% url 'init_transaction' %}" method="post">
                   {% csrf_token %}
                   <input type="hidden" name="token_ws" value="{{ token }}">
-                  <button class="btn btn-primary btn-block mt-3" style="background-color: #11ced0;">Proceder al Pago</button>
+                  <button type="submit" class="btn btn-primary btn-block mt-3" style="background-color: #11ced0;">Proceder al Pago</button>
                 </form>
                 
               </div>
