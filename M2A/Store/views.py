@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Juego, Carrito, tipoClave, Serie, imagenSerie,categoriaSerie, imgJuegos, Usuario, Region, nivelEducacional
+from .models import Juego, Carrito, tipoClave, Serie, imagenSerie,categoriaSerie, imgJuegos, Usuario, Region, nivelEducacional, desarrollador, categoriaJuego
 from M2A.settings import MEDIA_URL
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
@@ -34,9 +34,12 @@ def registroUsuarios(request):
 
 def registroJuegos(request):
     tipoClaves = tipoClave.objects.all()
-
+    desarrolladores = desarrollador.objects.all()
+    categorias = categoriaJuego.objects.all()
     context = {
-    'tipoClaves': tipoClaves
+    'tipoClaves': tipoClaves,
+    'desarrolladores': desarrolladores,
+    'categorias': categorias
     }
     return render(request, 'registroJuegos.html', context)
 
@@ -160,7 +163,6 @@ def subirJuego(request):
     if request.method == 'POST':
         idJuego       = request.POST['txtId']
         nombre        = request.POST['nombre']
-        desarrollador = request.POST['titulo']
         descripcion   = request.POST['descripcion']
         ytVidId       = request.POST['link']
         precio        = request.POST['precio']
@@ -176,7 +178,8 @@ def subirJuego(request):
             if idJuego == "0":
                  juego1= Juego.objects.create(
                     nombre = nombre,
-                    desarrollador = desarrollador,
+                    desarrollador = desarrollador.objects.get(idDev=request.POST['desarrollador']),
+                    categoria = categoriaJuego.objects.get(idCategoria=request.POST['categoriaJuego']),
                     descripcion = descripcion,
                     imagen = request.FILES['imagen'],
                     ytVidId = ytVidId,
@@ -195,7 +198,8 @@ def subirJuego(request):
             else:
                 juego = Juego.objects.get(idJuego = request.POST['txtId'])
                 juego.nombre = nombre
-                juego.desarrollador = desarrollador
+                juego.desarrollador = desarrollador.objects.get(idDev=request.POST['desarrollador'])
+                juego.categoria = categoriaJuego.objects.get(idCategoria=request.POST['categoriaJuego'])
                 juego.descripcion = descripcion
                 juego.ytVidId = ytVidId
                 juego.precio = precio
@@ -226,12 +230,16 @@ def modificarJuego(request, idJuego):
     juego = Juego.objects.get(idJuego = idJuego)
     tipoClaves = tipoClave.objects.all()
     capturas = imgJuegos.objects.filter(idJuego=juego)
+    desarrolladores = desarrollador.objects.all()
+    categorias = categoriaJuego.objects.all()
     urlCapturas = ""
     for i in capturas:
         urlCapturas += i.imagen.url + " "
     context = {
     'juego': juego,
     'tipoClaves': tipoClaves,
+    'desarrolladores': desarrolladores,
+    'categorias': categorias,
     'capturas' : capturas,
     'urlCapturas' : urlCapturas
     }
