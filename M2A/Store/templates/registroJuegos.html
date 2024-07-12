@@ -30,9 +30,31 @@
                                 <input type="text" value="{{juego.nombre}}" name="nombre" class="txtJNombre form-control" id="nombre" style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Ingresa el título del juego (máximo 20 carácteres)" required>
                             </div>
                             <div class="mb-3">
-                              <label for="dev" class="form-label" style="color: whitesmoke;">Desarrollador</label>
-                              <input type="text" value="{{juego.desarrollador}}" name="titulo" class="txtJDev form-control" id="dev" style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Ingresa el desarrollador" required>
+                              <label for="desarrollador" class="form-label" style="color: whitesmoke;">Desarrollador</label>
+                              <select class="desarrollador form-select form-select-sm" value="{{juego.desarrollador}}" aria-label="Default select example" name="desarrollador" style="background-color: #14142b; border-color: #202043; color: white" required>
+                                <option selected>Seleccione desarrollador</option>
+                                {%for desarrollador in desarrolladores%}
+                                {%if juego.desarrollador.idDev == desarrollador.idDev %}
+                                <option name="idDev" value="{{desarrollador.idDev}}" selected>{{desarrollador.nombre}}</option>
+                                {%else%}
+                                <option name="idDev" value="{{desarrollador.idDev}}">{{desarrollador.nombre}}</option>
+                                {%endif%}
+                                {%endfor%}
+                              </select>
                           </div>
+                          <div class="mb-3">
+                            <label for="categoriaJuego" class="form-label" style="color: whitesmoke;">Categoría</label>
+                            <select class="categoriaJuego form-select form-select-sm" value="{{juego.categoria}}" aria-label="Default select example" name="categoriaJuego" style="background-color: #14142b; border-color: #202043; color: white" required>
+                              <option selected>Seleccione categoría</option>
+                              {%for categoria in categorias%}
+                                {%if juego.categoria.idCategoria == categoria.idCategoria %}
+                                <option name="idCategoria" value="{{categoria.idCategoria}}" selected>{{categoria.nombre}}</option>
+                                {%else%}
+                                <option name="idCategoria" value="{{categoria.idCategoria}}">{{categoria.nombre}}</option>
+                                {%endif%}
+                                {%endfor%}
+                            </select>
+                        </div>
                             <div class="mb-3">
                                 <label for="descripcion" class="form-label" style="color: whitesmoke;">Descripción</label>
                                 <textarea name="descripcion" class="txtJDesc form-control" id="descripcion" rows="3" style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Descripción del juego" required>{{juego.descripcion}}</textarea>
@@ -77,8 +99,8 @@
                               <input type="text" value="{{juego.ytVidId}}" name="link" class="txtLink form-control" id="link" style="background-color: #14142b; border-color: #202043; color: white;" placeholder="Ejemplo: https://www.youtube.com/watch?v=3T8iNYmI0-M" required>
                           </div>
                             <div class="mb-3">
-                              <label for="categoria" class="form-label" style="color: whitesmoke;">Tipo de Clave</label>
-                              <select class="txtJPlataforma form-select" name="tipoClave" value="{{juego.tipoClave}}" id="categoria" style="background-color: #14142b; border-color: #202043; color: white;" required>
+                              <label for="tipoClave" class="form-label" style="color: whitesmoke;">Tipo de Clave</label>
+                              <select class="txtJPlataforma form-select" name="tipoClave" value="{{juego.tipoClave}}" id="tipoClave" style="background-color: #14142b; border-color: #202043; color: white;" required>
                                 <option value="">Selecciona un tipo de clave</option>
                                 {%for tipoClave in tipoClaves%}
                                 {%if juego.tipoClave.idTipo == tipoClave.idTipo %}
