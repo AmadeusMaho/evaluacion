@@ -6,7 +6,8 @@ from django.contrib.auth.models import User
 class Juego(models.Model):
     idJuego       = models.AutoField(primary_key=True)
     nombre        = models.CharField(max_length=50)
-    desarrollador = models.CharField(max_length=50)
+    desarrollador = models.ForeignKey('desarrollador', on_delete=models.CASCADE)
+    categoria     = models.ForeignKey('categoriaJuego', on_delete=models.CASCADE)
     descripcion   = models.CharField(max_length=550)
     imagen        = models.ImageField(upload_to='juegos/imagenes')
     ytVidId       = models.CharField(max_length=11, null=True)
@@ -24,6 +25,13 @@ class imgJuegos(models.Model):
     idJuego       = models.ForeignKey('Juego', on_delete=models.CASCADE)
     imagen        = models.ImageField(upload_to='juegos/capturas')
 
+class desarrollador(models.Model):
+    idDev         = models.AutoField(primary_key=True)
+    nombre        = models.CharField(max_length=50)
+
+class categoriaJuego(models.Model):
+    idCategoria   = models.AutoField(primary_key=True)
+    nombre        = models.CharField(max_length=40)
 
 class Serie(models.Model):
     idSerie       = models.IntegerField(primary_key=True)

@@ -17,6 +17,7 @@
         <th >Nombre</th>
         <th >Desarrollador</th>
         <th >Descripción</th>"
+        <th >Categoría</th>"
         <th >ID Youtube</th>
         <th >Precio</th>
         <th >Stock</th>
@@ -31,8 +32,9 @@
         <td > {{juego.idJuego}} </td>
         <td ><a href="{{juego.idJuego}}"><img src="{{juego.imagen.url}}" alt="No disponible" style="max-width: 100px; max-height: 140px;"></a></td>
         <td >{{juego.nombre}}</td>
-        <td >{{juego.desarrollador}}</td>
+        <td >{{juego.desarrollador.nombre}}</td>
         <td >{{juego.descripcion}}</td>
+        <td >{{juego.categoria.nombre}}</td>
         <td >{{juego.ytVidId}}</td>
         <td >${{juego.precio}}</td>
         <td >{{juego.stock}}</td>
