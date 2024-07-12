@@ -103,6 +103,12 @@
                 <li class="nav-item">
                   <a class="nav-link active d-lg-none" aria-current="page" href="{% url 'registroUsuarios' %}" style="color: white;">Cerrar sesión</a>
                 </li>
+  {% else %}
+                <li class="nav-item">
+                  <a class="nav-link active d-lg-none" aria-current="page" href="{% url 'registroUsuarios' %}" style="color: white;">Registrarse</a>
+                </li>
+  {% endif %}
+  {% if user.is_superuser %}
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white">
                     Administración
@@ -112,10 +118,6 @@
                     <li><a class="dropdown-item" href="{% url 'listadoSeries' %}">Lista de series</a></li>
                     <li><a class="dropdown-item" href="{% url 'listadoUsuarios' %}">Lista de usuarios</a></li>
                   </ul>
-                </li>
-  {% else %}
-                <li class="nav-item">
-                  <a class="nav-link active d-lg-none" aria-current="page" href="{% url 'registroUsuarios' %}" style="color: white;">Registrarse</a>
                 </li>
   {% endif %}
               </ul>
