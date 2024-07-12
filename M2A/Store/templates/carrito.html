@@ -51,7 +51,12 @@
                     <span id="total">0</span>
                   </li>
                 </ul>
-                <button class="btn btn-primary btn-block mt-3" style="background-color: #11ced0;">Proceder al Pago</button>
+                <form action="{{ url }}" method="post">
+                  {% csrf_token %}
+                  <input type="hidden" name="token_ws" value="{{ token }}">
+                  <button class="btn btn-primary btn-block mt-3" style="background-color: #11ced0;">Proceder al Pago</button>
+                </form>
+                
               </div>
             </div>
           </div>

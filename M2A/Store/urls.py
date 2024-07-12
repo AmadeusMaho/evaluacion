@@ -31,4 +31,6 @@ urlpatterns = [
     path('registrarse', views.registrarse, name='registrarse'),
     path('login', CustomLoginView.as_view(), name='login'),
     path('logout', LogoutView.as_view(next_page='principal'), name='logout'),
+    path('init_transaction/', views.init_transaction, name='init_transaction'),
+    path('commit_transaction/', views.commit_transaction, name='commit_transaction'),
 ]
