@@ -51,7 +51,7 @@
                     <span name="total" id="total">0</span>
                   </li>
                 </ul>
-                <form action="{% url 'init_transaction' %}" method="post">
+                <form action="{{url}}" method="post">
                   {% csrf_token %}
                   <input type="hidden" name="token_ws" value="{{ token }}">
                   <button type="submit" class="btn btn-primary btn-block mt-3" style="background-color: #11ced0;">Proceder al Pago</button>

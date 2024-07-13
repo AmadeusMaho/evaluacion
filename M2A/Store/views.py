@@ -469,13 +469,25 @@ class CustomLoginView(LoginView):
 
 #transbank
 
-def init_transaction(request):
-    ordenCompra = str(random.randint(1000000, 99999999))
-    id_sesion = request.session.get('sessionid')
-    monto = 1000
-    return_url = request.build_absolute_uri('commit_transaction')
+from transbank.webpay.webpay_plus.transaction import Transaction
+from transbank.common.options import WebpayOptions
 
-    response = Transaction.create(ordenCompra, id_sesion, monto, return_url)
+Transaction.COMMERCE_CODE = "597055555532"
+Transaction.API_KEY_SECRET = "579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C"
+Transaction.INTEGRATION_TYPE = 'TEST' 
+
+def init_transaction(request):
+    ordenCompra = str(1)
+    id_sesion = str(request.session._session_key)
+    print(id_sesion)
+    monto = 1000.0
+    return_url = "http://127.0.0.1:8000/"
+    tx = Transaction(WebpayOptions(Transaction.COMMERCE_CODE, Transaction.API_KEY_SECRET, IntegrationType.TEST))
+    response = tx.create(buy_order=ordenCompra,
+                                  session_id=id_sesion,
+                                  amount=monto,
+                                  return_url="http://127.0.0.1:8000/")
+    print(response)
 
     return render(request, 'carrito.html', {
         'url': response['url'],
