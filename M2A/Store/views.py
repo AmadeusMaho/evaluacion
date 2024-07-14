@@ -112,17 +112,20 @@ def verCarro(request):
         total = total + int(item['precio']) * int(item['cantidad'])
     total_coniva = total * 1.19 
 
-    print("entré al request post")
-    monto = total_coniva
-    print("-------------", monto, "-------------")
-    ordenCompra = str(random.randint(10000000, 9999999999))
-    id_sesion = str(request.session._session_key)
-    return_url = "http://127.0.0.1:8000/resultado_compra"
-    tx = Transaction(WebpayOptions(Transaction.COMMERCE_CODE, Transaction.API_KEY_SECRET, IntegrationType.TEST))
-    response = tx.create(buy_order=ordenCompra, session_id=id_sesion, amount=monto, return_url=return_url)
-    print(response)
-    context['response'] = response
-    request.session['token_ws'] = response['token']
+    if total_coniva == 0:
+        return render(request, 'carrito.html', context)
+    else:
+        print("entré al request post")
+        monto = total_coniva
+        print("-------------", monto, "-------------")
+        ordenCompra = str(random.randint(10000000, 9999999999))
+        id_sesion = str(request.session._session_key)
+        return_url = "http://127.0.0.1:8000/resultado_compra"
+        tx = Transaction(WebpayOptions(Transaction.COMMERCE_CODE, Transaction.API_KEY_SECRET, IntegrationType.TEST))
+        response = tx.create(buy_order=ordenCompra, session_id=id_sesion, amount=monto, return_url=return_url)
+        print(response)
+        context['response'] = response
+        request.session['token_ws'] = response['token']
     
     return render(request, 'carrito.html', context)
         #'url': response['url'],
@@ -134,15 +137,28 @@ def verCarro(request):
 def commit_transaction(request):
     context = {}
     try:
-        tx = Transaction(WebpayOptions(Transaction.COMMERCE_CODE, Transaction.API_KEY_SECRET, IntegrationType.TEST))
         token = request.session.get('token_ws')
-        response = tx.commit(token)
-        del request.session['carrito']
-    except:
-        context['error'] = 'Error al eliminar el producto'
-        return render(request, 'resultado_compra.html', context)
-    del request.session['token_ws']      
-    return render(request, 'resultado_compra.html', {'response': response})
+        if not token:
+            context['error'] = 'Token no encontrado. Si ya realizó la compra intente volver al menú.'
+        else:
+            tx = Transaction(WebpayOptions(Transaction.COMMERCE_CODE, Transaction.API_KEY_SECRET, IntegrationType.TEST))
+            response = tx.commit(token)
+            status = response.get('status', 'ERROR')
+
+            if status == 'AUTHORIZED':
+                context['response'] = response
+                context['success_message'] = 'Pago realizado exitosamente.'
+            elif status == 'REVERSED':
+                context['error'] = 'El pago fue cancelado.'
+            else:
+                context['error'] = 'Error en la transacción. Por favor, intente de nuevo.'
+
+            del request.session['carrito']
+            del request.session['token_ws']
+    except Exception as e:
+        context['error'] = 'Compra cancelada'
+
+    return render(request, 'resultado_compra.html', context)
 
     
 def resultadoCompra(request):

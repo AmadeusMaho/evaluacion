@@ -20,7 +20,7 @@
                             <h4>Fecha de transacción: {{ response.transaction_date }}</h4>
                             <h4>Medio de pago: {{ response.payment_type_code }}</h4>
                         {%else%}
-                        <h1>Pago ya realizado</h1>
+                        <h4 class="text-center">{{error}}</h4>
                         {%endif%}
                         </div>
                         <div class="text-center">
