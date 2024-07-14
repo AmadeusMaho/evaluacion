@@ -2,6 +2,12 @@
 {% block titulo %} Carrito de compras  {% endblock %}
 {% block contenido %}
       <div class="container pt-5 mt-5">
+        {%if error%}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          {{error}}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {%endif%}
         <div class="row">
           <div class="col-lg-8">
             <h2 style="color: #4ac8f0; font-weight: bold">Carrito de Compras</h2>
@@ -26,7 +32,7 @@
                     <td>{{item.nombre}}</td>
                     <td class="precio-carro">{{item.precio}}</td>
                     <td>
-                      <input type="number" class="form-control cantidad" min="1" max="{{item.stock}}" value="{{item.cantidad}}">
+                      <input type="text" class="form-control cantidad" min="1" max="{{item.stock}}" value="{{item.cantidad}}">
                     </td>
                     <td class="subtotal"></td>
                     <td>                
@@ -50,7 +56,7 @@
                     {% csrf_token %}
                   <li class="list-group-item d-flex justify-content-between align-items-center">
                     Total (IVA incluido) $
-                    <input type="number" name="total" id="total" class="total" value=1000 readonly>
+                    <input type="number" name="total" id="total" class="total" value=0 readonly>
                   </li>
                 </ul>
                   <input type="hidden" name="token_ws" value="{{ response.token }}">

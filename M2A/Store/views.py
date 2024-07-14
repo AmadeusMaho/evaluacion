@@ -107,20 +107,23 @@ def verCarro(request):
     request.session['carrito'] = carritoSesion
     context = {'listado' : carritoSesion}
     if request.method == 'POST':
-        monto = request.POST.get('total', 1)
-        print("-------------",monto,"-------------",)
-        ordenCompra = str(random.randint(10000000,9999999999))
-        id_sesion = str(request.session._session_key)
-        #monto = 1000
-        return_url = "http://127.0.0.1:8000/resultado_compra"
-        tx = Transaction(WebpayOptions(Transaction.COMMERCE_CODE, Transaction.API_KEY_SECRET, IntegrationType.TEST))
-        response = tx.create(buy_order=ordenCompra,
-                                    session_id=id_sesion,
-                                    amount=monto,
-                                    return_url=return_url)
-        print(response)
-        context['response'] = response
-        request.session['token_ws'] = response['token']
+        monto = int(request.POST.get('total', 0))
+        if monto < 1:
+            context['error'] = 'El carro está vacío'
+            return render(request, 'carrito.html', context)
+        else:
+            ordenCompra = str(random.randint(10000000,9999999999))
+            id_sesion = str(request.session._session_key)
+            #monto = 1000
+            return_url = "http://127.0.0.1:8000/resultado_compra"
+            tx = Transaction(WebpayOptions(Transaction.COMMERCE_CODE, Transaction.API_KEY_SECRET, IntegrationType.TEST))
+            response = tx.create(buy_order=ordenCompra,
+                                        session_id=id_sesion,
+                                        amount=monto,
+                                        return_url=return_url)
+            print(response)
+            context['response'] = response
+            request.session['token_ws'] = response['token']
     return render(request, 'carrito.html', context)#{
         #'url': response['url'],
        # 'token': response['token']
