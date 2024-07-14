@@ -12,8 +12,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
 
 #transbank
-from transbank.webpay.webpay_plus.transaction import Transaction
 from transbank.common.integration_type import IntegrationType
+from transbank.webpay.webpay_plus.transaction import Transaction
+from transbank.common.options import WebpayOptions
 import random
 
 
@@ -79,9 +80,7 @@ def agregarJuegoCarro(request, idJuego):
     context = {}
     try:
         usuario = request.user
-        # if usuario.is_authenticated:
         item = Juego.objects.get(idJuego = idJuego)
-        #carro, creado = Carrito.objects.get_or_create(usuario=request.user)
         carritoSesion = request.session.get('carrito', {})
         if str(idJuego) in carritoSesion:
             carritoSesion[str(idJuego)]['cantidad'] += 1
@@ -95,14 +94,8 @@ def agregarJuegoCarro(request, idJuego):
             'cantidad': 1
                 }
         request.session['carrito'] = carritoSesion
-        # context = {'listado' : carritoSesion}
-        # print(carritoSesion)
-        # print("Muestro el carro!")
+
         return redirect(verCarro)
-        #carro.juegos.add(item)
-        # else:
-        #     context['errorSesion'] = 'Error al agregar el producto'
-        #     return render(request, 'carrito.html', context)
     except:
         context['error'] = 'Error al agregar el producto'
         return render(request, 'carrito.html', context)
@@ -113,7 +106,23 @@ def verCarro(request):
     carritoSesion = request.session.get('carrito', {})
     request.session['carrito'] = carritoSesion
     context = {'listado' : carritoSesion}
-    return render(request, 'carrito.html', context)
+    
+    ordenCompra = str(1)
+    id_sesion = str(request.session._session_key)
+    monto = 1000
+    return_url = "http://127.0.0.1:8000/principal"
+    tx = Transaction(WebpayOptions(Transaction.COMMERCE_CODE, Transaction.API_KEY_SECRET, IntegrationType.TEST))
+    response = tx.create(buy_order=ordenCompra,
+                                  session_id=id_sesion,
+                                  amount=monto,
+                                  return_url=return_url)
+    print(response)
+    context['response'] = response
+    return render(request, 'carrito.html', context)#{
+        #'url': response['url'],
+       # 'token': response['token']
+   #})
+
 
 
 def eliminarJuegoCarro(request, idJuego):
@@ -469,24 +478,18 @@ class CustomLoginView(LoginView):
 
 #transbank
 
-from transbank.webpay.webpay_plus.transaction import Transaction
-from transbank.common.options import WebpayOptions
-
-Transaction.COMMERCE_CODE = "597055555532"
-Transaction.API_KEY_SECRET = "579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C"
-Transaction.INTEGRATION_TYPE = 'TEST' 
 
 def init_transaction(request):
     ordenCompra = str(1)
     id_sesion = str(request.session._session_key)
     print(id_sesion)
     monto = 1000.0
-    return_url = "http://127.0.0.1:8000/"
+    return_url = "http://127.0.0.1:8000/resultado_compra"
     tx = Transaction(WebpayOptions(Transaction.COMMERCE_CODE, Transaction.API_KEY_SECRET, IntegrationType.TEST))
     response = tx.create(buy_order=ordenCompra,
                                   session_id=id_sesion,
                                   amount=monto,
-                                  return_url="http://127.0.0.1:8000/")
+                                  return_url=return_url)
     print(response)
 
     return render(request, 'carrito.html', {
@@ -497,10 +500,12 @@ def init_transaction(request):
 def commit_transaction(request):
     token = request.POST.get('token_ws')
     response = Transaction.commit(token)
-
     if response and response.get('detailOutput'):
         
-        return render(request, 'carrito.html', {'response': response})
+        return render(request, 'resultado_compra.html', {'response': response})
     else:
         
-        return render(request, 'error.html', {'error_message': 'Error al confirmar la transacción'})
+        return render(request, 'resultado_compra.html', {'error_message': 'Error al confirmar la transacción'})
+    
+def resultadoCompra(request):
+    return render(request, 'resultado_compra.html')

@@ -1,0 +1,27 @@
+{% extends "plantilla_base.html"  %}
+{% block titulo %} Resultado del pago {% endblock %}
+{% block contenido %}
+
+
+<div class="login-container">
+    <div class="mt-5 pt-5 container-fluid d-flex flex-column min-vh-100">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header" style="text-align: center; font-size: 20px; background-color: #202043; color: whitesmoke; font-weight: bold;">
+                    </div>
+                    <div class="card-body" style="background-color: #2f2c58;">
+                        <h1>Resultado de Pago</h1>
+                        <p>Orden de Compra: {{ response.buy_order }}</p>
+                        <p>Estado del Pago: {{ response.status }}</p>
+                        <p>Monto Pagado: {{ response.amount }}</p>
+                            <button href="{%url 'principal' %}"type="submit" class="btn btn-primary" style="background-color:#0ec0c3; color:white">Volver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+{% endblock %}

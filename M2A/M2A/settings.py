@@ -139,6 +139,6 @@ LOGIN_URL = 'login'
 
 from transbank.webpay.webpay_plus.transaction import Transaction
 
-Transaction.COMMERCE_CODE = 597055555532
+Transaction.COMMERCE_CODE = "597055555532"
 Transaction.API_KEY_SECRET = "579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C"
 Transaction.INTEGRATION_TYPE = 'TEST' 
