@@ -110,7 +110,7 @@ def verCarro(request):
     total = 0
     for item in carritoSesion.values():
         total = total + int(item['precio']) * int(item['cantidad'])
-    total_coniva = total * 1.19
+    total_coniva = round(total * 1.19)
     
     if total == 0 and request.method == 'POST':
             context['error'] = 'El carro está vacío';
