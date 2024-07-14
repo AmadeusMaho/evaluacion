@@ -32,7 +32,6 @@ urlpatterns = [
     path('login', CustomLoginView.as_view(), name='login'),
     path('logout', LogoutView.as_view(next_page='principal'), name='logout'),
     #transbank:
-    path('init_transaction/', views.init_transaction, name='init_transaction'),
-    path('commit_transaction', views.commit_transaction, name='commit_transaction'),
+    path('resultado_compra/', views.commit_transaction, name='commit_transaction'),
     path('resultado_compra/', views.resultadoCompra, name='resultadoCompra')
 ]

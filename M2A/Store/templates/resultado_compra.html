@@ -11,11 +11,22 @@
                     <div class="card-header" style="text-align: center; font-size: 20px; background-color: #202043; color: whitesmoke; font-weight: bold;">
                     </div>
                     <div class="card-body" style="background-color: #2f2c58;">
+                        {%if response%}
                         <h1>Resultado de Pago</h1>
-                        <p>Orden de Compra: {{ response.buy_order }}</p>
-                        <p>Estado del Pago: {{ response.status }}</p>
-                        <p>Monto Pagado: {{ response.amount }}</p>
-                            <button href="{%url 'principal' %}"type="submit" class="btn btn-primary" style="background-color:#0ec0c3; color:white">Volver</button>
+                        <div class="mt-4">
+                            <h4>Orden de Compra: {{ response.buy_order }}</h4>
+                            <h4>Estado del Pago: {{ response.status }}</h4>
+                            <h4>Monto Pagado: {{ response.amount }}</h4>
+                            <h4>Fecha de transacción: {{ response.transaction_date }}</h4>
+                            <h4>Medio de pago: {{ response.payment_type_code }}</h4>
+                        {%else%}
+                        <h1>Pago ya realizado</h1>
+                        {%endif%}
+                        </div>
+                        <div class="text-center">
+                            <a href="{% url 'principal' %}"><button href="" class="btn btn-primary" style="background-color:#0ec0c3; color:white">Volver</button></a>
+                        </div>
+                           
                     </div>
                 </div>
             </div>

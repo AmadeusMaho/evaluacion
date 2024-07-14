@@ -107,10 +107,10 @@ def verCarro(request):
     request.session['carrito'] = carritoSesion
     context = {'listado' : carritoSesion}
     
-    ordenCompra = str(1)
+    ordenCompra = str(random.randint(10000000,9999999999))
     id_sesion = str(request.session._session_key)
     monto = 1000
-    return_url = "http://127.0.0.1:8000/principal"
+    return_url = "http://127.0.0.1:8000/resultado_compra"
     tx = Transaction(WebpayOptions(Transaction.COMMERCE_CODE, Transaction.API_KEY_SECRET, IntegrationType.TEST))
     response = tx.create(buy_order=ordenCompra,
                                   session_id=id_sesion,
@@ -118,11 +118,29 @@ def verCarro(request):
                                   return_url=return_url)
     print(response)
     context['response'] = response
+    request.session['token_ws'] = response['token']
     return render(request, 'carrito.html', context)#{
         #'url': response['url'],
        # 'token': response['token']
    #})
 
+#transbank
+
+def commit_transaction(request):
+    context = {}
+    try:
+        tx = Transaction(WebpayOptions(Transaction.COMMERCE_CODE, Transaction.API_KEY_SECRET, IntegrationType.TEST))
+        token = request.session.get('token_ws')
+        response = tx.commit(token)
+    except:
+        context['error'] = 'Error al eliminar el producto'
+        return render(request, 'resultado_compra.html', context)
+    del request.session['token_ws']      
+    return render(request, 'resultado_compra.html', {'response': response})
+
+    
+def resultadoCompra(request):
+    return render(request, 'resultado_compra.html')
 
 
 def eliminarJuegoCarro(request, idJuego):
@@ -476,36 +494,5 @@ class CustomLoginView(LoginView):
     redirect_authenticated_user = True
 
 
-#transbank
 
 
-def init_transaction(request):
-    ordenCompra = str(1)
-    id_sesion = str(request.session._session_key)
-    print(id_sesion)
-    monto = 1000.0
-    return_url = "http://127.0.0.1:8000/resultado_compra"
-    tx = Transaction(WebpayOptions(Transaction.COMMERCE_CODE, Transaction.API_KEY_SECRET, IntegrationType.TEST))
-    response = tx.create(buy_order=ordenCompra,
-                                  session_id=id_sesion,
-                                  amount=monto,
-                                  return_url=return_url)
-    print(response)
-
-    return render(request, 'carrito.html', {
-        'url': response['url'],
-        'token': response['token']
-    })
-
-def commit_transaction(request):
-    token = request.POST.get('token_ws')
-    response = Transaction.commit(token)
-    if response and response.get('detailOutput'):
-        
-        return render(request, 'resultado_compra.html', {'response': response})
-    else:
-        
-        return render(request, 'resultado_compra.html', {'error_message': 'Error al confirmar la transacción'})
-    
-def resultadoCompra(request):
-    return render(request, 'resultado_compra.html')

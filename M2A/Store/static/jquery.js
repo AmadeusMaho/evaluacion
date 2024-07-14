@@ -99,7 +99,10 @@ $(function(){
 
 //total
     $(document).ready($(function() {
+        var total = parseFloat($('#subtotal').text())*1.19;
         $('#total').text(Math.round(parseFloat($('#subtotal').text())*1.19));
+        $('.total').val(0);
+        $('.total').val(total);
     }));
 
     $(":input").bind('keyup mouseup', function () {
