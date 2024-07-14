@@ -132,6 +132,7 @@ def commit_transaction(request):
         tx = Transaction(WebpayOptions(Transaction.COMMERCE_CODE, Transaction.API_KEY_SECRET, IntegrationType.TEST))
         token = request.session.get('token_ws')
         response = tx.commit(token)
+        del request.session['carrito']
     except:
         context['error'] = 'Error al eliminar el producto'
         return render(request, 'resultado_compra.html', context)
