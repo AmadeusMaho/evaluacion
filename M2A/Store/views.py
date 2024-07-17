@@ -136,10 +136,11 @@ def verCarro(request):
 
 def commit_transaction(request):
     context = {}
+    carritoSesion = request.session.get('carrito', {})
     try:
         token = request.session.get('token_ws')
         if not token:
-            context['error'] = 'Token no encontrado. Si ya realizó la compra intente volver al menú.'
+            return redirect(principal)
         else:
             tx = Transaction(WebpayOptions(Transaction.COMMERCE_CODE, Transaction.API_KEY_SECRET, IntegrationType.TEST))
             response = tx.commit(token)
@@ -148,6 +149,13 @@ def commit_transaction(request):
             if status == 'AUTHORIZED':
                 context['response'] = response
                 context['success_message'] = 'Pago realizado exitosamente.'
+                for item in carritoSesion.values():
+                    juego = Juego.objects.get(idJuego = item['idJuego'])
+                    if juego.stock == 0:
+                        context['error'] = 'Juego sin stock, favor de llamar. Atención lunes a viernes desde 8:00 am a 8:00 pm'
+                    else:
+                        juego.stock = str(int(juego.stock) - int(item['cantidad']))
+                        juego.save()
             elif status == 'REVERSED':
                 context['error'] = 'El pago fue cancelado.'
             else:

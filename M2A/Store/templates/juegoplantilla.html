@@ -17,7 +17,7 @@
             <p class="pt-1" id="producto" style="text-align: start; margin-bottom: 10px;">Clave de {{ juego.tipoClave.nombre }}</p>
           </div>
           <div class="offset-4 col-4">
-            <p class="pt-1" id="stock" style="text-align: center; margin-bottom: 10px;"> Stock: {{ juego.stock }}</p>
+            <p class="pt-1" id="stock" style="text-align: center; margin-bottom: 10px;"> Stock: {%if juego.stock == 0%} NO DISPONIBLE {%else%}{{ juego.stock }}{%endif%} </p>
           </div>
           <div class="col-6 d-flex align-items-center">
             <div class="spinner-border" role="status" id="spinner-precio" style="color: #11ced0; width: 25px; height: 25px;">
@@ -33,11 +33,19 @@
             <button type="button" class="btnConversion btn btn-primary btn-sm mt-1" style="width: 60%;">Convertir a dólares</button>
           </div>
           <div class="col-6 d-flex justify-content-end">
+            {%if juego.stock == 0%}
+            <a class="btn-carro btn btn-primary btn mt-1" href="{% url 'agregarJuegoCarro' idJuego=juego.idJuego%}" role="button" id="btn-carro" style="width: 80px; margin-right: 14%; pointer-events:none">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ban" viewBox="0 0 16 16">
+                <path d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0"/>
+              </svg>
+            </a>
+            {%else%}
             <a class="btn-carro btn btn-primary btn mt-1" href="{% url 'agregarJuegoCarro' idJuego=juego.idJuego%}" role="button" id="btn-carro" style="width: 80px; margin-right: 14%;">
               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
                 <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
               </svg>
             </a>
+            {%endif%}
           </div>
         </div>
       </div>
